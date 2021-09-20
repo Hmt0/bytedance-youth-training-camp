@@ -11,6 +11,7 @@ const spawn = async(...args) => {
     const {spawn} = require('child_process')
     return new Promise(resolve => {
         const options = args[args.length - 1]
+        // Windows兼容性问题
         if(process.platform === 'win32') {
             options.shell = true
         }
@@ -34,6 +35,8 @@ module.exports = async name => {
     console.log('🚀创建项目 ' + name)
     await clone('github:su37josephxia/vue-template', name)
 
+
+    // 子进程
     log('🚗安装依赖...')
     await spawn('npm', ['install'], {cwd: `./${name}`})
     log(chalk.green(`
