@@ -1,5 +1,5 @@
 {
-    "name": "demo",
+    "name": "<%= packageName %>",
     "type": "module",
     "version": "1.0.0",
     "description": "",
@@ -12,11 +12,11 @@
     "license": "ISC",
     "dependencies": {
       "koa": "^2.13.1"
-      
+      <% if (router) { %>
       ,"koa-router": "^10.1.1"
-       
-       
+      <% } %> 
+      <% if (static) { %> 
       ,"koa-static": "^5.0.0"
-       
+      <% } %> 
     }
   }
