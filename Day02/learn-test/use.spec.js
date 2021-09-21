@@ -5,5 +5,5 @@ test("should getName ", () => {
 
     user.setName('xiaohei');
 
-    expect(user.getName()).toBe("xiaohei")
+    expect(user.getName()).toBe("xiaohei");
 })

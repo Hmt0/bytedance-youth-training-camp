@@ -2,7 +2,7 @@
 // 拼代码 模板渲染的方式
 const fs = require('fs')
 const handlebars = require('handlebars')
-const chalk = require('chalk')
+const chalk = require('../../../Day02/learn-test/node_modules/chalk')
 
 module.exports = async() => {
     // 获取列表
