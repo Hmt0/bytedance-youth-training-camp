@@ -1,6 +1,6 @@
 {
   "name": "learn-koa-setup",
-  "type": "module", 
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,5 +9,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6"
+  }
 }
