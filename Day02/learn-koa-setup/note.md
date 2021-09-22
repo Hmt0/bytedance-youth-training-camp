@@ -10,6 +10,7 @@ packageName参数化
 开发思想 - 小步骤
 
 ejs Embedded JavaScript templates
+Inquirer.js A collection of common interactive command line user interfaces.
 
 问题驱动
 1.手动创建的步骤，主流程happy path -> 翻译成代码 index.js
