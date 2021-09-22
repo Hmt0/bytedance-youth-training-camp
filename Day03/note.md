@@ -22,3 +22,16 @@ w3c WAI-ARIA
 ?transform和absolute有什么区别
 
 性能提升：transform3D使用GPU渲染
+
+vscode警告：vscode Cannot find module '@babel/plugin-proposal-decorators'
+原因：一个git仓库中有多个子项目，每个项目里有各自的eslint，此时会导致vscode首先在顶级目录下找eslint-plugin-vue，没找到就会失效。这时你可以单独打开一个子项目，让eslint在顶级目录下 可以找到，就可以继续使用eslint去修复代码格式了。
+"eslint.workingDirectories": [
+    ".eslintrc.js",
+    {
+        "mode": "auto"
+    }
+],
+
+writting-mode
+float
+absolute top left
