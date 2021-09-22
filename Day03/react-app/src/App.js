@@ -5,13 +5,33 @@ import logo from "./assets/logo.svg"
 // import bigLogo from "./assets/bigLogo.svg"
 import { UnorderedListOutlined } from "@ant-design/icons"
 import { BigLogo } from "./BigLogo";
+import MyComponent from "./Components/MyComponent";
+import React from "react";
 
 const { SubMenu } = Menu;
+
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee',
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: 'red',
+  },
+};
+
+const ThemeContext = React.createContext(
+  themes.dark // 默认值
+);
 
 function App(props) {
   return (
     <div className="App">
       {props.children }
+      <ThemeContext.Provider>
+        <MyComponent />
+      </ThemeContext.Provider>
       <Row>
         <Col>
         <h1>
