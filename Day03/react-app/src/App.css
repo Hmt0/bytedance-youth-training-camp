@@ -7,6 +7,7 @@
 #logo {
   height: 64px;
   padding-left: 40px;
+  padding-right: 16px;
   overflow: hidden;
   color: #000000d9;
   font-weight: 700;
@@ -16,5 +17,51 @@
   letter-spacing: -.18px;
   white-space: nowrap;
   text-decoration: none;
+}
+
+#search-box {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 22px;
+  border-left: 1px solid #f0f0f0;
+  padding-left: 16px;
+}
+
+#menu {
+  height: 64px
+}
+
+.ant-menu-horizontal {
+  height: 64px;
+  border-bottom: 0;
+}
+
+#big-logo img {
+  width: 500px;
+}
+
+.home-banner-content {
+  margin-top: 52px;
+}
+
+.home-card-logo {
+  position: relative;
+  display: inline-block;
+  max-width: 500px;
+  margin: 0 32px;
+  cursor: pointer;
+}
+
+.home-card-logo-icon {
+  position: absolute;
+  top: -7px;
+  left: 353px;
+  display: none;
+  width: 64px;
+  height: 64px;
+}
+
+.icon-content {
+  transform: translate(16px, 16px);
 }
 
