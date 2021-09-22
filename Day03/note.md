@@ -15,3 +15,10 @@
 
 ?line-height设置100% vertical-align:middle就不生效 必须指定多少px
 w3c WAI-ARIA
+
+创建umi应用：npx create-umi umi-app
+
+?监听element 和 document有什么区别
+?transform和absolute有什么区别
+
+性能提升：transform3D使用GPU渲染
