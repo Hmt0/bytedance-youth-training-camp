@@ -8,9 +8,10 @@ import { BigLogo } from "./BigLogo";
 
 const { SubMenu } = Menu;
 
-function App() {
+function App(props) {
   return (
     <div className="App">
+      {props.children }
       <Row>
         <Col>
         <h1>
