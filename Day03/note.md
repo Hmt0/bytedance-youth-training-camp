@@ -43,3 +43,5 @@ absolute top left
 可不可以从把拖拽结果自动生成代码
 
 column设置宽度
+
+css normalize

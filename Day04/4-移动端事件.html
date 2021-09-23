@@ -17,5 +17,22 @@
     <div id="box">
 
     </div>
+    <script>
+        /*
+        - touchstart 手指触碰
+        - touchmove 手指移动
+        - touchend 手指抬起
+        */
+       let box = document.querySelector("#box");
+       box.addEventListener("touchstart", () => {
+           console.log("touch start");
+       });
+       box.addEventListener("touchmove", () => {
+           console.log("move");
+       });
+       box.addEventListener("touchend", () => {
+           console.log("end");
+       })
+    </script>
 </body>
 </html>

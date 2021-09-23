@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         // root em设置
-        // 1rem = 屏幕尺寸/15
         (function() {
+            // 1rem = 屏幕尺寸/15
             var doc = document.documentElement;
             doc.style.fontSize = window.innerWidth / 15 + 'px';
         })();
@@ -25,7 +25,8 @@
             display: flex;
         }
         #box div{
-            width: 6.96rem;
+            /* 根据设计图计算 */
+            width: 6.96rem; 
             height: 3.6rem;
             background-color: red;
             margin: 0 0.2rem;
