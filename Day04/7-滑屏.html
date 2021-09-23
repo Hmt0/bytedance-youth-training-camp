@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #wrap {
+            margin: 20vh auto;
+            width: 260vw;
+            height: 50vh;
+        }
+        #list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font: 16px/2 "宋体";
+        }
+        #list li {
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul id="list">
+
+        </ul>
+    </div>
+</body>
+<script>
+    {
+        let list = document.querySelector('#list');
+        list.innerHTML = [...(".".repeat(100))].map((item, index) => `
+            <li>这是第${index}个li</li>
+        `).join("")
+    }
+</script>
+<script>
+    {
+        let list = document.querySelector('#list');
+        let startPoint = 0; // 按下时鼠标的位置
+        let startEl = 0; // 按下时元素的位置
+        let y = 0;
+        
+    }
+</script>
+</html>
