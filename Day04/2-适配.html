@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // root em设置
+        // 1rem = 屏幕尺寸/15
+        (function() {
+            var doc = document.documentElement;
+            doc.style.fontSize = window.innerWidth / 15 + 'px';
+        })();
+    </script>
+    <title>Document</title>
+    <!--
+        比例单位
+        1 rem = 1 root(html) font-size
+    -->
+    <style>
+        body {
+            margin: 0;
+        }
+        #box {
+            display: flex;
+        }
+        #box div{
+            width: 6.96rem;
+            height: 3.6rem;
+            background-color: red;
+            margin: 0 0.2rem;
+            font-size: 0.64rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>尖货抽签</div>
+        <div>新品日历</div>
+    </div>
+</body>
+</html>

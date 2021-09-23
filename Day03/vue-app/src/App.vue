@@ -6,11 +6,11 @@
       <span @mousedown="dragBtn">Button</span>
     </div>
     <div id="editPanel">
-      <div class="row">row
-        <div class="column">col
+      <div class="row" v-for="row of rows" v-bind:key="row">row
+        <div class="col" v-for="col of row.cols" v-bind:key="col">col
           <button>123</button>
         </div>
-        <div class="column">col
+        <div class="col">col
           <button>123</button>
         </div>
       </div>
@@ -32,6 +32,22 @@ export default {
       y: 0,
       type: 'none',
       isDragging: false
+    },
+    rows: {
+      type: 'row',
+      height: 300,
+      cols: [
+        {
+          type: 'col',
+          width: 300,
+          children: [
+            {
+              type: 'btn',
+              content: '按钮'
+            }
+          ]
+        }
+      ]
     }
   }),
   components: {
@@ -104,8 +120,9 @@ export default {
   display: flex;
   padding: 20px;
   box-sizing: border-box;
+  margin-top: 10px
 }
-.column {
+.col {
   height: 200px;
   background-color: lightblue;
   min-width: 200px;
