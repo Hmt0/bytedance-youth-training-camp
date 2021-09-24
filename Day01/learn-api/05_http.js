@@ -5,7 +5,8 @@ http.createServer((request, response) => {
     // console.log('这里有一个请求')
     // console.log(getPrototypeChain(request))
     // response.end('Hi Node!')
-    const {url, method} = request
+    const {url, method, headers} = request;
+    console.log('url:', url);
     if(url === '/' && method === "GET") {
         fs.readFile('index.html', (err, data) =>{ 
             if(err) {
@@ -22,7 +23,17 @@ http.createServer((request, response) => {
             response.setHeader('Content-Type', 'text/html')
             response.end(data);
         })
-    }else {
+    }
+    else if( url === '/users' && method === 'GET') {
+        response.writeHead(200, {'Content-Type': 'application/json'})
+        response.end(JSON.stringify({name: 'hmt'}))
+    }
+    // 所有图片请求
+    else if(method === 'GET' && headers.accept.indexOf('image/*') !== -1) {
+        // 相对路径
+        fs.createReadStream('.' + url).pipe(response);
+    }
+    else {
         response.statusCode = 404
         response.setHeader('Content-Type', 'text/plain;charset=utf-8')
         response.end('404 没这玩意！')
