@@ -1,0 +1,36 @@
+<div></div>
+<script>
+    class Vue{
+        reateApp() {
+            
+        }
+        mount(selector){
+            if(!options.render) {
+                options.render = this.compile(parent.innerHTML)
+            }
+        }
+        compile(template) {
+            return function render() {
+                const h3 = document.createElement('h3')
+                h3.textContent = this.title
+            }
+        }
+        render() {
+
+        }
+    }
+</script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                title: 'hello, vue3!'
+            }
+        },
+        setup() {
+            return {
+                title: 'vue3, hello!'
+            }
+        }
+    })
+</script>
