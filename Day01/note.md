@@ -26,3 +26,16 @@ resolve子进程状态码
 
 
 ？对于经常引用的包，比如chalk，可以放在全局或者注入
+
+?发布一个npm包
+上传：npm publish
+
+------------通过模型自动映射Restful服务--------------
+1:29
+mysql adminer  mongoDB
+
+连接池
+
+SQL 翻页 模糊查询 排序
+
+nodejs ORM
