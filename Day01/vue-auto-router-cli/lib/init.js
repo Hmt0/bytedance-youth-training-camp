@@ -7,13 +7,18 @@ const open = require('open')
 
 const log = content => console.log(chalk.green(content))
 
+// 封装成promise api
 const spawn = async(...args) => {
     const {spawn} = require('child_process')
     return new Promise(resolve => {
         const options = args[args.length - 1]
-        // Windows兼容性问题
+        // Windows兼容性问题，设置shell选项为true以隐式地调用cmd
         if(process.platform === 'win32') {
+            console.log('win32')
             options.shell = true
+        }
+        else {
+            console.log('Linux/Unix')
         }
         const proc = spawn(...args)
         proc.stdout.pipe(process.stdout)
@@ -38,7 +43,9 @@ module.exports = async name => {
 
     // 子进程
     log('🚗安装依赖...')
+    // 在上级目录执行
     await spawn('npm', ['install'], {cwd: `./${name}`})
+    // 输出流 子进程合并到主进程
     log(chalk.green(`
         ✌安装完成:
         To get Start:
