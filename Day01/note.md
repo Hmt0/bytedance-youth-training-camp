@@ -20,6 +20,9 @@ npm i commander download-git-repo ora handlebars figlet clear chalk open -s
 
 nodejs子进程 child_process
 
-npm init可以添加的功能：
+？snpm init可以添加的功能：
 错误处理
 resolve子进程状态码
+
+
+？对于经常引用的包，比如chalk，可以放在全局或者注入

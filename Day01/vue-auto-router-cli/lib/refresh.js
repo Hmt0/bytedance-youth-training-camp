@@ -2,13 +2,15 @@
 // 拼代码 模板渲染的方式
 const fs = require('fs')
 const handlebars = require('handlebars')
-const chalk = require('../../../Day02/learn-test/node_modules/chalk')
+const chalk = require('chalk')
 
 module.exports = async() => {
     // 获取列表
     const list = fs
         .readdirSync('./src/views')
+        // 主页是固定渲染的
         .filter(v => v!=='Home.vue')
+        // 去掉扩展名
         .map(v => ({
             name: v.replace('.vue', '').toLowerCase(),
             file: v
@@ -19,7 +21,13 @@ module.exports = async() => {
   
     // 生成菜单
     compile({list}, './src/App.vue', './template/App.vue.hbs')
-  
+
+    /**
+     * 
+     * @param {*} meta 数据定义
+     * @param {*} filePath 目标文件
+     * @param {*} templatePath 模板
+     */
     function compile(meta, filePath, templatePath) {
       if(fs.existsSync(templatePath)) {
         const content = fs.readFileSync(templatePath).toString()
