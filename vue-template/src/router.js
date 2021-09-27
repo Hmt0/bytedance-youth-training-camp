@@ -18,5 +18,10 @@ export default new Router({
       name: 'about',
       component: () => import('./views/About.vue')
     },
+    {
+      path: '/hmt',
+      name: 'hmt',
+      component: () => import('./views/Hmt.vue')
+    },
   ]
 })
