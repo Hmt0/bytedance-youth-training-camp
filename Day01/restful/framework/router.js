@@ -6,6 +6,7 @@ const {
 
 router.get('/api/:list/:id', init, get);
 router.get('/api/:list', init, list);
+// 未完成
 // router.post('/api/:list', init, create);
 // router.put('/api/:list/:id', init, update);
 // router.delete('/api/:list/:id', init, del);
