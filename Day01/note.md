@@ -59,4 +59,17 @@ JavaScript keystoneJS 低代码平台
 动态编程：
 根据模型文件 自动加载模型
 动态产生路由 注册通配路由
-3:14
+
+session的不足：
+session以cookie为基础 基于浏览器
+服务器有状态 有多台 如何全局记录session表
+不灵活APP怎么办 跨域怎么办
+token不需要记录在服务器端 base64编码
+
+CDN内容分发网络 回源
+
+RPC远程调用过程
+idl 交互式数据语言
+微服务 就是一些协同工作小而自治的服务
+
+https://github.com/su37josephxia/bytedance-youth-training-camp/blob/main/Day01/src/03_auth/token/index.js
