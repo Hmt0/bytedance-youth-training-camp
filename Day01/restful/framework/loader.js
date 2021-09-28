@@ -21,7 +21,7 @@ function load(dir, cb) {
 }
 
 const loadModel = config => app => {
-    mongoose.connect(config.db.url, confg.db.options)
+    mongoose.connect(config.db.url, config.db.options)
     const conn = mongoose.connection
     conn.on('error', () => {
         console.error('数据库连接失败')
