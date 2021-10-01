@@ -2,6 +2,7 @@
   "name": "learn-koa-setup",
   "type": "module",
   "version": "1.0.0",
+  "bin": "./bin/index.js",
   "description": "",
   "main": "index.js",
   "scripts": {
