@@ -1,5 +1,6 @@
 import ejs from "ejs";
 import fs from "fs";
+import prettier from "prettier"
 
 export function createPackageJsonTemplate(config) {
     // const template = fs.readFileSync("./template/index.ejs").toString();
@@ -10,5 +11,8 @@ export function createPackageJsonTemplate(config) {
         static: config.middleware.static
     });
     // console.log(code);
-    return code;
+
+    return prettier.format(code, {
+        parser: "json"
+    });
 }

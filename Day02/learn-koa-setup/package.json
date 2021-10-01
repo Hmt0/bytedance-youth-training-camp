@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",
-    "inquirer": "^8.1.5"
+    "execa": "^5.1.1",
+    "inquirer": "^8.1.5",
+    "prettier": "^2.4.1"
   }
 }

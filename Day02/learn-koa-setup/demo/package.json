@@ -1,22 +1,18 @@
 {
-    "name": "hmt",
-    "type": "module",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "rd /S demo && node index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "koa": "^2.13.1"
-      
-      ,"koa-router": "^10.1.1"
-       
-       
-      ,"koa-static": "^5.0.0"
-       
-    }
+  "name": "hmt",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "rd /S demo && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.1",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0"
   }
+}

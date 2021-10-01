@@ -1,5 +1,6 @@
 import ejs from "ejs";
 import fs from "fs"
+import prettier from "prettier"
 
 export function createIndexTemplate(config) {
     // const template = fs.readFileSync("./template/index.ejs").toString();
@@ -11,5 +12,8 @@ export function createIndexTemplate(config) {
     });
     // console.log(code);
 
-    return code;
+    return prettier.format(code, {
+        parser: "babel"
+    });
+
 }

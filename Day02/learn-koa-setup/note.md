@@ -24,8 +24,11 @@ Inquirer.js A collection of common interactive command line user interfaces.
 ?koa静态服务是干嘛的
 ?第一次运行npm test的时候没有可删除的文件夹
 
-inquirer
+inquirer 一组常用的交互式命令行用户界面。
 
 nodejs支持顶层await
 
 开发节点：1.实现功能 2.重构代码
+
+execa 子进程
+prettier 格式化代码

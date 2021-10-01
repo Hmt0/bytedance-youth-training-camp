@@ -3,6 +3,7 @@ import { createIndexTemplate } from "./indexTemplate.js"
 import { createPackageJsonTemplate } from "./packageJsonTemplate.js"
 import { question } from './question/index.js'
 import { createConfig } from './config.js'
+import execa from 'execa'
 
 const answer = await question()
 // console.log("answer", answer)
@@ -23,6 +24,11 @@ fs.writeFileSync(getRootPath() + "/package.json", createPackageJsonTemplate(conf
 
 // 4.安装依赖
 
+execa("npm install", {
+    cwd: getRootPath(),
+    stdio: [2, 2, 2]
+    // 当前子进程继承父进程的输入输出
+})
 
 function getRootPath() {
     return "./demo"
