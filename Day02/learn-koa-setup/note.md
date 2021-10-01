@@ -1,4 +1,5 @@
 -------------koa setup----------------
+实现用模板自动新建koa项目
 package.json中配置`"type": "module"`可以使用esm模块规范
 
 `rd /S <文件夹名>`删除非空文件夹
@@ -26,3 +27,5 @@ Inquirer.js A collection of common interactive command line user interfaces.
 inquirer
 
 nodejs支持顶层await
+
+开发节点：1.实现功能 2.重构代码
