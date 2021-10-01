@@ -32,3 +32,9 @@ nodejs支持顶层await
 
 execa 子进程
 prettier 格式化代码
+
+npm root -g 根路径
+
+文件需要以绝对路径引入
+__dirname属于commonjs规范
+解决办法：const __dirname = fileURLToPath(import.meta.url)

@@ -1,14 +1,19 @@
+#!/usr/bin/env node
+// sheBang
+
 import fs from "fs";
 import { createIndexTemplate } from "./indexTemplate.js"
 import { createPackageJsonTemplate } from "./packageJsonTemplate.js"
 import { question } from './question/index.js'
 import { createConfig } from './config.js'
 import execa from 'execa'
+import path from 'path'
 
 const answer = await question()
 // console.log("answer", answer)
 
 const config = createConfig(answer)
+console.log(config)
 
 // 1.创建文件夹（项目名）
 
@@ -31,5 +36,6 @@ execa("npm install", {
 })
 
 function getRootPath() {
-    return "./demo"
+    // return "./demo"
+    return path.resolve(process.cwd(), config.packageName)
 }

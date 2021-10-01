@@ -2,11 +2,13 @@
   "name": "learn-koa-setup",
   "type": "module",
   "version": "1.0.0",
-  "bin": "./bin/index.js",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "koa-setup": "./bin/index.js"
+  },
   "scripts": {
-    "test": "rd /S demo && node index.js"
+    "test": "rd /S hmt && koa-setup index.js"
   },
   "keywords": [],
   "author": "",
