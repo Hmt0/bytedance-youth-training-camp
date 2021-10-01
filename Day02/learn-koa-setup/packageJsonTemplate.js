@@ -9,6 +9,6 @@ export function createPackageJsonTemplate(config) {
         router: config.middleware.router,
         static: config.middleware.static
     });
-    console.log(code);
+    // console.log(code);
     return code;
 }

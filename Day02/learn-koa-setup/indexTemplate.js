@@ -6,9 +6,10 @@ export function createIndexTemplate(config) {
     const template = fs.readFileSync("./template/index.ejs", "utf-8");
     const code = ejs.render(template, {
         router: config.middleware.router,
-        static: config.middleware.static
+        static: config.middleware.static,
+        port: config.port
     });
-    console.log(code);
+    // console.log(code);
 
     return code;
 }
