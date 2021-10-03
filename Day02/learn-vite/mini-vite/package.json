@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rd /S demo && node index.js"
+    "test": "rd /S demo && node index.cjs",
+    "dev": "nodemon index.cjs"
   },
   "keywords": [],
   "author": "",
