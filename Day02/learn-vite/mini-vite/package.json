@@ -5,13 +5,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rd /S demo && node index.cjs",
+    "test": "cypress open-ct",
     "dev": "nodemon index.cjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.13.1"
+    "koa": "^2.13.1",
+    "vue": "^3.2.19"
   }
 }
