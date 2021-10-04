@@ -6,5 +6,6 @@ describe("Button", () => {
     it("should show app", () => {
         mount(Button);
         cy.contains("button");
+        cy.get("button").click();
     })
 })
