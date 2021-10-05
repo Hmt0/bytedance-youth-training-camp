@@ -12,7 +12,7 @@ module.exports = {
         rules: [
             {
                 test: /.md$/i,
-                loader: path.resolve(__dirname, "../index.js")
+                loader: path.resolve(__dirname, "../bundle.js")
             }
         ]
     }

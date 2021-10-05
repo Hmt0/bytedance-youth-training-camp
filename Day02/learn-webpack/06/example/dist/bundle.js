@@ -90,10 +90,11 @@
 /*!****************!*\
   !*** ./doc.md ***!
   \****************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module build failed (from ../index.js):\\nError [ERR_REQUIRE_ESM]: Must use import to load ES Module: D:\\\\GitHubProject\\\\bytedance-youth-training-camp\\\\Day02\\\\learn-webpack\\\\06\\\\node_modules\\\\remark\\\\index.js\\nrequire() of ES modules is not supported.\\nrequire() of D:\\\\GitHubProject\\\\bytedance-youth-training-camp\\\\Day02\\\\learn-webpack\\\\06\\\\node_modules\\\\remark\\\\index.js from D:\\\\GitHubProject\\\\bytedance-youth-training-camp\\\\Day02\\\\learn-webpack\\\\06\\\\index.js is an ES module file as it is a .js file whose nearest parent package.json contains \\\"type\\\": \\\"module\\\" which defines all .js files in that package scope as ES modules.\\nInstead rename D:\\\\GitHubProject\\\\bytedance-youth-training-camp\\\\Day02\\\\learn-webpack\\\\06\\\\node_modules\\\\remark\\\\index.js to end in .cjs, change the requiring code to use import(), or remove \\\"type\\\": \\\"module\\\" from D:\\\\GitHubProject\\\\bytedance-youth-training-camp\\\\Day02\\\\learn-webpack\\\\06\\\\node_modules\\\\remark\\\\package.json.\\n\\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1089:13)\\n    at Module.load (internal/modules/cjs/loader.js:937:32)\\n    at Function.Module._load (internal/modules/cjs/loader.js:778:12)\\n    at Module.require (internal/modules/cjs/loader.js:961:19)\\n    at require (C:\\\\Users\\\\luna6\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\\\\webpack-cli\\\\node_modules\\\\v8-compile-cache\\\\v8-compile-cache.js:159:20)\\n    at Object.<anonymous> (D:\\\\GitHubProject\\\\bytedance-youth-training-camp\\\\Day02\\\\learn-webpack\\\\06\\\\index.js:4:20)\\n    at Module._compile (C:\\\\Users\\\\luna6\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\\\\webpack-cli\\\\node_modules\\\\v8-compile-cache\\\\v8-compile-cache.js:192:30)\\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1101:10)\\n    at Module.load (internal/modules/cjs/loader.js:937:32)\\n    at Function.Module._load (internal/modules/cjs/loader.js:778:12)\");\n\n//# sourceURL=webpack:///./doc.md?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (`<p>123\r\n00000000\r\n00000000\r\n000000000\r\n000000000\r\n00000000000\r\n0\r\n000\r\n0</p>\n`);\n\n//# sourceURL=webpack:///./doc.md?");
 
 /***/ }),
 
@@ -105,7 +106,7 @@ eval("throw new Error(\"Module build failed (from ../index.js):\\nError [ERR_REQ
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _doc_md__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./doc.md */ \"./doc.md\");\n/* harmony import */ var _doc_md__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_doc_md__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\n// 加载了非js文件\r\nconsole.log(_doc_md__WEBPACK_IMPORTED_MODULE_0___default.a)\r\nconsole.log(\"main\")\n\n//# sourceURL=webpack:///./main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _doc_md__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./doc.md */ \"./doc.md\");\n\r\n\r\n// 加载了非js文件\r\nconsole.log(_doc_md__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\r\nconsole.log(\"main\")\n\n//# sourceURL=webpack:///./main.js?");
 
 /***/ })
 

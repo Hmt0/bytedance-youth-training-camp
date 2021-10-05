@@ -1,18 +1,23 @@
 // loader: source -> js
 // md -> html string
 
-const { remark } = require("remark");
-const remarkHtml = require("remarkHtml");
+// const { remark } = require("remark");
+// const remarkHtml = require("remark-html");
+import { remark } from "remark";
+import remarkHtml from "remark-html";
 
-module.exports = (source, callback) => {
-    console.log(source);
+export default function(source) {
+    // webpack注入的上下文
+    // console.log("---------------", source);
+    var callback = this.async();
 
-    remark
+    remark()
         .use(remarkHtml)
-        .processs(source)
+        .process(source)
         .then((file) => {
-            console.log(file);
+            console.log('------------------',file);
             // console.error(reporter(file));
             // console.log(String(file));
+            callback(null, `export default \`${String(file)}\``);
         });
 }

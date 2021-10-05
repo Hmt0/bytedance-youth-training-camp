@@ -3,28 +3,11 @@
 var path = require('path');
 var process = require('process');
 var url = require('url');
-var require$$1 = require('remarkHtml');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 var process__default = /*#__PURE__*/_interopDefaultLegacy(process);
-var require$$1__default = /*#__PURE__*/_interopDefaultLegacy(require$$1);
-
-function getAugmentedNamespace(n) {
-	if (n.__esModule) return n;
-	var a = Object.defineProperty({}, '__esModule', {value: true});
-	Object.keys(n).forEach(function (k) {
-		var d = Object.getOwnPropertyDescriptor(n, k);
-		Object.defineProperty(a, k, d.get ? d : {
-			enumerable: true,
-			get: function () {
-				return n[k];
-			}
-		});
-	});
-	return a;
-}
 
 /**
  * Throw a given error.
@@ -235,7 +218,7 @@ function trough() {
 
       // Next or done.
       if (fn) {
-        wrap(fn, next)(...output);
+        wrap$1(fn, next)(...output);
       } else {
         callback(null, ...output);
       }
@@ -263,7 +246,7 @@ function trough() {
  * @param {Middleware} middleware
  * @param {Callback} callback
  */
-function wrap(middleware, callback) {
+function wrap$1(middleware, callback) {
   /** @type {boolean} */
   let called;
 
@@ -332,7 +315,7 @@ function wrap(middleware, callback) {
   }
 }
 
-var own$4 = {}.hasOwnProperty;
+var own$d = {}.hasOwnProperty;
 
 /**
  * @typedef {import('unist').Node} Node
@@ -354,21 +337,21 @@ function stringifyPosition(value) {
   }
 
   // Node.
-  if (own$4.call(value, 'position') || own$4.call(value, 'type')) {
+  if (own$d.call(value, 'position') || own$d.call(value, 'type')) {
     // @ts-ignore looks like a node.
     return position(value.position)
   }
 
   // Position.
-  if (own$4.call(value, 'start') || own$4.call(value, 'end')) {
+  if (own$d.call(value, 'start') || own$d.call(value, 'end')) {
     // @ts-ignore looks like a position.
     return position(value)
   }
 
   // Point.
-  if (own$4.call(value, 'line') || own$4.call(value, 'column')) {
+  if (own$d.call(value, 'line') || own$d.call(value, 'column')) {
     // @ts-ignore looks like a point.
-    return point(value)
+    return point$1(value)
   }
 
   // ?
@@ -379,8 +362,8 @@ function stringifyPosition(value) {
  * @param {Point} point
  * @returns {string}
  */
-function point(point) {
-  return index(point && point.line) + ':' + index(point && point.column)
+function point$1(point) {
+  return index$1(point && point.line) + ':' + index$1(point && point.column)
 }
 
 /**
@@ -388,14 +371,14 @@ function point(point) {
  * @returns {string}
  */
 function position(pos) {
-  return point(pos && pos.start) + '-' + point(pos && pos.end)
+  return point$1(pos && pos.start) + '-' + point$1(pos && pos.end)
 }
 
 /**
  * @param {number} value
  * @returns {number}
  */
-function index(value) {
+function index$1(value) {
   return value && typeof value === 'number' ? value : 1
 }
 
@@ -986,7 +969,7 @@ function assertPath(path, name) {
 // Expose a frozen processor.
 const unified = base().freeze();
 
-const own$3 = {}.hasOwnProperty;
+const own$c = {}.hasOwnProperty;
 
 // Function to create the first processor.
 /**
@@ -1059,7 +1042,7 @@ function base() {
       }
 
       // Get `key`.
-      return (own$3.call(namespace, key) && namespace[key]) || null
+      return (own$c.call(namespace, key) && namespace[key]) || null
     }
 
     // Set space.
@@ -1439,7 +1422,7 @@ function keys(value) {
   let key;
 
   for (key in value) {
-    if (own$3.call(value, key)) {
+    if (own$c.call(value, key)) {
       return true
     }
   }
@@ -1566,7 +1549,7 @@ function looksLikeAVFileValue(value) {
  */
 function toString(node, options) {
   var {includeImageAlt = true} = options || {};
-  return one(node, includeImageAlt)
+  return one$3(node, includeImageAlt)
 }
 
 /**
@@ -1574,7 +1557,7 @@ function toString(node, options) {
  * @param {boolean} includeImageAlt
  * @returns {string}
  */
-function one(node, includeImageAlt) {
+function one$3(node, includeImageAlt) {
   return (
     (node &&
       typeof node === 'object' &&
@@ -1583,8 +1566,8 @@ function one(node, includeImageAlt) {
         // @ts-ignore looks like an image.
         (includeImageAlt ? node.alt : '') ||
         // @ts-ignore looks like a parent.
-        ('children' in node && all(node.children, includeImageAlt)) ||
-        (Array.isArray(node) && all(node, includeImageAlt)))) ||
+        ('children' in node && all$3(node.children, includeImageAlt)) ||
+        (Array.isArray(node) && all$3(node, includeImageAlt)))) ||
     ''
   )
 }
@@ -1594,13 +1577,13 @@ function one(node, includeImageAlt) {
  * @param {boolean} includeImageAlt
  * @returns {string}
  */
-function all(values, includeImageAlt) {
+function all$3(values, includeImageAlt) {
   /** @type {Array.<string>} */
   var result = [];
   var index = -1;
 
   while (++index < values.length) {
-    result[index] = one(values[index], includeImageAlt);
+    result[index] = one$3(values[index], includeImageAlt);
   }
 
   return result.join('')
@@ -1667,7 +1650,7 @@ function splice(list, start, remove, items) {
  * @returns {T[]}
  */
 
-function push(list, items) {
+function push$1(list, items) {
   if (list.length > 0) {
     splice(list, list.length, 0, items);
     return list
@@ -2622,20 +2605,20 @@ function resolveAllAttention(events, context) {
           nextEvents = []; // If there are more markers in the opening, add them before.
 
           if (events[open][1].end.offset - events[open][1].start.offset) {
-            nextEvents = push(nextEvents, [
+            nextEvents = push$1(nextEvents, [
               ['enter', events[open][1], context],
               ['exit', events[open][1], context]
             ]);
           } // Opening.
 
-          nextEvents = push(nextEvents, [
+          nextEvents = push$1(nextEvents, [
             ['enter', group, context],
             ['enter', openingSequence, context],
             ['exit', openingSequence, context],
             ['enter', text, context]
           ]); // Between.
 
-          nextEvents = push(
+          nextEvents = push$1(
             nextEvents,
             resolveAll(
               context.parser.constructs.insideSpan.null,
@@ -2644,7 +2627,7 @@ function resolveAllAttention(events, context) {
             )
           ); // Closing.
 
-          nextEvents = push(nextEvents, [
+          nextEvents = push$1(nextEvents, [
             ['exit', text, context],
             ['enter', closingSequence, context],
             ['exit', closingSequence, context],
@@ -2653,7 +2636,7 @@ function resolveAllAttention(events, context) {
 
           if (events[index][1].end.offset - events[index][1].start.offset) {
             offset = 2;
-            nextEvents = push(nextEvents, [
+            nextEvents = push$1(nextEvents, [
               ['enter', events[index][1], context],
               ['exit', events[index][1], context]
             ]);
@@ -5227,14 +5210,14 @@ var characterEntities = {
   zwnj: '‌'
 };
 
-var own$2 = {}.hasOwnProperty;
+var own$b = {}.hasOwnProperty;
 
 /**
  * @param {string} characters
  * @returns {string|false}
  */
 function decodeEntity(characters) {
-  return own$2.call(characterEntities, characters)
+  return own$b.call(characterEntities, characters)
     ? characterEntities[characters]
     : false
 }
@@ -8163,11 +8146,11 @@ function resolveToLabelEnd(events, context) {
     ['enter', label, context]
   ]; // Opening marker.
 
-  media = push(media, events.slice(open + 1, open + offset + 3)); // Text open.
+  media = push$1(media, events.slice(open + 1, open + offset + 3)); // Text open.
 
-  media = push(media, [['enter', text, context]]); // Between.
+  media = push$1(media, [['enter', text, context]]); // Between.
 
-  media = push(
+  media = push$1(
     media,
     resolveAll(
       context.parser.constructs.insideSpan.null,
@@ -8176,16 +8159,16 @@ function resolveToLabelEnd(events, context) {
     )
   ); // Text close, marker close, label close.
 
-  media = push(media, [
+  media = push$1(media, [
     ['exit', text, context],
     events[close - 2],
     events[close - 1],
     ['exit', label, context]
   ]); // Reference, resource, or so.
 
-  media = push(media, events.slice(close + 1)); // Media close.
+  media = push$1(media, events.slice(close + 1)); // Media close.
 
-  media = push(media, [['exit', group, context]]);
+  media = push$1(media, [['exit', group, context]]);
   splice(events, open, events.length, media);
   return events
 }
@@ -8525,7 +8508,7 @@ function tokenizeLineEnding(effects, ok) {
  */
 
 /** @type {Construct} */
-const thematicBreak$1 = {
+const thematicBreak$2 = {
   name: 'thematicBreak',
   tokenize: tokenizeThematicBreak
 };
@@ -8587,7 +8570,7 @@ function tokenizeThematicBreak(effects, ok, nok) {
  */
 /** @type {Construct} */
 
-const list$1 = {
+const list$2 = {
   name: 'list',
   tokenize: tokenizeListStart,
   continuation: {
@@ -8645,7 +8628,7 @@ function tokenizeListStart(effects, ok, nok) {
       if (kind === 'listUnordered') {
         effects.enter('listItemPrefix');
         return code === 42 || code === 45
-          ? effects.check(thematicBreak$1, nok, atMarker)(code)
+          ? effects.check(thematicBreak$2, nok, atMarker)(code)
           : atMarker(code)
       }
 
@@ -8771,7 +8754,7 @@ function tokenizeListContinuation(effects, ok, nok) {
     self.interrupt = undefined;
     return factorySpace(
       effects,
-      effects.attempt(list$1, ok, nok),
+      effects.attempt(list$2, ok, nok),
       'linePrefix',
       self.parser.constructs.disable.null.includes('codeIndented')
         ? undefined
@@ -9046,7 +9029,7 @@ const resolver = {
   resolveAll: createResolver()
 };
 const string$1 = initializeFactory('string');
-const text$2 = initializeFactory('text');
+const text$4 = initializeFactory('text');
 /**
  * @param {'string'|'text'} field
  * @returns {InitialConstruct}
@@ -9356,7 +9339,7 @@ function createTokenizer(parser, initialize, from) {
   /** @type {TokenizeContext['write']} */
 
   function write(slice) {
-    chunks = push(chunks, slice);
+    chunks = push$1(chunks, slice);
     main(); // Exit if we’re not done, resolve might change stuff.
 
     if (chunks[chunks.length - 1] !== null) {
@@ -9822,19 +9805,19 @@ function serializeChunks(chunks, expandTabs) {
 /** @type {Extension['document']} */
 
 const document = {
-  [42]: list$1,
-  [43]: list$1,
-  [45]: list$1,
-  [48]: list$1,
-  [49]: list$1,
-  [50]: list$1,
-  [51]: list$1,
-  [52]: list$1,
-  [53]: list$1,
-  [54]: list$1,
-  [55]: list$1,
-  [56]: list$1,
-  [57]: list$1,
+  [42]: list$2,
+  [43]: list$2,
+  [45]: list$2,
+  [48]: list$2,
+  [49]: list$2,
+  [50]: list$2,
+  [51]: list$2,
+  [52]: list$2,
+  [53]: list$2,
+  [54]: list$2,
+  [55]: list$2,
+  [56]: list$2,
+  [57]: list$2,
   [62]: blockQuote
 };
 /** @type {Extension['contentInitial']} */
@@ -9853,11 +9836,11 @@ const flowInitial = {
 
 const flow = {
   [35]: headingAtx,
-  [42]: thematicBreak$1,
-  [45]: [setextUnderline, thematicBreak$1],
+  [42]: thematicBreak$2,
+  [45]: [setextUnderline, thematicBreak$2],
   [60]: htmlFlow,
   [61]: setextUnderline,
-  [95]: thematicBreak$1,
+  [95]: thematicBreak$2,
   [96]: codeFenced,
   [126]: codeFenced
 };
@@ -9869,7 +9852,7 @@ const string = {
 };
 /** @type {Extension['text']} */
 
-const text$1 = {
+const text$3 = {
   [-5]: lineEnding,
   [-4]: lineEnding,
   [-3]: lineEnding,
@@ -9900,16 +9883,16 @@ const disable = {
 };
 
 var defaultConstructs = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	document: document,
-	contentInitial: contentInitial,
-	flowInitial: flowInitial,
-	flow: flow,
-	string: string,
-	text: text$1,
-	insideSpan: insideSpan,
-	attentionMarkers: attentionMarkers,
-	disable: disable
+  __proto__: null,
+  document: document,
+  contentInitial: contentInitial,
+  flowInitial: flowInitial,
+  flow: flow,
+  string: string,
+  text: text$3,
+  insideSpan: insideSpan,
+  attentionMarkers: attentionMarkers,
+  disable: disable
 });
 
 /**
@@ -9941,7 +9924,7 @@ function parse(options = {}) {
     document: create(document$1),
     flow: create(flow$1),
     string: create(string$1),
-    text: create(text$2)
+    text: create(text$4)
   };
   return parser
   /**
@@ -10209,7 +10192,7 @@ function decode($0, $1, $2) {
  *
  * @typedef {UnistParent & {type: 'fragment', children: PhrasingContent[]}} Fragment
  */
-const own$1 = {}.hasOwnProperty;
+const own$a = {}.hasOwnProperty;
 /**
  * @param value Markdown to parse (`string` or `Buffer`).
  * @param [encoding] Character encoding to understand `value` as when it’s a `Buffer` (`string`, default: `'utf8'`).
@@ -10410,7 +10393,7 @@ function compiler(options = {}) {
     while (++index < events.length) {
       const handler = config[events[index][0]];
 
-      if (own$1.call(handler, events[index][1].type)) {
+      if (own$a.call(handler, events[index][1].type)) {
         handler[events[index][1].type].call(
           Object.assign(
             {
@@ -11258,9 +11241,9 @@ function extension(combined, extension) {
   let key;
 
   for (key in extension) {
-    if (own$1.call(extension, key)) {
+    if (own$a.call(extension, key)) {
       const list = key === 'canContainEols' || key === 'transforms';
-      const maybe = own$1.call(combined, key) ? combined[key] : undefined;
+      const maybe = own$a.call(combined, key) ? combined[key] : undefined;
       /* c8 ignore next */
 
       const left = maybe || (combined[key] = list ? [] : {});
@@ -11305,7 +11288,7 @@ function remarkParse(options) {
   Object.assign(this, {Parser: parser});
 }
 
-var own = {}.hasOwnProperty;
+var own$9 = {}.hasOwnProperty;
 
 /**
  * @callback Handler
@@ -11351,8 +11334,8 @@ function zwitch(key, options) {
     var fn = one.invalid;
     var handlers = one.handlers;
 
-    if (value && own.call(value, key)) {
-      fn = own.call(handlers, value[key]) ? handlers[value[key]] : one.unknown;
+    if (value && own$9.call(value, key)) {
+      fn = own$9.call(handlers, value[key]) ? handlers[value[key]] : one.unknown;
     }
 
     if (fn) {
@@ -11528,7 +11511,7 @@ function indentLines(value, map) {
  * @type {Handle}
  * @param {Blockquote} node
  */
-function blockquote(node, _, context) {
+function blockquote$1(node, _, context) {
   const exit = context.enter('blockquote');
   const value = indentLines(containerFlow(node, context), map$1);
   exit();
@@ -11591,7 +11574,7 @@ function listInScope(stack, list, none) {
  * @type {Handle}
  * @param {Break} _
  */
-function hardBreak(_, _1, context, safe) {
+function hardBreak$1(_, _1, context, safe) {
   let index = -1;
 
   while (++index < context.unsafe.length) {
@@ -11881,7 +11864,7 @@ function escapeBackslashes(value, after) {
  * @type {Handle}
  * @param {Code} node
  */
-function code(node, _, context) {
+function code$1(node, _, context) {
   const marker = checkFence(context);
   const raw = node.value || '';
   const suffix = marker === '`' ? 'GraveAccent' : 'Tilde';
@@ -12140,7 +12123,7 @@ function containerPhrasing(parent, context, safeOptions) {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-emphasis.peek = emphasisPeek;
+emphasis$1.peek = emphasisPeek;
 
 // To do: there are cases where emphasis cannot “form” depending on the
 // previous or next character of sequences.
@@ -12150,7 +12133,7 @@ emphasis.peek = emphasisPeek;
  * @type {Handle}
  * @param {Emphasis} node
  */
-function emphasis(node, _, context) {
+function emphasis$1(node, _, context) {
   const marker = checkEmphasis(context);
   const exit = context.enter('emphasis');
   const value = containerPhrasing(node, context, {
@@ -12207,11 +12190,11 @@ const convert =
       }
 
       if (typeof test === 'object') {
-        return Array.isArray(test) ? anyFactory(test) : propsFactory(test)
+        return Array.isArray(test) ? anyFactory$1(test) : propsFactory(test)
       }
 
       if (typeof test === 'function') {
-        return castFactory(test)
+        return castFactory$1(test)
       }
 
       throw new Error('Expected function, string, or object as test')
@@ -12221,7 +12204,7 @@ const convert =
  * @param {Array.<Type|Props|TestFunctionAnything>} tests
  * @returns {AssertAnything}
  */
-function anyFactory(tests) {
+function anyFactory$1(tests) {
   /** @type {Array.<AssertAnything>} */
   const checks = [];
   let index = -1;
@@ -12230,7 +12213,7 @@ function anyFactory(tests) {
     checks[index] = convert(tests[index]);
   }
 
-  return castFactory(any)
+  return castFactory$1(any)
 
   /**
    * @this {unknown}
@@ -12256,7 +12239,7 @@ function anyFactory(tests) {
  * @returns {AssertAnything}
  */
 function propsFactory(check) {
-  return castFactory(all)
+  return castFactory$1(all)
 
   /**
    * @param {Node} node
@@ -12283,7 +12266,7 @@ function propsFactory(check) {
  * @returns {AssertAnything}
  */
 function typeFactory(check) {
-  return castFactory(type)
+  return castFactory$1(type)
 
   /**
    * @param {Node} node
@@ -12299,7 +12282,7 @@ function typeFactory(check) {
  * @param {TestFunctionAnything} check
  * @returns {AssertAnything}
  */
-function castFactory(check) {
+function castFactory$1(check) {
   return assertion
 
   /**
@@ -12322,7 +12305,7 @@ function ok() {
  * @param {string} d
  * @returns {string}
  */
-function color(d) {
+function color$1(d) {
   return '\u001B[33m' + d + '\u001B[39m'
 }
 
@@ -12340,15 +12323,15 @@ function color(d) {
 /**
  * Continue traversing as normal
  */
-const CONTINUE = true;
+const CONTINUE$1 = true;
 /**
  * Do not traverse this node’s children
  */
-const SKIP = 'skip';
+const SKIP$1 = 'skip';
 /**
  * Stop traversing immediately
  */
-const EXIT = false;
+const EXIT$1 = false;
 
 /**
  * Visit children of tree which pass a test
@@ -12358,7 +12341,7 @@ const EXIT = false;
  * @param visitor Function to run for each node
  * @param reverse Visit the tree in reverse order, defaults to false
  */
-const visitParents =
+const visitParents$1 =
   /**
    * @type {(
    *   (<Tree extends Node, Check extends Test>(tree: Tree, test: Check, visitor: import('./complex-types').BuildVisitor<Tree, Check>, reverse?: boolean) => void) &
@@ -12408,7 +12391,7 @@ const visitParents =
           Object.defineProperty(visit, 'name', {
             value:
               'node (' +
-              color(value.type + (name ? '<' + name + '>' : '')) +
+              color$1(value.type + (name ? '<' + name + '>' : '')) +
               ')'
           });
         }
@@ -12426,15 +12409,15 @@ const visitParents =
           let grandparents;
 
           if (!test || is(node, index, parents[parents.length - 1] || null)) {
-            result = toResult(visitor(node, parents));
+            result = toResult$1(visitor(node, parents));
 
-            if (result[0] === EXIT) {
+            if (result[0] === EXIT$1) {
               return result
             }
           }
 
           // @ts-expect-error looks like a parent.
-          if (node.children && result[0] !== SKIP) {
+          if (node.children && result[0] !== SKIP$1) {
             // @ts-expect-error looks like a parent.
             offset = (reverse ? node.children.length : -1) + step;
             // @ts-expect-error looks like a parent.
@@ -12445,7 +12428,7 @@ const visitParents =
               // @ts-expect-error looks like a parent.
               subresult = factory(node.children[offset], offset, grandparents)();
 
-              if (subresult[0] === EXIT) {
+              if (subresult[0] === EXIT$1) {
                 return subresult
               }
 
@@ -12464,13 +12447,13 @@ const visitParents =
  * @param {VisitorResult} value
  * @returns {ActionTuple}
  */
-function toResult(value) {
+function toResult$1(value) {
   if (Array.isArray(value)) {
     return value
   }
 
   if (typeof value === 'number') {
-    return [CONTINUE, value]
+    return [CONTINUE$1, value]
   }
 
   return [value]
@@ -12492,7 +12475,7 @@ function toResult(value) {
  * @param visitor Function to run for each node
  * @param reverse Fisit the tree in reverse, defaults to false
  */
-const visit =
+const visit$1 =
   /**
    * @type {(
    *   (<Tree extends Node, Check extends Test>(tree: Tree, test: Check, visitor: import('./complex-types').BuildVisitor<Tree, Check>, reverse?: boolean) => void) &
@@ -12513,7 +12496,7 @@ const visit =
         test = null;
       }
 
-      visitParents(tree, test, overload, reverse);
+      visitParents$1(tree, test, overload, reverse);
 
       /**
        * @param {Node} node
@@ -12545,13 +12528,13 @@ function formatHeadingAsSetext(node, context) {
 
   // Look for literals with a line break.
   // Note that this also
-  visit(node, (node) => {
+  visit$1(node, (node) => {
     if (
       ('value' in node && /\r?\n|\r/.test(node.value)) ||
       node.type === 'break'
     ) {
       literalWithBreak = true;
-      return EXIT
+      return EXIT$1
     }
   });
 
@@ -12572,7 +12555,7 @@ function formatHeadingAsSetext(node, context) {
  * @type {Handle}
  * @param {Heading} node
  */
-function heading(node, _, context) {
+function heading$1(node, _, context) {
   const rank = Math.max(Math.min(6, node.depth || 1), 1);
 
   if (formatHeadingAsSetext(node, context)) {
@@ -12625,13 +12608,13 @@ function heading(node, _, context) {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-html.peek = htmlPeek;
+html$5.peek = htmlPeek;
 
 /**
  * @type {Handle}
  * @param {HTML} node
  */
-function html(node) {
+function html$5(node) {
   return node.value || ''
 }
 
@@ -12647,13 +12630,13 @@ function htmlPeek() {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-image.peek = imagePeek;
+image$1.peek = imagePeek;
 
 /**
  * @type {Handle}
  * @param {Image} node
  */
-function image(node, _, context) {
+function image$1(node, _, context) {
   const quote = checkQuote(context);
   const suffix = quote === '"' ? 'Quote' : 'Apostrophe';
   const exit = context.enter('image');
@@ -12709,13 +12692,13 @@ function imagePeek() {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-imageReference.peek = imageReferencePeek;
+imageReference$1.peek = imageReferencePeek;
 
 /**
  * @type {Handle}
  * @param {ImageReference} node
  */
-function imageReference(node, _, context) {
+function imageReference$1(node, _, context) {
   const type = node.referenceType;
   const exit = context.enter('imageReference');
   let subexit = context.enter('label');
@@ -12753,13 +12736,13 @@ function imageReferencePeek() {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-inlineCode.peek = inlineCodePeek;
+inlineCode$1.peek = inlineCodePeek;
 
 /**
  * @type {Handle}
  * @param {InlineCode} node
  */
-function inlineCode(node, _, context) {
+function inlineCode$1(node, _, context) {
   let value = node.value || '';
   let sequence = '`';
   let index = -1;
@@ -12862,13 +12845,13 @@ function formatLinkAsAutolink(node, context) {
  * @typedef {import('../types.js').Exit} Exit
  */
 
-link.peek = linkPeek;
+link$1.peek = linkPeek;
 
 /**
  * @type {Handle}
  * @param {Link} node
  */
-function link(node, _, context) {
+function link$1(node, _, context) {
   const quote = checkQuote(context);
   const suffix = quote === '"' ? 'Quote' : 'Apostrophe';
   /** @type {Exit} */
@@ -12944,13 +12927,13 @@ function linkPeek(node, _, context) {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-linkReference.peek = linkReferencePeek;
+linkReference$1.peek = linkReferencePeek;
 
 /**
  * @type {Handle}
  * @param {LinkReference} node
  */
-function linkReference(node, _, context) {
+function linkReference$1(node, _, context) {
   const type = node.referenceType;
   const exit = context.enter('linkReference');
   let subexit = context.enter('label');
@@ -13137,7 +13120,7 @@ function checkRule(context) {
  * @type {Handle}
  * @param {List} node
  */
-function list(node, parent, context) {
+function list$1(node, parent, context) {
   const exit = context.enter('list');
   const bulletCurrent = context.bulletCurrent;
   /** @type {string} */
@@ -13273,7 +13256,7 @@ function checkListItemIndent(context) {
  * @type {Handle}
  * @param {ListItem} node
  */
-function listItem(node, parent, context) {
+function listItem$1(node, parent, context) {
   const listItemIndent = checkListItemIndent(context);
   let bullet = context.bulletCurrent || checkBullet(context);
 
@@ -13324,7 +13307,7 @@ function listItem(node, parent, context) {
  * @type {Handle}
  * @param {Paragraph} node
  */
-function paragraph(node, _, context) {
+function paragraph$1(node, _, context) {
   const exit = context.enter('paragraph');
   const subexit = context.enter('phrasing');
   const value = containerPhrasing(node, context, {before: '\n', after: '\n'});
@@ -13342,7 +13325,7 @@ function paragraph(node, _, context) {
  * @type {Handle}
  * @param {Root} node
  */
-function root(node, _, context) {
+function root$1(node, _, context) {
   return containerFlow(node, context)
 }
 
@@ -13374,7 +13357,7 @@ function checkStrong(context) {
  * @typedef {import('../types.js').Handle} Handle
  */
 
-strong.peek = strongPeek;
+strong$1.peek = strongPeek;
 
 // To do: there are cases where emphasis cannot “form” depending on the
 // previous or next character of sequences.
@@ -13384,7 +13367,7 @@ strong.peek = strongPeek;
  * @type {Handle}
  * @param {Strong} node
  */
-function strong(node, _, context) {
+function strong$1(node, _, context) {
   const marker = checkStrong(context);
   const exit = context.enter('strong');
   const value = containerPhrasing(node, context, {
@@ -13412,7 +13395,7 @@ function strongPeek(_, _1, context) {
  * @type {Handle}
  * @param {Text} node
  */
-function text(node, _, context, safeOptions) {
+function text$2(node, _, context, safeOptions) {
   return safe(context, node.value, safeOptions)
 }
 
@@ -13448,7 +13431,7 @@ function checkRuleRepetition(context) {
  * @type {Handle}
  * @param {ThematicBreak} _
  */
-function thematicBreak(_, _1, context) {
+function thematicBreak$1(_, _1, context) {
   const value = (
     checkRule(context) + (context.options.ruleSpaces ? ' ' : '')
   ).repeat(checkRuleRepetition(context));
@@ -13457,26 +13440,26 @@ function thematicBreak(_, _1, context) {
 }
 
 const handle = {
-  blockquote,
-  break: hardBreak,
-  code,
+  blockquote: blockquote$1,
+  break: hardBreak$1,
+  code: code$1,
   definition,
-  emphasis,
-  hardBreak,
-  heading,
-  html,
-  image,
-  imageReference,
-  inlineCode,
-  link,
-  linkReference,
-  list,
-  listItem,
-  paragraph,
-  root,
-  strong,
-  text,
-  thematicBreak
+  emphasis: emphasis$1,
+  hardBreak: hardBreak$1,
+  heading: heading$1,
+  html: html$5,
+  image: image$1,
+  imageReference: imageReference$1,
+  inlineCode: inlineCode$1,
+  link: link$1,
+  linkReference: linkReference$1,
+  list: list$1,
+  listItem: listItem$1,
+  paragraph: paragraph$1,
+  root: root$1,
+  strong: strong$1,
+  text: text$2,
+  thematicBreak: thematicBreak$1
 };
 
 /**
@@ -13682,7 +13665,7 @@ function toMarkdown(tree, options = {}) {
   context.handle = zwitch('type', {
     invalid,
     // @ts-expect-error: hush.
-    unknown,
+    unknown: unknown$1,
     // @ts-expect-error: hush.
     handlers: context.handlers
   });
@@ -13722,7 +13705,7 @@ function invalid(value) {
  * @type {Handle}
  * @param {Node} node
  */
-function unknown(node) {
+function unknown$1(node) {
   throw new Error('Cannot handle unknown node `' + node.type + '`')
 }
 
@@ -13760,32 +13743,5591 @@ function remarkStringify(options) {
   Object.assign(this, {Compiler: compiler});
 }
 
-const remark$1 = unified().use(remarkParse).use(remarkStringify).freeze();
+const remark = unified().use(remarkParse).use(remarkStringify).freeze();
 
-var remark$2 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	remark: remark$1
+/**
+ * @typedef {import('./info.js').Info} Info
+ * @typedef {Object.<string, Info>} Properties
+ * @typedef {Object.<string, string>} Normal
+ */
+
+class Schema {
+  /**
+   * @constructor
+   * @param {Properties} property
+   * @param {Normal} normal
+   * @param {string} [space]
+   */
+  constructor(property, normal, space) {
+    this.property = property;
+    this.normal = normal;
+    if (space) {
+      this.space = space;
+    }
+  }
+}
+
+/** @type {Properties} */
+Schema.prototype.property = {};
+/** @type {Normal} */
+Schema.prototype.normal = {};
+/** @type {string|null} */
+Schema.prototype.space = null;
+
+/**
+ * @typedef {import('./schema.js').Properties} Properties
+ * @typedef {import('./schema.js').Normal} Normal
+ */
+
+/**
+ * @param {import('./schema.js').Schema[]} definitions
+ * @param {string} space
+ * @returns {import('./schema.js').Schema}
+ */
+function merge(definitions, space) {
+  /** @type {Properties} */
+  var property = {};
+  /** @type {Normal} */
+  var normal = {};
+  var index = -1;
+
+  while (++index < definitions.length) {
+    Object.assign(property, definitions[index].property);
+    Object.assign(normal, definitions[index].normal);
+  }
+
+  return new Schema(property, normal, space)
+}
+
+/**
+ * @param {string} value
+ * @returns {string}
+ */
+function normalize(value) {
+  return value.toLowerCase()
+}
+
+class Info {
+  /**
+   * @constructor
+   * @param {string} property
+   * @param {string} attribute
+   */
+  constructor(property, attribute) {
+    this.property = property;
+    this.attribute = attribute;
+  }
+}
+
+/** @type {string|null} */
+Info.prototype.space = null;
+Info.prototype.attribute = null;
+Info.prototype.property = null;
+Info.prototype.boolean = false;
+Info.prototype.booleanish = false;
+Info.prototype.overloadedBoolean = false;
+Info.prototype.number = false;
+Info.prototype.commaSeparated = false;
+Info.prototype.spaceSeparated = false;
+Info.prototype.commaOrSpaceSeparated = false;
+Info.prototype.mustUseProperty = false;
+Info.prototype.defined = false;
+
+var powers = 0;
+
+var boolean = increment();
+var booleanish = increment();
+var overloadedBoolean = increment();
+var number = increment();
+var spaceSeparated = increment();
+var commaSeparated = increment();
+var commaOrSpaceSeparated = increment();
+
+function increment() {
+  return 2 ** ++powers
+}
+
+var types = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  boolean: boolean,
+  booleanish: booleanish,
+  overloadedBoolean: overloadedBoolean,
+  number: number,
+  spaceSeparated: spaceSeparated,
+  commaSeparated: commaSeparated,
+  commaOrSpaceSeparated: commaOrSpaceSeparated
 });
 
-var require$$0 = /*@__PURE__*/getAugmentedNamespace(remark$2);
+var checks = Object.keys(types);
 
-// loader: source -> js
-// md -> html string
+class DefinedInfo extends Info {
+  /**
+   * @constructor
+   * @param {string} property
+   * @param {string} attribute
+   * @param {number} [mask]
+   * @param {string} [space]
+   */
+  constructor(property, attribute, mask, space) {
+    var index = -1;
 
-const { remark } = require$$0;
-const remarkHtml = require$$1__default["default"];
+    super(property, attribute);
 
-var _06 = (source, callback) => {
-    console.log(source);
+    mark(this, 'space', space);
 
-    remark
-        .use(remarkHtml)
-        .processs(source)
-        .then((file) => {
-            console.log(file);
-            // console.error(reporter(file));
-            // console.log(String(file));
-        });
+    while (++index < checks.length) {
+      mark(
+        this,
+        checks[index],
+        (mask & types[checks[index]]) === types[checks[index]]
+      );
+    }
+  }
+}
+
+DefinedInfo.prototype.defined = true;
+
+/**
+ * @param {InstanceType<typeof DefinedInfo>} values
+ * @param {string} key
+ * @param {unknown} value
+ */
+function mark(values, key, value) {
+  if (value) {
+    values[key] = value;
+  }
+}
+
+/**
+ * @typedef {import('./schema.js').Properties} Properties
+ * @typedef {import('./schema.js').Normal} Normal
+ * @typedef {import('./info.js').Info} Info
+ */
+
+/**
+ * @typedef {Object.<string, string>} Attributes
+ *
+ * @typedef {Object} Definition
+ * @property {Object.<string, number|null>} properties
+ * @property {(attributes: Attributes, property: string) => string} transform
+ * @property {string} [space]
+ * @property {Attributes} [attributes]
+ * @property {Array.<string>} [mustUseProperty]
+ */
+
+var own$8 = {}.hasOwnProperty;
+
+/**
+ * @param {Definition} definition
+ * @returns {import('./schema.js').Schema}
+ */
+function create(definition) {
+  /** @type {Properties} */
+  var property = {};
+  /** @type {Normal} */
+  var normal = {};
+  /** @type {string} */
+  var prop;
+  /** @type {Info} */
+  var info;
+
+  for (prop in definition.properties) {
+    if (own$8.call(definition.properties, prop)) {
+      info = new DefinedInfo(
+        prop,
+        definition.transform(definition.attributes, prop),
+        definition.properties[prop],
+        definition.space
+      );
+
+      if (
+        definition.mustUseProperty &&
+        definition.mustUseProperty.includes(prop)
+      ) {
+        info.mustUseProperty = true;
+      }
+
+      property[prop] = info;
+
+      normal[normalize(prop)] = prop;
+      normal[normalize(info.attribute)] = prop;
+    }
+  }
+
+  return new Schema(property, normal, definition.space)
+}
+
+var xlink = create({
+  space: 'xlink',
+  transform: xlinkTransform,
+  properties: {
+    xLinkActuate: null,
+    xLinkArcRole: null,
+    xLinkHref: null,
+    xLinkRole: null,
+    xLinkShow: null,
+    xLinkTitle: null,
+    xLinkType: null
+  }
+});
+
+/**
+ * @param {unknown} _
+ * @param {string} prop
+ * @returns {string}
+ */
+function xlinkTransform(_, prop) {
+  return 'xlink:' + prop.slice(5).toLowerCase()
+}
+
+var xml = create({
+  space: 'xml',
+  transform: xmlTransform,
+  properties: {xmlLang: null, xmlBase: null, xmlSpace: null}
+});
+
+/**
+ * @param {unknown} _
+ * @param {string} prop
+ * @returns {string}
+ */
+function xmlTransform(_, prop) {
+  return 'xml:' + prop.slice(3).toLowerCase()
+}
+
+/**
+ * @param {Object.<string, string>} attributes
+ * @param {string} attribute
+ * @returns {string}
+ */
+function caseSensitiveTransform(attributes, attribute) {
+  return attribute in attributes ? attributes[attribute] : attribute
+}
+
+/**
+ * @param {Object.<string, string>} attributes
+ * @param {string} property
+ * @returns {string}
+ */
+function caseInsensitiveTransform(attributes, property) {
+  return caseSensitiveTransform(attributes, property.toLowerCase())
+}
+
+var xmlns = create({
+  space: 'xmlns',
+  attributes: {xmlnsxlink: 'xmlns:xlink'},
+  transform: caseInsensitiveTransform,
+  properties: {xmlns: null, xmlnsXLink: null}
+});
+
+var aria = create({
+  transform: ariaTransform,
+  properties: {
+    ariaActiveDescendant: null,
+    ariaAtomic: booleanish,
+    ariaAutoComplete: null,
+    ariaBusy: booleanish,
+    ariaChecked: booleanish,
+    ariaColCount: number,
+    ariaColIndex: number,
+    ariaColSpan: number,
+    ariaControls: spaceSeparated,
+    ariaCurrent: null,
+    ariaDescribedBy: spaceSeparated,
+    ariaDetails: null,
+    ariaDisabled: booleanish,
+    ariaDropEffect: spaceSeparated,
+    ariaErrorMessage: null,
+    ariaExpanded: booleanish,
+    ariaFlowTo: spaceSeparated,
+    ariaGrabbed: booleanish,
+    ariaHasPopup: null,
+    ariaHidden: booleanish,
+    ariaInvalid: null,
+    ariaKeyShortcuts: null,
+    ariaLabel: null,
+    ariaLabelledBy: spaceSeparated,
+    ariaLevel: number,
+    ariaLive: null,
+    ariaModal: booleanish,
+    ariaMultiLine: booleanish,
+    ariaMultiSelectable: booleanish,
+    ariaOrientation: null,
+    ariaOwns: spaceSeparated,
+    ariaPlaceholder: null,
+    ariaPosInSet: number,
+    ariaPressed: booleanish,
+    ariaReadOnly: booleanish,
+    ariaRelevant: null,
+    ariaRequired: booleanish,
+    ariaRoleDescription: spaceSeparated,
+    ariaRowCount: number,
+    ariaRowIndex: number,
+    ariaRowSpan: number,
+    ariaSelected: booleanish,
+    ariaSetSize: number,
+    ariaSort: null,
+    ariaValueMax: number,
+    ariaValueMin: number,
+    ariaValueNow: number,
+    ariaValueText: null,
+    role: null
+  }
+});
+
+/**
+ * @param {unknown} _
+ * @param {string} prop
+ * @returns {string}
+ */
+function ariaTransform(_, prop) {
+  return prop === 'role' ? prop : 'aria-' + prop.slice(4).toLowerCase()
+}
+
+var html$4 = create({
+  space: 'html',
+  attributes: {
+    acceptcharset: 'accept-charset',
+    classname: 'class',
+    htmlfor: 'for',
+    httpequiv: 'http-equiv'
+  },
+  transform: caseInsensitiveTransform,
+  mustUseProperty: ['checked', 'multiple', 'muted', 'selected'],
+  properties: {
+    // Standard Properties.
+    abbr: null,
+    accept: commaSeparated,
+    acceptCharset: spaceSeparated,
+    accessKey: spaceSeparated,
+    action: null,
+    allow: null,
+    allowFullScreen: boolean,
+    allowPaymentRequest: boolean,
+    allowUserMedia: boolean,
+    alt: null,
+    as: null,
+    async: boolean,
+    autoCapitalize: null,
+    autoComplete: spaceSeparated,
+    autoFocus: boolean,
+    autoPlay: boolean,
+    capture: boolean,
+    charSet: null,
+    checked: boolean,
+    cite: null,
+    className: spaceSeparated,
+    cols: number,
+    colSpan: null,
+    content: null,
+    contentEditable: booleanish,
+    controls: boolean,
+    controlsList: spaceSeparated,
+    coords: number | commaSeparated,
+    crossOrigin: null,
+    data: null,
+    dateTime: null,
+    decoding: null,
+    default: boolean,
+    defer: boolean,
+    dir: null,
+    dirName: null,
+    disabled: boolean,
+    download: overloadedBoolean,
+    draggable: booleanish,
+    encType: null,
+    enterKeyHint: null,
+    form: null,
+    formAction: null,
+    formEncType: null,
+    formMethod: null,
+    formNoValidate: boolean,
+    formTarget: null,
+    headers: spaceSeparated,
+    height: number,
+    hidden: boolean,
+    high: number,
+    href: null,
+    hrefLang: null,
+    htmlFor: spaceSeparated,
+    httpEquiv: spaceSeparated,
+    id: null,
+    imageSizes: null,
+    imageSrcSet: commaSeparated,
+    inputMode: null,
+    integrity: null,
+    is: null,
+    isMap: boolean,
+    itemId: null,
+    itemProp: spaceSeparated,
+    itemRef: spaceSeparated,
+    itemScope: boolean,
+    itemType: spaceSeparated,
+    kind: null,
+    label: null,
+    lang: null,
+    language: null,
+    list: null,
+    loading: null,
+    loop: boolean,
+    low: number,
+    manifest: null,
+    max: null,
+    maxLength: number,
+    media: null,
+    method: null,
+    min: null,
+    minLength: number,
+    multiple: boolean,
+    muted: boolean,
+    name: null,
+    nonce: null,
+    noModule: boolean,
+    noValidate: boolean,
+    onAbort: null,
+    onAfterPrint: null,
+    onAuxClick: null,
+    onBeforePrint: null,
+    onBeforeUnload: null,
+    onBlur: null,
+    onCancel: null,
+    onCanPlay: null,
+    onCanPlayThrough: null,
+    onChange: null,
+    onClick: null,
+    onClose: null,
+    onContextMenu: null,
+    onCopy: null,
+    onCueChange: null,
+    onCut: null,
+    onDblClick: null,
+    onDrag: null,
+    onDragEnd: null,
+    onDragEnter: null,
+    onDragExit: null,
+    onDragLeave: null,
+    onDragOver: null,
+    onDragStart: null,
+    onDrop: null,
+    onDurationChange: null,
+    onEmptied: null,
+    onEnded: null,
+    onError: null,
+    onFocus: null,
+    onFormData: null,
+    onHashChange: null,
+    onInput: null,
+    onInvalid: null,
+    onKeyDown: null,
+    onKeyPress: null,
+    onKeyUp: null,
+    onLanguageChange: null,
+    onLoad: null,
+    onLoadedData: null,
+    onLoadedMetadata: null,
+    onLoadEnd: null,
+    onLoadStart: null,
+    onMessage: null,
+    onMessageError: null,
+    onMouseDown: null,
+    onMouseEnter: null,
+    onMouseLeave: null,
+    onMouseMove: null,
+    onMouseOut: null,
+    onMouseOver: null,
+    onMouseUp: null,
+    onOffline: null,
+    onOnline: null,
+    onPageHide: null,
+    onPageShow: null,
+    onPaste: null,
+    onPause: null,
+    onPlay: null,
+    onPlaying: null,
+    onPopState: null,
+    onProgress: null,
+    onRateChange: null,
+    onRejectionHandled: null,
+    onReset: null,
+    onResize: null,
+    onScroll: null,
+    onSecurityPolicyViolation: null,
+    onSeeked: null,
+    onSeeking: null,
+    onSelect: null,
+    onSlotChange: null,
+    onStalled: null,
+    onStorage: null,
+    onSubmit: null,
+    onSuspend: null,
+    onTimeUpdate: null,
+    onToggle: null,
+    onUnhandledRejection: null,
+    onUnload: null,
+    onVolumeChange: null,
+    onWaiting: null,
+    onWheel: null,
+    open: boolean,
+    optimum: number,
+    pattern: null,
+    ping: spaceSeparated,
+    placeholder: null,
+    playsInline: boolean,
+    poster: null,
+    preload: null,
+    readOnly: boolean,
+    referrerPolicy: null,
+    rel: spaceSeparated,
+    required: boolean,
+    reversed: boolean,
+    rows: number,
+    rowSpan: number,
+    sandbox: spaceSeparated,
+    scope: null,
+    scoped: boolean,
+    seamless: boolean,
+    selected: boolean,
+    shape: null,
+    size: number,
+    sizes: null,
+    slot: null,
+    span: number,
+    spellCheck: booleanish,
+    src: null,
+    srcDoc: null,
+    srcLang: null,
+    srcSet: commaSeparated,
+    start: number,
+    step: null,
+    style: null,
+    tabIndex: number,
+    target: null,
+    title: null,
+    translate: null,
+    type: null,
+    typeMustMatch: boolean,
+    useMap: null,
+    value: booleanish,
+    width: number,
+    wrap: null,
+
+    // Legacy.
+    // See: https://html.spec.whatwg.org/#other-elements,-attributes-and-apis
+    align: null, // Several. Use CSS `text-align` instead,
+    aLink: null, // `<body>`. Use CSS `a:active {color}` instead
+    archive: spaceSeparated, // `<object>`. List of URIs to archives
+    axis: null, // `<td>` and `<th>`. Use `scope` on `<th>`
+    background: null, // `<body>`. Use CSS `background-image` instead
+    bgColor: null, // `<body>` and table elements. Use CSS `background-color` instead
+    border: number, // `<table>`. Use CSS `border-width` instead,
+    borderColor: null, // `<table>`. Use CSS `border-color` instead,
+    bottomMargin: number, // `<body>`
+    cellPadding: null, // `<table>`
+    cellSpacing: null, // `<table>`
+    char: null, // Several table elements. When `align=char`, sets the character to align on
+    charOff: null, // Several table elements. When `char`, offsets the alignment
+    classId: null, // `<object>`
+    clear: null, // `<br>`. Use CSS `clear` instead
+    code: null, // `<object>`
+    codeBase: null, // `<object>`
+    codeType: null, // `<object>`
+    color: null, // `<font>` and `<hr>`. Use CSS instead
+    compact: boolean, // Lists. Use CSS to reduce space between items instead
+    declare: boolean, // `<object>`
+    event: null, // `<script>`
+    face: null, // `<font>`. Use CSS instead
+    frame: null, // `<table>`
+    frameBorder: null, // `<iframe>`. Use CSS `border` instead
+    hSpace: number, // `<img>` and `<object>`
+    leftMargin: number, // `<body>`
+    link: null, // `<body>`. Use CSS `a:link {color: *}` instead
+    longDesc: null, // `<frame>`, `<iframe>`, and `<img>`. Use an `<a>`
+    lowSrc: null, // `<img>`. Use a `<picture>`
+    marginHeight: number, // `<body>`
+    marginWidth: number, // `<body>`
+    noResize: boolean, // `<frame>`
+    noHref: boolean, // `<area>`. Use no href instead of an explicit `nohref`
+    noShade: boolean, // `<hr>`. Use background-color and height instead of borders
+    noWrap: boolean, // `<td>` and `<th>`
+    object: null, // `<applet>`
+    profile: null, // `<head>`
+    prompt: null, // `<isindex>`
+    rev: null, // `<link>`
+    rightMargin: number, // `<body>`
+    rules: null, // `<table>`
+    scheme: null, // `<meta>`
+    scrolling: booleanish, // `<frame>`. Use overflow in the child context
+    standby: null, // `<object>`
+    summary: null, // `<table>`
+    text: null, // `<body>`. Use CSS `color` instead
+    topMargin: number, // `<body>`
+    valueType: null, // `<param>`
+    version: null, // `<html>`. Use a doctype.
+    vAlign: null, // Several. Use CSS `vertical-align` instead
+    vLink: null, // `<body>`. Use CSS `a:visited {color}` instead
+    vSpace: number, // `<img>` and `<object>`
+
+    // Non-standard Properties.
+    allowTransparency: null,
+    autoCorrect: null,
+    autoSave: null,
+    disablePictureInPicture: boolean,
+    disableRemotePlayback: boolean,
+    prefix: null,
+    property: null,
+    results: number,
+    security: null,
+    unselectable: null
+  }
+});
+
+var svg$1 = create({
+  space: 'svg',
+  attributes: {
+    accentHeight: 'accent-height',
+    alignmentBaseline: 'alignment-baseline',
+    arabicForm: 'arabic-form',
+    baselineShift: 'baseline-shift',
+    capHeight: 'cap-height',
+    className: 'class',
+    clipPath: 'clip-path',
+    clipRule: 'clip-rule',
+    colorInterpolation: 'color-interpolation',
+    colorInterpolationFilters: 'color-interpolation-filters',
+    colorProfile: 'color-profile',
+    colorRendering: 'color-rendering',
+    crossOrigin: 'crossorigin',
+    dataType: 'datatype',
+    dominantBaseline: 'dominant-baseline',
+    enableBackground: 'enable-background',
+    fillOpacity: 'fill-opacity',
+    fillRule: 'fill-rule',
+    floodColor: 'flood-color',
+    floodOpacity: 'flood-opacity',
+    fontFamily: 'font-family',
+    fontSize: 'font-size',
+    fontSizeAdjust: 'font-size-adjust',
+    fontStretch: 'font-stretch',
+    fontStyle: 'font-style',
+    fontVariant: 'font-variant',
+    fontWeight: 'font-weight',
+    glyphName: 'glyph-name',
+    glyphOrientationHorizontal: 'glyph-orientation-horizontal',
+    glyphOrientationVertical: 'glyph-orientation-vertical',
+    hrefLang: 'hreflang',
+    horizAdvX: 'horiz-adv-x',
+    horizOriginX: 'horiz-origin-x',
+    horizOriginY: 'horiz-origin-y',
+    imageRendering: 'image-rendering',
+    letterSpacing: 'letter-spacing',
+    lightingColor: 'lighting-color',
+    markerEnd: 'marker-end',
+    markerMid: 'marker-mid',
+    markerStart: 'marker-start',
+    navDown: 'nav-down',
+    navDownLeft: 'nav-down-left',
+    navDownRight: 'nav-down-right',
+    navLeft: 'nav-left',
+    navNext: 'nav-next',
+    navPrev: 'nav-prev',
+    navRight: 'nav-right',
+    navUp: 'nav-up',
+    navUpLeft: 'nav-up-left',
+    navUpRight: 'nav-up-right',
+    onAbort: 'onabort',
+    onActivate: 'onactivate',
+    onAfterPrint: 'onafterprint',
+    onBeforePrint: 'onbeforeprint',
+    onBegin: 'onbegin',
+    onCancel: 'oncancel',
+    onCanPlay: 'oncanplay',
+    onCanPlayThrough: 'oncanplaythrough',
+    onChange: 'onchange',
+    onClick: 'onclick',
+    onClose: 'onclose',
+    onCopy: 'oncopy',
+    onCueChange: 'oncuechange',
+    onCut: 'oncut',
+    onDblClick: 'ondblclick',
+    onDrag: 'ondrag',
+    onDragEnd: 'ondragend',
+    onDragEnter: 'ondragenter',
+    onDragExit: 'ondragexit',
+    onDragLeave: 'ondragleave',
+    onDragOver: 'ondragover',
+    onDragStart: 'ondragstart',
+    onDrop: 'ondrop',
+    onDurationChange: 'ondurationchange',
+    onEmptied: 'onemptied',
+    onEnd: 'onend',
+    onEnded: 'onended',
+    onError: 'onerror',
+    onFocus: 'onfocus',
+    onFocusIn: 'onfocusin',
+    onFocusOut: 'onfocusout',
+    onHashChange: 'onhashchange',
+    onInput: 'oninput',
+    onInvalid: 'oninvalid',
+    onKeyDown: 'onkeydown',
+    onKeyPress: 'onkeypress',
+    onKeyUp: 'onkeyup',
+    onLoad: 'onload',
+    onLoadedData: 'onloadeddata',
+    onLoadedMetadata: 'onloadedmetadata',
+    onLoadStart: 'onloadstart',
+    onMessage: 'onmessage',
+    onMouseDown: 'onmousedown',
+    onMouseEnter: 'onmouseenter',
+    onMouseLeave: 'onmouseleave',
+    onMouseMove: 'onmousemove',
+    onMouseOut: 'onmouseout',
+    onMouseOver: 'onmouseover',
+    onMouseUp: 'onmouseup',
+    onMouseWheel: 'onmousewheel',
+    onOffline: 'onoffline',
+    onOnline: 'ononline',
+    onPageHide: 'onpagehide',
+    onPageShow: 'onpageshow',
+    onPaste: 'onpaste',
+    onPause: 'onpause',
+    onPlay: 'onplay',
+    onPlaying: 'onplaying',
+    onPopState: 'onpopstate',
+    onProgress: 'onprogress',
+    onRateChange: 'onratechange',
+    onRepeat: 'onrepeat',
+    onReset: 'onreset',
+    onResize: 'onresize',
+    onScroll: 'onscroll',
+    onSeeked: 'onseeked',
+    onSeeking: 'onseeking',
+    onSelect: 'onselect',
+    onShow: 'onshow',
+    onStalled: 'onstalled',
+    onStorage: 'onstorage',
+    onSubmit: 'onsubmit',
+    onSuspend: 'onsuspend',
+    onTimeUpdate: 'ontimeupdate',
+    onToggle: 'ontoggle',
+    onUnload: 'onunload',
+    onVolumeChange: 'onvolumechange',
+    onWaiting: 'onwaiting',
+    onZoom: 'onzoom',
+    overlinePosition: 'overline-position',
+    overlineThickness: 'overline-thickness',
+    paintOrder: 'paint-order',
+    panose1: 'panose-1',
+    pointerEvents: 'pointer-events',
+    referrerPolicy: 'referrerpolicy',
+    renderingIntent: 'rendering-intent',
+    shapeRendering: 'shape-rendering',
+    stopColor: 'stop-color',
+    stopOpacity: 'stop-opacity',
+    strikethroughPosition: 'strikethrough-position',
+    strikethroughThickness: 'strikethrough-thickness',
+    strokeDashArray: 'stroke-dasharray',
+    strokeDashOffset: 'stroke-dashoffset',
+    strokeLineCap: 'stroke-linecap',
+    strokeLineJoin: 'stroke-linejoin',
+    strokeMiterLimit: 'stroke-miterlimit',
+    strokeOpacity: 'stroke-opacity',
+    strokeWidth: 'stroke-width',
+    tabIndex: 'tabindex',
+    textAnchor: 'text-anchor',
+    textDecoration: 'text-decoration',
+    textRendering: 'text-rendering',
+    typeOf: 'typeof',
+    underlinePosition: 'underline-position',
+    underlineThickness: 'underline-thickness',
+    unicodeBidi: 'unicode-bidi',
+    unicodeRange: 'unicode-range',
+    unitsPerEm: 'units-per-em',
+    vAlphabetic: 'v-alphabetic',
+    vHanging: 'v-hanging',
+    vIdeographic: 'v-ideographic',
+    vMathematical: 'v-mathematical',
+    vectorEffect: 'vector-effect',
+    vertAdvY: 'vert-adv-y',
+    vertOriginX: 'vert-origin-x',
+    vertOriginY: 'vert-origin-y',
+    wordSpacing: 'word-spacing',
+    writingMode: 'writing-mode',
+    xHeight: 'x-height',
+    // These were camelcased in Tiny. Now lowercased in SVG 2
+    playbackOrder: 'playbackorder',
+    timelineBegin: 'timelinebegin'
+  },
+  transform: caseSensitiveTransform,
+  properties: {
+    about: commaOrSpaceSeparated,
+    accentHeight: number,
+    accumulate: null,
+    additive: null,
+    alignmentBaseline: null,
+    alphabetic: number,
+    amplitude: number,
+    arabicForm: null,
+    ascent: number,
+    attributeName: null,
+    attributeType: null,
+    azimuth: number,
+    bandwidth: null,
+    baselineShift: null,
+    baseFrequency: null,
+    baseProfile: null,
+    bbox: null,
+    begin: null,
+    bias: number,
+    by: null,
+    calcMode: null,
+    capHeight: number,
+    className: spaceSeparated,
+    clip: null,
+    clipPath: null,
+    clipPathUnits: null,
+    clipRule: null,
+    color: null,
+    colorInterpolation: null,
+    colorInterpolationFilters: null,
+    colorProfile: null,
+    colorRendering: null,
+    content: null,
+    contentScriptType: null,
+    contentStyleType: null,
+    crossOrigin: null,
+    cursor: null,
+    cx: null,
+    cy: null,
+    d: null,
+    dataType: null,
+    defaultAction: null,
+    descent: number,
+    diffuseConstant: number,
+    direction: null,
+    display: null,
+    dur: null,
+    divisor: number,
+    dominantBaseline: null,
+    download: boolean,
+    dx: null,
+    dy: null,
+    edgeMode: null,
+    editable: null,
+    elevation: number,
+    enableBackground: null,
+    end: null,
+    event: null,
+    exponent: number,
+    externalResourcesRequired: null,
+    fill: null,
+    fillOpacity: number,
+    fillRule: null,
+    filter: null,
+    filterRes: null,
+    filterUnits: null,
+    floodColor: null,
+    floodOpacity: null,
+    focusable: null,
+    focusHighlight: null,
+    fontFamily: null,
+    fontSize: null,
+    fontSizeAdjust: null,
+    fontStretch: null,
+    fontStyle: null,
+    fontVariant: null,
+    fontWeight: null,
+    format: null,
+    fr: null,
+    from: null,
+    fx: null,
+    fy: null,
+    g1: commaSeparated,
+    g2: commaSeparated,
+    glyphName: commaSeparated,
+    glyphOrientationHorizontal: null,
+    glyphOrientationVertical: null,
+    glyphRef: null,
+    gradientTransform: null,
+    gradientUnits: null,
+    handler: null,
+    hanging: number,
+    hatchContentUnits: null,
+    hatchUnits: null,
+    height: null,
+    href: null,
+    hrefLang: null,
+    horizAdvX: number,
+    horizOriginX: number,
+    horizOriginY: number,
+    id: null,
+    ideographic: number,
+    imageRendering: null,
+    initialVisibility: null,
+    in: null,
+    in2: null,
+    intercept: number,
+    k: number,
+    k1: number,
+    k2: number,
+    k3: number,
+    k4: number,
+    kernelMatrix: commaOrSpaceSeparated,
+    kernelUnitLength: null,
+    keyPoints: null, // SEMI_COLON_SEPARATED
+    keySplines: null, // SEMI_COLON_SEPARATED
+    keyTimes: null, // SEMI_COLON_SEPARATED
+    kerning: null,
+    lang: null,
+    lengthAdjust: null,
+    letterSpacing: null,
+    lightingColor: null,
+    limitingConeAngle: number,
+    local: null,
+    markerEnd: null,
+    markerMid: null,
+    markerStart: null,
+    markerHeight: null,
+    markerUnits: null,
+    markerWidth: null,
+    mask: null,
+    maskContentUnits: null,
+    maskUnits: null,
+    mathematical: null,
+    max: null,
+    media: null,
+    mediaCharacterEncoding: null,
+    mediaContentEncodings: null,
+    mediaSize: number,
+    mediaTime: null,
+    method: null,
+    min: null,
+    mode: null,
+    name: null,
+    navDown: null,
+    navDownLeft: null,
+    navDownRight: null,
+    navLeft: null,
+    navNext: null,
+    navPrev: null,
+    navRight: null,
+    navUp: null,
+    navUpLeft: null,
+    navUpRight: null,
+    numOctaves: null,
+    observer: null,
+    offset: null,
+    onAbort: null,
+    onActivate: null,
+    onAfterPrint: null,
+    onBeforePrint: null,
+    onBegin: null,
+    onCancel: null,
+    onCanPlay: null,
+    onCanPlayThrough: null,
+    onChange: null,
+    onClick: null,
+    onClose: null,
+    onCopy: null,
+    onCueChange: null,
+    onCut: null,
+    onDblClick: null,
+    onDrag: null,
+    onDragEnd: null,
+    onDragEnter: null,
+    onDragExit: null,
+    onDragLeave: null,
+    onDragOver: null,
+    onDragStart: null,
+    onDrop: null,
+    onDurationChange: null,
+    onEmptied: null,
+    onEnd: null,
+    onEnded: null,
+    onError: null,
+    onFocus: null,
+    onFocusIn: null,
+    onFocusOut: null,
+    onHashChange: null,
+    onInput: null,
+    onInvalid: null,
+    onKeyDown: null,
+    onKeyPress: null,
+    onKeyUp: null,
+    onLoad: null,
+    onLoadedData: null,
+    onLoadedMetadata: null,
+    onLoadStart: null,
+    onMessage: null,
+    onMouseDown: null,
+    onMouseEnter: null,
+    onMouseLeave: null,
+    onMouseMove: null,
+    onMouseOut: null,
+    onMouseOver: null,
+    onMouseUp: null,
+    onMouseWheel: null,
+    onOffline: null,
+    onOnline: null,
+    onPageHide: null,
+    onPageShow: null,
+    onPaste: null,
+    onPause: null,
+    onPlay: null,
+    onPlaying: null,
+    onPopState: null,
+    onProgress: null,
+    onRateChange: null,
+    onRepeat: null,
+    onReset: null,
+    onResize: null,
+    onScroll: null,
+    onSeeked: null,
+    onSeeking: null,
+    onSelect: null,
+    onShow: null,
+    onStalled: null,
+    onStorage: null,
+    onSubmit: null,
+    onSuspend: null,
+    onTimeUpdate: null,
+    onToggle: null,
+    onUnload: null,
+    onVolumeChange: null,
+    onWaiting: null,
+    onZoom: null,
+    opacity: null,
+    operator: null,
+    order: null,
+    orient: null,
+    orientation: null,
+    origin: null,
+    overflow: null,
+    overlay: null,
+    overlinePosition: number,
+    overlineThickness: number,
+    paintOrder: null,
+    panose1: null,
+    path: null,
+    pathLength: number,
+    patternContentUnits: null,
+    patternTransform: null,
+    patternUnits: null,
+    phase: null,
+    ping: spaceSeparated,
+    pitch: null,
+    playbackOrder: null,
+    pointerEvents: null,
+    points: null,
+    pointsAtX: number,
+    pointsAtY: number,
+    pointsAtZ: number,
+    preserveAlpha: null,
+    preserveAspectRatio: null,
+    primitiveUnits: null,
+    propagate: null,
+    property: commaOrSpaceSeparated,
+    r: null,
+    radius: null,
+    referrerPolicy: null,
+    refX: null,
+    refY: null,
+    rel: commaOrSpaceSeparated,
+    rev: commaOrSpaceSeparated,
+    renderingIntent: null,
+    repeatCount: null,
+    repeatDur: null,
+    requiredExtensions: commaOrSpaceSeparated,
+    requiredFeatures: commaOrSpaceSeparated,
+    requiredFonts: commaOrSpaceSeparated,
+    requiredFormats: commaOrSpaceSeparated,
+    resource: null,
+    restart: null,
+    result: null,
+    rotate: null,
+    rx: null,
+    ry: null,
+    scale: null,
+    seed: null,
+    shapeRendering: null,
+    side: null,
+    slope: null,
+    snapshotTime: null,
+    specularConstant: number,
+    specularExponent: number,
+    spreadMethod: null,
+    spacing: null,
+    startOffset: null,
+    stdDeviation: null,
+    stemh: null,
+    stemv: null,
+    stitchTiles: null,
+    stopColor: null,
+    stopOpacity: null,
+    strikethroughPosition: number,
+    strikethroughThickness: number,
+    string: null,
+    stroke: null,
+    strokeDashArray: commaOrSpaceSeparated,
+    strokeDashOffset: null,
+    strokeLineCap: null,
+    strokeLineJoin: null,
+    strokeMiterLimit: number,
+    strokeOpacity: number,
+    strokeWidth: null,
+    style: null,
+    surfaceScale: number,
+    syncBehavior: null,
+    syncBehaviorDefault: null,
+    syncMaster: null,
+    syncTolerance: null,
+    syncToleranceDefault: null,
+    systemLanguage: commaOrSpaceSeparated,
+    tabIndex: number,
+    tableValues: null,
+    target: null,
+    targetX: number,
+    targetY: number,
+    textAnchor: null,
+    textDecoration: null,
+    textRendering: null,
+    textLength: null,
+    timelineBegin: null,
+    title: null,
+    transformBehavior: null,
+    type: null,
+    typeOf: commaOrSpaceSeparated,
+    to: null,
+    transform: null,
+    u1: null,
+    u2: null,
+    underlinePosition: number,
+    underlineThickness: number,
+    unicode: null,
+    unicodeBidi: null,
+    unicodeRange: null,
+    unitsPerEm: number,
+    values: null,
+    vAlphabetic: number,
+    vMathematical: number,
+    vectorEffect: null,
+    vHanging: number,
+    vIdeographic: number,
+    version: null,
+    vertAdvY: number,
+    vertOriginX: number,
+    vertOriginY: number,
+    viewBox: null,
+    viewTarget: null,
+    visibility: null,
+    width: null,
+    widths: null,
+    wordSpacing: null,
+    writingMode: null,
+    x: null,
+    x1: null,
+    x2: null,
+    xChannelSelector: null,
+    xHeight: number,
+    y: null,
+    y1: null,
+    y2: null,
+    yChannelSelector: null,
+    z: null,
+    zoomAndPan: null
+  }
+});
+
+var valid = /^data[-\w.:]+$/i;
+var dash = /-[a-z]/g;
+var cap = /[A-Z]/g;
+
+/**
+ * @param {import('./util/schema.js').Schema} schema
+ * @param {string} value
+ * @returns {import('./util/info.js').Info}
+ */
+function find(schema, value) {
+  var normal = normalize(value);
+  var prop = value;
+  var Type = Info;
+
+  if (normal in schema.normal) {
+    return schema.property[schema.normal[normal]]
+  }
+
+  if (normal.length > 4 && normal.slice(0, 4) === 'data' && valid.test(value)) {
+    // Attribute or property.
+    if (value.charAt(4) === '-') {
+      prop = datasetToProperty(value);
+    } else {
+      value = datasetToAttribute(value);
+    }
+
+    Type = DefinedInfo;
+  }
+
+  return new Type(prop, value)
+}
+
+/**
+ * @param {string} attribute
+ * @returns {string}
+ */
+function datasetToProperty(attribute) {
+  var value = attribute.slice(5).replace(dash, camelcase);
+  return 'data' + value.charAt(0).toUpperCase() + value.slice(1)
+}
+
+/**
+ * @param {string} property
+ * @returns {string}
+ */
+function datasetToAttribute(property) {
+  var value = property.slice(4);
+
+  if (dash.test(value)) {
+    return property
+  }
+
+  value = value.replace(cap, kebab);
+
+  if (value.charAt(0) !== '-') {
+    value = '-' + value;
+  }
+
+  return 'data' + value
+}
+
+/**
+ * @param {string} $0
+ * @returns {string}
+ */
+function kebab($0) {
+  return '-' + $0.toLowerCase()
+}
+
+/**
+ * @param {string} $0
+ * @returns {string}
+ */
+function camelcase($0) {
+  return $0.charAt(1).toUpperCase()
+}
+
+/**
+ * @typedef {import('./lib/util/info.js').Info} Info
+ * @typedef {import('./lib/util/schema.js').Schema} Schema
+ */
+var html$3 = merge([xml, xlink, xmlns, aria, html$4], 'html');
+var svg = merge([xml, xlink, xmlns, aria, svg$1], 'svg');
+
+var htmlVoidElements = [
+  'area',
+  'base',
+  'basefont',
+  'bgsound',
+  'br',
+  'col',
+  'command',
+  'embed',
+  'frame',
+  'hr',
+  'image',
+  'img',
+  'input',
+  'isindex',
+  'keygen',
+  'link',
+  'menuitem',
+  'meta',
+  'nextid',
+  'param',
+  'source',
+  'track',
+  'wbr'
+];
+
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ * @typedef {import('hast').Element} Element
+ *
+ * @typedef {string} TagName
+ * @typedef {null|undefined|TagName|TestFunctionAnything|Array.<TagName|TestFunctionAnything>} Test
+ */
+
+/**
+ * Check if an element passes a test
+ *
+ * @callback TestFunctionAnything
+ * @param {Element} element
+ * @param {number|null|undefined} [index]
+ * @param {Parent|null|undefined} [parent]
+ * @returns {boolean|void}
+ */
+
+/**
+ * Check if an element passes a certain node test
+ *
+ * @template {Element} X
+ * @callback TestFunctionPredicate
+ * @param {X} element
+ * @param {number|null|undefined} [index]
+ * @param {Parent|null|undefined} [parent]
+ * @returns {element is X}
+ */
+
+/**
+ * Check if a node is an element and passes a certain node test
+ *
+ * @callback AssertAnything
+ * @param {unknown} [node]
+ * @param {number|null|undefined} [index]
+ * @param {Parent|null|undefined} [parent]
+ * @returns {boolean}
+ */
+
+/**
+ * Check if a node is an element and passes a certain node test
+ *
+ * @template {Element} Y
+ * @callback AssertPredicate
+ * @param {unknown} [node]
+ * @param {number|null|undefined} [index]
+ * @param {Parent|null|undefined} [parent]
+ * @returns {node is Y}
+ */
+
+// Check if `node` is an `element` and whether it passes the given test.
+const isElement =
+  /**
+   * Check if a node is an element and passes a test.
+   * When a `parent` node is known the `index` of node should also be given.
+   *
+   * @type {(
+   *   (<T extends Element>(node: unknown, test: T['tagName']|TestFunctionPredicate<T>|Array.<T['tagName']|TestFunctionPredicate<T>>, index?: number, parent?: Parent, context?: unknown) => node is T) &
+   *   ((node?: unknown, test?: Test, index?: number, parent?: Parent, context?: unknown) => boolean)
+   * )}
+   */
+  (
+    /**
+     * Check if a node passes a test.
+     * When a `parent` node is known the `index` of node should also be given.
+     *
+     * @param {unknown} [node] Node to check
+     * @param {Test} [test] When nullish, checks if `node` is a `Node`.
+     * When `string`, works like passing `function (node) {return node.type === test}`.
+     * When `function` checks if function passed the node is true.
+     * When `array`, checks any one of the subtests pass.
+     * @param {number} [index] Position of `node` in `parent`
+     * @param {Parent} [parent] Parent of `node`
+     * @param {unknown} [context] Context object to invoke `test` with
+     * @returns {boolean} Whether test passed and `node` is an `Element` (object with `type` set to `element` and `tagName` set to a non-empty string).
+     */
+    // eslint-disable-next-line max-params
+    function (node, test, index, parent, context) {
+      const check = convertElement(test);
+
+      if (
+        index !== undefined &&
+        index !== null &&
+        (typeof index !== 'number' ||
+          index < 0 ||
+          index === Number.POSITIVE_INFINITY)
+      ) {
+        throw new Error('Expected positive finite index for child node')
+      }
+
+      if (
+        parent !== undefined &&
+        parent !== null &&
+        (!parent.type || !parent.children)
+      ) {
+        throw new Error('Expected parent node')
+      }
+
+      // @ts-expect-error Looks like a node.
+      if (!node || !node.type || typeof node.type !== 'string') {
+        return false
+      }
+
+      if (
+        (parent === undefined || parent === null) !==
+        (index === undefined || index === null)
+      ) {
+        throw new Error('Expected both parent and index')
+      }
+
+      return check.call(context, node, index, parent)
+    }
+  );
+
+const convertElement =
+  /**
+   * @type {(
+   *   (<T extends Element>(test: T['tagName']|TestFunctionPredicate<T>) => AssertPredicate<T>) &
+   *   ((test?: Test) => AssertAnything)
+   * )}
+   */
+  (
+    /**
+     * Generate an assertion from a check.
+     * @param {Test} [test]
+     * When nullish, checks if `node` is a `Node`.
+     * When `string`, works like passing `function (node) {return node.type === test}`.
+     * When `function` checks if function passed the node is true.
+     * When `object`, checks that all keys in test are in node, and that they have (strictly) equal values.
+     * When `array`, checks any one of the subtests pass.
+     * @returns {AssertAnything}
+     */
+    function (test) {
+      if (test === undefined || test === null) {
+        return element$1
+      }
+
+      if (typeof test === 'string') {
+        return tagNameFactory(test)
+      }
+
+      if (typeof test === 'object') {
+        return anyFactory(test)
+      }
+
+      if (typeof test === 'function') {
+        return castFactory(test)
+      }
+
+      throw new Error('Expected function, string, or array as test')
+    }
+  );
+
+/**
+ * @param {Array.<TagName|TestFunctionAnything>} tests
+ * @returns {AssertAnything}
+ */
+function anyFactory(tests) {
+  /** @type {Array.<AssertAnything>} */
+  const checks = [];
+  let index = -1;
+
+  while (++index < tests.length) {
+    checks[index] = convertElement(tests[index]);
+  }
+
+  return castFactory(any)
+
+  /**
+   * @this {unknown}
+   * @param {unknown[]} parameters
+   * @returns {boolean}
+   */
+  function any(...parameters) {
+    let index = -1;
+
+    while (++index < checks.length) {
+      if (checks[index].call(this, ...parameters)) {
+        return true
+      }
+    }
+
+    return false
+  }
+}
+
+/**
+ * Utility to convert a string into a function which checks a given node’s tag
+ * name for said string.
+ *
+ * @param {TagName} check
+ * @returns {AssertAnything}
+ */
+function tagNameFactory(check) {
+  return tagName
+
+  /**
+   * @param {unknown} node
+   * @returns {boolean}
+   */
+  function tagName(node) {
+    return element$1(node) && node.tagName === check
+  }
+}
+
+/**
+ * @param {TestFunctionAnything} check
+ * @returns {AssertAnything}
+ */
+function castFactory(check) {
+  return assertion
+
+  /**
+   * @this {unknown}
+   * @param {unknown} node
+   * @param {Array.<unknown>} parameters
+   * @returns {boolean}
+   */
+  function assertion(node, ...parameters) {
+    // @ts-expect-error: fine.
+    return element$1(node) && Boolean(check.call(this, node, ...parameters))
+  }
+}
+
+/**
+ * Utility to return true if this is an element.
+ * @param {unknown} node
+ * @returns {node is Element}
+ */
+function element$1(node) {
+  return Boolean(
+    node &&
+      typeof node === 'object' &&
+      // @ts-expect-error Looks like a node.
+      node.type === 'element' &&
+      // @ts-expect-error Looks like an element.
+      typeof node.tagName === 'string'
+  )
+}
+
+/**
+ * @typedef {import('../../types.js').Comment} Comment
+ */
+
+/** @type {import('unist-util-is').AssertPredicate<Comment>} */
+// @ts-ignore
+const comment$1 = convert('comment');
+
+/**
+ * @param {unknown} thing
+ * @returns {boolean}
+ */
+function whitespace(thing) {
+  /** @type {string} */
+  var value =
+    // @ts-ignore looks like a node.
+    thing && typeof thing === 'object' && thing.type === 'text'
+      ? // @ts-ignore looks like a text.
+        thing.value || ''
+      : thing;
+
+  // HTML whitespace expression.
+  // See <https://html.spec.whatwg.org/#space-character>.
+  return typeof value === 'string' && value.replace(/[ \t\n\f\r]/g, '') === ''
+}
+
+/**
+ * @typedef {import('../../types.js').Parent} Parent
+ * @typedef {import('../../types.js').Child} Child
+ */
+
+const siblingAfter = siblings(1);
+const siblingBefore = siblings(-1);
+
+/**
+ * Factory to check siblings in a direction.
+ *
+ * @param {number} increment
+ */
+function siblings(increment) {
+  return sibling
+
+  /**
+   * Find applicable siblings in a direction.
+   *
+   * @param {Parent} parent
+   * @param {number} index
+   * @param {boolean} [includeWhitespace=false]
+   * @returns {Child}
+   */
+  function sibling(parent, index, includeWhitespace) {
+    const siblings = parent && parent.children;
+    let offset = index + increment;
+    let next = siblings && siblings[offset];
+
+    if (!includeWhitespace) {
+      while (next && whitespace(next)) {
+        offset += increment;
+        next = siblings[offset];
+      }
+    }
+
+    return next
+  }
+}
+
+/**
+ * @typedef {import('../../types.js').Node} Node
+ * @typedef {import('../../types.js').Text} Text
+ */
+
+/** @type {import('unist-util-is').AssertPredicate<Text>} */
+// @ts-ignore
+const isText = convert('text');
+
+/**
+ * Check if `node` starts with whitespace.
+ *
+ * @param {Node} node
+ * @returns {boolean}
+ */
+function whitespaceStart(node) {
+  return isText(node) && whitespace(node.value.charAt(0))
+}
+
+/**
+ * @typedef {import('../types.js').OmitHandle} OmitHandle
+ */
+
+const own$7 = {}.hasOwnProperty;
+
+/**
+ * Factory to check if a given node can have a tag omitted.
+ *
+ * @param {Object.<string, OmitHandle>} handlers
+ * @returns {OmitHandle}
+ */
+function omission$1(handlers) {
+  return omit
+
+  /**
+   * Check if a given node can have a tag omitted.
+   *
+   * @type {OmitHandle}
+   */
+  function omit(node, index, parent) {
+    return (
+      own$7.call(handlers, node.tagName) &&
+      handlers[node.tagName](node, index, parent)
+    )
+  }
+}
+
+/**
+ * @typedef {import('../types.js').OmitHandle} OmitHandle
+ */
+
+const closing = omission$1({
+  html: html$2,
+  head: headOrColgroupOrCaption,
+  body: body$1,
+  p,
+  li,
+  dt,
+  dd,
+  rt: rubyElement,
+  rp: rubyElement,
+  optgroup,
+  option,
+  menuitem,
+  colgroup: headOrColgroupOrCaption,
+  caption: headOrColgroupOrCaption,
+  thead,
+  tbody: tbody$1,
+  tfoot,
+  tr,
+  td: cells,
+  th: cells
+});
+
+/**
+ * Macro for `</head>`, `</colgroup>`, and `</caption>`.
+ *
+ * @type {OmitHandle}
+ */
+function headOrColgroupOrCaption(_, index, parent) {
+  const next = siblingAfter(parent, index, true);
+  return !next || (!comment$1(next) && !whitespaceStart(next))
+}
+
+/**
+ * Whether to omit `</html>`.
+ *
+ * @type {OmitHandle}
+ */
+function html$2(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || !comment$1(next)
+}
+
+/**
+ * Whether to omit `</body>`.
+ *
+ * @type {OmitHandle}
+ */
+function body$1(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || !comment$1(next)
+}
+
+/**
+ * Whether to omit `</p>`.
+ *
+ * @type {OmitHandle}
+ */
+function p(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return next
+    ? isElement(next, [
+        'address',
+        'article',
+        'aside',
+        'blockquote',
+        'details',
+        'div',
+        'dl',
+        'fieldset',
+        'figcaption',
+        'figure',
+        'footer',
+        'form',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'header',
+        'hgroup',
+        'hr',
+        'main',
+        'menu',
+        'nav',
+        'ol',
+        'p',
+        'pre',
+        'section',
+        'table',
+        'ul'
+      ])
+    : !parent ||
+        // Confusing parent.
+        !isElement(parent, [
+          'a',
+          'audio',
+          'del',
+          'ins',
+          'map',
+          'noscript',
+          'video'
+        ])
+}
+
+/**
+ * Whether to omit `</li>`.
+ *
+ * @type {OmitHandle}
+ */
+function li(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, 'li')
+}
+
+/**
+ * Whether to omit `</dt>`.
+ *
+ * @type {OmitHandle}
+ */
+function dt(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return next && isElement(next, ['dt', 'dd'])
+}
+
+/**
+ * Whether to omit `</dd>`.
+ *
+ * @type {OmitHandle}
+ */
+function dd(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, ['dt', 'dd'])
+}
+
+/**
+ * Whether to omit `</rt>` or `</rp>`.
+ *
+ * @type {OmitHandle}
+ */
+function rubyElement(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, ['rp', 'rt'])
+}
+
+/**
+ * Whether to omit `</optgroup>`.
+ *
+ * @type {OmitHandle}
+ */
+function optgroup(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, 'optgroup')
+}
+
+/**
+ * Whether to omit `</option>`.
+ *
+ * @type {OmitHandle}
+ */
+function option(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, ['option', 'optgroup'])
+}
+
+/**
+ * Whether to omit `</menuitem>`.
+ *
+ * @type {OmitHandle}
+ */
+function menuitem(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, ['menuitem', 'hr', 'menu'])
+}
+
+/**
+ * Whether to omit `</thead>`.
+ *
+ * @type {OmitHandle}
+ */
+function thead(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return next && isElement(next, ['tbody', 'tfoot'])
+}
+
+/**
+ * Whether to omit `</tbody>`.
+ *
+ * @type {OmitHandle}
+ */
+function tbody$1(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, ['tbody', 'tfoot'])
+}
+
+/**
+ * Whether to omit `</tfoot>`.
+ *
+ * @type {OmitHandle}
+ */
+function tfoot(_, index, parent) {
+  return !siblingAfter(parent, index)
+}
+
+/**
+ * Whether to omit `</tr>`.
+ *
+ * @type {OmitHandle}
+ */
+function tr(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, 'tr')
+}
+
+/**
+ * Whether to omit `</td>` or `</th>`.
+ *
+ * @type {OmitHandle}
+ */
+function cells(_, index, parent) {
+  const next = siblingAfter(parent, index);
+  return !next || isElement(next, ['td', 'th'])
+}
+
+/**
+ * @typedef {import('../types.js').OmitHandle} OmitHandle
+ * @typedef {import('../types.js').Child} Child
+ */
+
+const opening = omission$1({
+  html: html$1,
+  head,
+  body,
+  colgroup,
+  tbody
+});
+
+/**
+ * Whether to omit `<html>`.
+ *
+ * @type {OmitHandle}
+ */
+function html$1(node) {
+  const head = siblingAfter(node, -1);
+  return !head || !comment$1(head)
+}
+
+/**
+ * Whether to omit `<head>`.
+ *
+ * @type {OmitHandle}
+ */
+function head(node) {
+  const children = node.children;
+  /** @type {Array.<string>} */
+  const seen = [];
+  let index = -1;
+  /** @type {Child} */
+  let child;
+
+  while (++index < children.length) {
+    child = children[index];
+    if (isElement(child, ['title', 'base'])) {
+      if (seen.includes(child.tagName)) return false
+      seen.push(child.tagName);
+    }
+  }
+
+  return children.length > 0
+}
+
+/**
+ * Whether to omit `<body>`.
+ *
+ * @type {OmitHandle}
+ */
+function body(node) {
+  const head = siblingAfter(node, -1, true);
+
+  return (
+    !head ||
+    (!comment$1(head) &&
+      !whitespaceStart(head) &&
+      !isElement(head, ['meta', 'link', 'script', 'style', 'template']))
+  )
+}
+
+/**
+ * Whether to omit `<colgroup>`.
+ * The spec describes some logic for the opening tag, but it’s easier to
+ * implement in the closing tag, to the same effect, so we handle it there
+ * instead.
+ *
+ * @type {OmitHandle}
+ */
+function colgroup(node, index, parent) {
+  const previous = siblingBefore(parent, index);
+  const head = siblingAfter(node, -1, true);
+
+  // Previous colgroup was already omitted.
+  if (
+    isElement(previous, 'colgroup') &&
+    closing(previous, parent.children.indexOf(previous), parent)
+  ) {
+    return false
+  }
+
+  return head && isElement(head, 'col')
+}
+
+/**
+ * Whether to omit `<tbody>`.
+ *
+ * @type {OmitHandle}
+ */
+function tbody(node, index, parent) {
+  const previous = siblingBefore(parent, index);
+  const head = siblingAfter(node, -1);
+
+  // Previous table section was already omitted.
+  if (
+    isElement(previous, ['thead', 'tbody']) &&
+    closing(previous, parent.children.indexOf(previous), parent)
+  ) {
+    return false
+  }
+
+  return head && isElement(head, 'tr')
+}
+
+/**
+ * @typedef {import('../types.js').Omission} Omission
+ */
+
+/** @type {Omission} */
+const omission = {opening, closing};
+
+/**
+ * Parse space separated tokens to an array of strings.
+ *
+ * @param {string} value Space separated tokens
+ * @returns {Array.<string>} Tokens
+ */
+
+/**
+ * Serialize an array of strings as space separated tokens.
+ *
+ * @param {Array.<string|number>} values Tokens
+ * @returns {string} Space separated tokens
+ */
+function stringify$1(values) {
+  return values.join(' ').trim()
+}
+
+/**
+ * @typedef {Object} StringifyOptions
+ * @property {boolean} [padLeft=true] Whether to pad a space before a token (`boolean`, default: `true`).
+ * @property {boolean} [padRight=false] Whether to pad a space after a token (`boolean`, default: `false`).
+ */
+
+/**
+ * Serialize an array of strings to comma separated tokens.
+ *
+ * @param {Array.<string|number>} values
+ * @param {StringifyOptions} [options]
+ * @returns {string}
+ */
+function stringify(values, options) {
+  var settings = options || {};
+
+  // Ensure the last empty entry is seen.
+  if (values[values.length - 1] === '') {
+    values = values.concat('');
+  }
+
+  return values
+    .join(
+      (settings.padRight ? ' ' : '') +
+        ',' +
+        (settings.padLeft === false ? '' : ' ')
+    )
+    .trim()
+}
+
+/**
+ * @typedef {Object} CoreOptions
+ * @property {string[]} [subset=[]] Whether to only escape the given subset of characters (`string[]`)
+ * @property {boolean} [escapeOnly=false] Whether to only escape possibly dangerous characters (`boolean`, default: `false`). Those characters are `"`, `&`, `'`, `<`, `>`, and `` ` ``
+ *
+ * @typedef {Object} FormatOptions
+ * @property {function (number, number, CoreWithFormatOptions): string} format
+ *
+ * @typedef {CoreOptions & FormatOptions & import('./util/format-smart.js').FormatSmartOptions} CoreWithFormatOptions
+ */
+
+/**
+ * Encode special characters in `value`.
+ *
+ * @param {string} value
+ * @param {CoreWithFormatOptions} [options]
+ * @returns {string}
+ */
+function core(value, options) {
+  value = value.replace(
+    options.subset ? charactersToExpression(options.subset) : /["&'<>`]/g,
+    basic
+  );
+
+  if (options.subset || options.escapeOnly) {
+    return value
+  }
+
+  return (
+    value
+      // Surrogate pairs.
+      .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, surrogate)
+      // BMP control characters (C0 except for LF, CR, SP; DEL; and some more
+      // non-ASCII ones).
+      .replace(
+        // eslint-disable-next-line no-control-regex, unicorn/no-hex-escape
+        /[\x01-\t\v\f\x0E-\x1F\x7F\x81\x8D\x8F\x90\x9D\xA0-\uFFFF]/g,
+        basic
+      )
+  )
+
+  /**
+   * @param {string} pair
+   * @param {number} index
+   * @param {string} all
+   */
+  function surrogate(pair, index, all) {
+    return options.format(
+      (pair.charCodeAt(0) - 0xd800) * 0x400 +
+        pair.charCodeAt(1) -
+        0xdc00 +
+        0x10000,
+      all.charCodeAt(index + 2),
+      options
+    )
+  }
+
+  /**
+   * @param {string} character
+   * @param {number} index
+   * @param {string} all
+   */
+  function basic(character, index, all) {
+    return options.format(
+      character.charCodeAt(0),
+      all.charCodeAt(index + 1),
+      options
+    )
+  }
+}
+
+/**
+ * @param {string[]} subset
+ * @returns {RegExp}
+ */
+function charactersToExpression(subset) {
+  /** @type {string[]} */
+  var groups = [];
+  var index = -1;
+
+  while (++index < subset.length) {
+    groups.push(subset[index].replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'));
+  }
+
+  return new RegExp('(?:' + groups.join('|') + ')', 'g')
+}
+
+/**
+ * Transform `code` into a hexadecimal character reference.
+ *
+ * @param {number} code
+ * @param {number} next
+ * @param {boolean} omit
+ * @returns {string}
+ */
+function toHexadecimal(code, next, omit) {
+  var value = '&#x' + code.toString(16).toUpperCase();
+  return omit && next && !/[\dA-Fa-f]/.test(String.fromCharCode(next))
+    ? value
+    : value + ';'
+}
+
+/**
+ * Transform `code` into a decimal character reference.
+ *
+ * @param {number} code
+ * @param {number} next
+ * @param {boolean} omit
+ * @returns {string}
+ */
+function toDecimal(code, next, omit) {
+  var value = '&#' + String(code);
+  return omit && next && !/\d/.test(String.fromCharCode(next))
+    ? value
+    : value + ';'
+}
+
+var characterEntitiesLegacy = {
+  AElig: 'Æ',
+  AMP: '&',
+  Aacute: 'Á',
+  Acirc: 'Â',
+  Agrave: 'À',
+  Aring: 'Å',
+  Atilde: 'Ã',
+  Auml: 'Ä',
+  COPY: '©',
+  Ccedil: 'Ç',
+  ETH: 'Ð',
+  Eacute: 'É',
+  Ecirc: 'Ê',
+  Egrave: 'È',
+  Euml: 'Ë',
+  GT: '>',
+  Iacute: 'Í',
+  Icirc: 'Î',
+  Igrave: 'Ì',
+  Iuml: 'Ï',
+  LT: '<',
+  Ntilde: 'Ñ',
+  Oacute: 'Ó',
+  Ocirc: 'Ô',
+  Ograve: 'Ò',
+  Oslash: 'Ø',
+  Otilde: 'Õ',
+  Ouml: 'Ö',
+  QUOT: '"',
+  REG: '®',
+  THORN: 'Þ',
+  Uacute: 'Ú',
+  Ucirc: 'Û',
+  Ugrave: 'Ù',
+  Uuml: 'Ü',
+  Yacute: 'Ý',
+  aacute: 'á',
+  acirc: 'â',
+  acute: '´',
+  aelig: 'æ',
+  agrave: 'à',
+  amp: '&',
+  aring: 'å',
+  atilde: 'ã',
+  auml: 'ä',
+  brvbar: '¦',
+  ccedil: 'ç',
+  cedil: '¸',
+  cent: '¢',
+  copy: '©',
+  curren: '¤',
+  deg: '°',
+  divide: '÷',
+  eacute: 'é',
+  ecirc: 'ê',
+  egrave: 'è',
+  eth: 'ð',
+  euml: 'ë',
+  frac12: '½',
+  frac14: '¼',
+  frac34: '¾',
+  gt: '>',
+  iacute: 'í',
+  icirc: 'î',
+  iexcl: '¡',
+  igrave: 'ì',
+  iquest: '¿',
+  iuml: 'ï',
+  laquo: '«',
+  lt: '<',
+  macr: '¯',
+  micro: 'µ',
+  middot: '·',
+  nbsp: ' ',
+  not: '¬',
+  ntilde: 'ñ',
+  oacute: 'ó',
+  ocirc: 'ô',
+  ograve: 'ò',
+  ordf: 'ª',
+  ordm: 'º',
+  oslash: 'ø',
+  otilde: 'õ',
+  ouml: 'ö',
+  para: '¶',
+  plusmn: '±',
+  pound: '£',
+  quot: '"',
+  raquo: '»',
+  reg: '®',
+  sect: '§',
+  shy: '­',
+  sup1: '¹',
+  sup2: '²',
+  sup3: '³',
+  szlig: 'ß',
+  thorn: 'þ',
+  times: '×',
+  uacute: 'ú',
+  ucirc: 'û',
+  ugrave: 'ù',
+  uml: '¨',
+  uuml: 'ü',
+  yacute: 'ý',
+  yen: '¥',
+  yuml: 'ÿ'
 };
 
-module.exports = _06;
+var characterEntitiesHtml4 = {
+  nbsp: ' ',
+  iexcl: '¡',
+  cent: '¢',
+  pound: '£',
+  curren: '¤',
+  yen: '¥',
+  brvbar: '¦',
+  sect: '§',
+  uml: '¨',
+  copy: '©',
+  ordf: 'ª',
+  laquo: '«',
+  not: '¬',
+  shy: '­',
+  reg: '®',
+  macr: '¯',
+  deg: '°',
+  plusmn: '±',
+  sup2: '²',
+  sup3: '³',
+  acute: '´',
+  micro: 'µ',
+  para: '¶',
+  middot: '·',
+  cedil: '¸',
+  sup1: '¹',
+  ordm: 'º',
+  raquo: '»',
+  frac14: '¼',
+  frac12: '½',
+  frac34: '¾',
+  iquest: '¿',
+  Agrave: 'À',
+  Aacute: 'Á',
+  Acirc: 'Â',
+  Atilde: 'Ã',
+  Auml: 'Ä',
+  Aring: 'Å',
+  AElig: 'Æ',
+  Ccedil: 'Ç',
+  Egrave: 'È',
+  Eacute: 'É',
+  Ecirc: 'Ê',
+  Euml: 'Ë',
+  Igrave: 'Ì',
+  Iacute: 'Í',
+  Icirc: 'Î',
+  Iuml: 'Ï',
+  ETH: 'Ð',
+  Ntilde: 'Ñ',
+  Ograve: 'Ò',
+  Oacute: 'Ó',
+  Ocirc: 'Ô',
+  Otilde: 'Õ',
+  Ouml: 'Ö',
+  times: '×',
+  Oslash: 'Ø',
+  Ugrave: 'Ù',
+  Uacute: 'Ú',
+  Ucirc: 'Û',
+  Uuml: 'Ü',
+  Yacute: 'Ý',
+  THORN: 'Þ',
+  szlig: 'ß',
+  agrave: 'à',
+  aacute: 'á',
+  acirc: 'â',
+  atilde: 'ã',
+  auml: 'ä',
+  aring: 'å',
+  aelig: 'æ',
+  ccedil: 'ç',
+  egrave: 'è',
+  eacute: 'é',
+  ecirc: 'ê',
+  euml: 'ë',
+  igrave: 'ì',
+  iacute: 'í',
+  icirc: 'î',
+  iuml: 'ï',
+  eth: 'ð',
+  ntilde: 'ñ',
+  ograve: 'ò',
+  oacute: 'ó',
+  ocirc: 'ô',
+  otilde: 'õ',
+  ouml: 'ö',
+  divide: '÷',
+  oslash: 'ø',
+  ugrave: 'ù',
+  uacute: 'ú',
+  ucirc: 'û',
+  uuml: 'ü',
+  yacute: 'ý',
+  thorn: 'þ',
+  yuml: 'ÿ',
+  fnof: 'ƒ',
+  Alpha: 'Α',
+  Beta: 'Β',
+  Gamma: 'Γ',
+  Delta: 'Δ',
+  Epsilon: 'Ε',
+  Zeta: 'Ζ',
+  Eta: 'Η',
+  Theta: 'Θ',
+  Iota: 'Ι',
+  Kappa: 'Κ',
+  Lambda: 'Λ',
+  Mu: 'Μ',
+  Nu: 'Ν',
+  Xi: 'Ξ',
+  Omicron: 'Ο',
+  Pi: 'Π',
+  Rho: 'Ρ',
+  Sigma: 'Σ',
+  Tau: 'Τ',
+  Upsilon: 'Υ',
+  Phi: 'Φ',
+  Chi: 'Χ',
+  Psi: 'Ψ',
+  Omega: 'Ω',
+  alpha: 'α',
+  beta: 'β',
+  gamma: 'γ',
+  delta: 'δ',
+  epsilon: 'ε',
+  zeta: 'ζ',
+  eta: 'η',
+  theta: 'θ',
+  iota: 'ι',
+  kappa: 'κ',
+  lambda: 'λ',
+  mu: 'μ',
+  nu: 'ν',
+  xi: 'ξ',
+  omicron: 'ο',
+  pi: 'π',
+  rho: 'ρ',
+  sigmaf: 'ς',
+  sigma: 'σ',
+  tau: 'τ',
+  upsilon: 'υ',
+  phi: 'φ',
+  chi: 'χ',
+  psi: 'ψ',
+  omega: 'ω',
+  thetasym: 'ϑ',
+  upsih: 'ϒ',
+  piv: 'ϖ',
+  bull: '•',
+  hellip: '…',
+  prime: '′',
+  Prime: '″',
+  oline: '‾',
+  frasl: '⁄',
+  weierp: '℘',
+  image: 'ℑ',
+  real: 'ℜ',
+  trade: '™',
+  alefsym: 'ℵ',
+  larr: '←',
+  uarr: '↑',
+  rarr: '→',
+  darr: '↓',
+  harr: '↔',
+  crarr: '↵',
+  lArr: '⇐',
+  uArr: '⇑',
+  rArr: '⇒',
+  dArr: '⇓',
+  hArr: '⇔',
+  forall: '∀',
+  part: '∂',
+  exist: '∃',
+  empty: '∅',
+  nabla: '∇',
+  isin: '∈',
+  notin: '∉',
+  ni: '∋',
+  prod: '∏',
+  sum: '∑',
+  minus: '−',
+  lowast: '∗',
+  radic: '√',
+  prop: '∝',
+  infin: '∞',
+  ang: '∠',
+  and: '∧',
+  or: '∨',
+  cap: '∩',
+  cup: '∪',
+  int: '∫',
+  there4: '∴',
+  sim: '∼',
+  cong: '≅',
+  asymp: '≈',
+  ne: '≠',
+  equiv: '≡',
+  le: '≤',
+  ge: '≥',
+  sub: '⊂',
+  sup: '⊃',
+  nsub: '⊄',
+  sube: '⊆',
+  supe: '⊇',
+  oplus: '⊕',
+  otimes: '⊗',
+  perp: '⊥',
+  sdot: '⋅',
+  lceil: '⌈',
+  rceil: '⌉',
+  lfloor: '⌊',
+  rfloor: '⌋',
+  lang: '〈',
+  rang: '〉',
+  loz: '◊',
+  spades: '♠',
+  clubs: '♣',
+  hearts: '♥',
+  diams: '♦',
+  quot: '"',
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  OElig: 'Œ',
+  oelig: 'œ',
+  Scaron: 'Š',
+  scaron: 'š',
+  Yuml: 'Ÿ',
+  circ: 'ˆ',
+  tilde: '˜',
+  ensp: ' ',
+  emsp: ' ',
+  thinsp: ' ',
+  zwnj: '‌',
+  zwj: '‍',
+  lrm: '‎',
+  rlm: '‏',
+  ndash: '–',
+  mdash: '—',
+  lsquo: '‘',
+  rsquo: '’',
+  sbquo: '‚',
+  ldquo: '“',
+  rdquo: '”',
+  bdquo: '„',
+  dagger: '†',
+  Dagger: '‡',
+  permil: '‰',
+  lsaquo: '‹',
+  rsaquo: '›',
+  euro: '€'
+};
+
+/** @type {Object.<string, string>} */
+var characters = {};
+
+var own$6 = {}.hasOwnProperty;
+/** @type {string} */
+var key;
+
+for (key in characterEntitiesHtml4) {
+  if (own$6.call(characterEntitiesHtml4, key)) {
+    characters[characterEntitiesHtml4[key]] = key;
+  }
+}
+
+var dangerous = [
+  'cent',
+  'copy',
+  'divide',
+  'gt',
+  'lt',
+  'not',
+  'para',
+  'times'
+];
+
+var own$5 = {}.hasOwnProperty;
+
+/**
+ * Transform `code` into a named character reference.
+ *
+ * @param {number} code
+ * @param {number} next
+ * @param {boolean} omit
+ * @param {boolean} attribute
+ * @returns {string}
+ */
+function toNamed(code, next, omit, attribute) {
+  var character = String.fromCharCode(code);
+  /** @type {string} */
+  var name;
+  /** @type {string} */
+  var value;
+
+  if (own$5.call(characters, character)) {
+    name = characters[character];
+    value = '&' + name;
+
+    if (
+      omit &&
+      own$5.call(characterEntitiesLegacy, name) &&
+      !dangerous.includes(name) &&
+      (!attribute ||
+        (next &&
+          next !== 61 /* `=` */ &&
+          /[^\da-z]/i.test(String.fromCharCode(next))))
+    ) {
+      return value
+    }
+
+    return value + ';'
+  }
+
+  return ''
+}
+
+/**
+ * @typedef {Object} FormatSmartOptions
+ * @property {boolean} [useNamedReferences=false] Prefer named character references (`&amp;`) where possible (`boolean?`, default: `false`)
+ * @property {boolean} [useShortestReferences=false] Prefer the shortest possible reference, if that results in less bytes (`boolean?`, default: `false`). **Note**: `useNamedReferences` can be omitted when using `useShortestReferences`
+ * @property {boolean} [omitOptionalSemicolons=false] Whether to omit semicolons when possible (`boolean?`, default: `false`). **Note**: This creates what HTML calls “parse errors” but is otherwise still valid HTML — don’t use this except when building a minifier. Omitting semicolons is possible for legacy named references in certain cases, and numeric references in some cases
+ * @property {boolean} [attribute=false] Only needed when operating dangerously with `omitOptionalSemicolons: true`. Create character references which don’t fail in attributes (`boolean?`, default: `false`).
+ */
+
+/**
+ * Encode `character` according to `options`.
+ *
+ * @param {number} code
+ * @param {number} next
+ * @param {FormatSmartOptions} options
+ * @returns {string}
+ */
+function formatSmart(code, next, options) {
+  /** @type {string} */
+  var named;
+  /** @type {string} */
+  var numeric;
+  /** @type {string} */
+  var decimal;
+
+  if (options.useNamedReferences || options.useShortestReferences) {
+    named = toNamed(
+      code,
+      next,
+      options.omitOptionalSemicolons,
+      options.attribute
+    );
+  }
+
+  if (options.useShortestReferences || !named) {
+    numeric = toHexadecimal(code, next, options.omitOptionalSemicolons);
+
+    // Use the shortest numeric reference when requested.
+    // A simple algorithm would use decimal for all code points under 100, as
+    // those are shorter than hexadecimal:
+    //
+    // * `&#99;` vs `&#x63;` (decimal shorter)
+    // * `&#100;` vs `&#x64;` (equal)
+    //
+    // However, because we take `next` into consideration when `omit` is used,
+    // And it would be possible that decimals are shorter on bigger values as
+    // well if `next` is hexadecimal but not decimal, we instead compare both.
+    if (options.useShortestReferences) {
+      decimal = toDecimal(code, next, options.omitOptionalSemicolons);
+
+      if (decimal.length < numeric.length) {
+        numeric = decimal;
+      }
+    }
+  }
+
+  return named &&
+    (!options.useShortestReferences || named.length < numeric.length)
+    ? named
+    : numeric
+}
+
+/**
+ * @typedef {import('./core.js').CoreOptions & import('./util/format-smart.js').FormatSmartOptions} StringifyEntitiesOptions
+ * @typedef {import('./core.js').CoreOptions} StringifyEntitiesLightOptions
+ */
+
+/**
+ * Encode special characters in `value`.
+ * @param {string} value
+ * @param {StringifyEntitiesOptions} [options]
+ */
+function stringifyEntities(value, options) {
+  return core(value, Object.assign({format: formatSmart}, options))
+}
+
+/**
+ * Get the total count of `character` in `value`.
+ *
+ * @param {any} value Content, coerced to string
+ * @param {string} character Single character to look for
+ * @return {number} Number of times `character` occurred in `value`.
+ */
+function ccount(value, character) {
+  var source = String(value);
+  var count = 0;
+  var index;
+
+  if (typeof character !== 'string') {
+    throw new Error('Expected character')
+  }
+
+  index = source.indexOf(character);
+
+  while (index !== -1) {
+    count++;
+    index = source.indexOf(character, index + character.length);
+  }
+
+  return count
+}
+
+// Maps of subsets.
+// Each value is a matrix of tuples.
+// The first value causes parse errors, the second is valid.
+// Of both values, the first value is unsafe, and the second is safe.
+const constants = {
+  // See: <https://html.spec.whatwg.org/#attribute-name-state>.
+  name: [
+    ['\t\n\f\r &/=>'.split(''), '\t\n\f\r "&\'/=>`'.split('')],
+    ['\0\t\n\f\r "&\'/<=>'.split(''), '\0\t\n\f\r "&\'/<=>`'.split('')]
+  ],
+  // See: <https://html.spec.whatwg.org/#attribute-value-(unquoted)-state>.
+  unquoted: [
+    ['\t\n\f\r &>'.split(''), '\0\t\n\f\r "&\'<=>`'.split('')],
+    ['\0\t\n\f\r "&\'<=>`'.split(''), '\0\t\n\f\r "&\'<=>`'.split('')]
+  ],
+  // See: <https://html.spec.whatwg.org/#attribute-value-(single-quoted)-state>.
+  single: [
+    ["&'".split(''), '"&\'`'.split('')],
+    ["\0&'".split(''), '\0"&\'`'.split('')]
+  ],
+  // See: <https://html.spec.whatwg.org/#attribute-value-(double-quoted)-state>.
+  double: [
+    ['"&'.split(''), '"&\'`'.split('')],
+    ['\0"&'.split(''), '\0"&\'`'.split('')]
+  ]
+};
+
+/**
+ * @typedef {import('./types.js').Handle} Handle
+ * @typedef {import('./types.js').Comment} Comment
+ */
+
+/**
+ * @type {Handle}
+ * @param {Comment} node
+ */
+function comment(ctx, node) {
+  // See: <https://html.spec.whatwg.org/multipage/syntax.html#comments>
+  return ctx.bogusComments
+    ? '<?' +
+        stringifyEntities(
+          node.value,
+          Object.assign({}, ctx.entities, {subset: ['>']})
+        ) +
+        '>'
+    : '<!--' + node.value.replace(/^>|^->|<!--|-->|--!>|<!-$/g, encode) + '-->'
+
+  /**
+   * @param {string} $0
+   */
+  function encode($0) {
+    return stringifyEntities(
+      $0,
+      Object.assign({}, ctx.entities, {subset: ['<', '>']})
+    )
+  }
+}
+
+/**
+ * @typedef {import('./types.js').Handle} Handle
+ */
+
+/**
+ * @type {Handle}
+ */
+function doctype(ctx) {
+  return (
+    '<!' +
+    (ctx.upperDoctype ? 'DOCTYPE' : 'doctype') +
+    (ctx.tightDoctype ? '' : ' ') +
+    'html>'
+  )
+}
+
+/**
+ * @typedef {import('./types.js').Handle} Handle
+ * @typedef {import('./types.js').Text} Text
+ */
+
+/**
+ * @type {Handle}
+ * @param {Text} node
+ */
+function text$1(ctx, node, _, parent) {
+  // Check if content of `node` should be escaped.
+  return parent &&
+    parent.type === 'element' &&
+    // @ts-expect-error: hush.
+    (parent.tagName === 'script' || parent.tagName === 'style')
+    ? node.value
+    : stringifyEntities(
+        node.value,
+        Object.assign({}, ctx.entities, {subset: ['<', '&']})
+      )
+}
+
+/**
+ * @typedef {import('./types.js').Handle} Handle
+ * @typedef {import('./types.js').Raw} Raw
+ */
+
+/**
+ * @type {Handle}
+ * @param {Raw} node
+ */
+function raw(ctx, node, index, parent) {
+  // @ts-ignore Hush.
+  return ctx.dangerous ? node.value : text$1(ctx, node, index, parent)
+}
+
+/**
+ * @typedef {import('./types.js').Handle} Handle
+ * @typedef {import('./types.js').Element} Element
+ * @typedef {import('./types.js').Context} Context
+ * @typedef {import('./types.js').Properties} Properties
+ * @typedef {import('./types.js').PropertyValue} PropertyValue
+ * @typedef {import('./types.js').Parent} Parent
+ */
+
+/**
+ * @type {Object.<string, Handle>}
+ */
+const handlers$1 = {
+  comment,
+  doctype,
+  element,
+  // @ts-ignore `raw` is nonstandard
+  raw,
+  // @ts-ignore `root` is a parent.
+  root: all$2,
+  text: text$1
+};
+
+const own$4 = {}.hasOwnProperty;
+
+/**
+ * @type {Handle}
+ */
+function one$2(ctx, node, index, parent) {
+  if (!node || !node.type) {
+    throw new Error('Expected node, not `' + node + '`')
+  }
+
+  if (!own$4.call(handlers$1, node.type)) {
+    throw new Error('Cannot compile unknown node `' + node.type + '`')
+  }
+
+  return handlers$1[node.type](ctx, node, index, parent)
+}
+
+/**
+ * Serialize all children of `parent`.
+ *
+ * @type {Handle}
+ * @param {Parent} parent
+ */
+function all$2(ctx, parent) {
+  /** @type {Array.<string>} */
+  const results = [];
+  const children = (parent && parent.children) || [];
+  let index = -1;
+
+  while (++index < children.length) {
+    results[index] = one$2(ctx, children[index], index, parent);
+  }
+
+  return results.join('')
+}
+
+/**
+ * @type {Handle}
+ * @param {Element} node
+ */
+// eslint-disable-next-line complexity
+function element(ctx, node, index, parent) {
+  const schema = ctx.schema;
+  const omit = schema.space === 'svg' ? undefined : ctx.omit;
+  let selfClosing =
+    schema.space === 'svg'
+      ? ctx.closeEmpty
+      : ctx.voids.includes(node.tagName.toLowerCase());
+  /** @type {Array.<string>} */
+  const parts = [];
+  /** @type {string} */
+  let last;
+
+  if (schema.space === 'html' && node.tagName === 'svg') {
+    ctx.schema = svg;
+  }
+
+  const attrs = serializeAttributes(ctx, node.properties);
+
+  const content = all$2(
+    ctx,
+    schema.space === 'html' && node.tagName === 'template' ? node.content : node
+  );
+
+  ctx.schema = schema;
+
+  // If the node is categorised as void, but it has children, remove the
+  // categorisation.
+  // This enables for example `menuitem`s, which are void in W3C HTML but not
+  // void in WHATWG HTML, to be stringified properly.
+  if (content) selfClosing = false;
+
+  if (attrs || !omit || !omit.opening(node, index, parent)) {
+    parts.push('<', node.tagName, attrs ? ' ' + attrs : '');
+
+    if (selfClosing && (schema.space === 'svg' || ctx.close)) {
+      last = attrs.charAt(attrs.length - 1);
+      if (
+        !ctx.tightClose ||
+        last === '/' ||
+        (last && last !== '"' && last !== "'")
+      ) {
+        parts.push(' ');
+      }
+
+      parts.push('/');
+    }
+
+    parts.push('>');
+  }
+
+  parts.push(content);
+
+  if (!selfClosing && (!omit || !omit.closing(node, index, parent))) {
+    parts.push('</' + node.tagName + '>');
+  }
+
+  return parts.join('')
+}
+
+/**
+ * @param {Context} ctx
+ * @param {Properties} props
+ * @returns {string}
+ */
+function serializeAttributes(ctx, props) {
+  /** @type {Array.<string>} */
+  const values = [];
+  let index = -1;
+  /** @type {string} */
+  let key;
+  /** @type {string} */
+  let value;
+  /** @type {string} */
+  let last;
+
+  for (key in props) {
+    if (props[key] !== undefined && props[key] !== null) {
+      value = serializeAttribute(ctx, key, props[key]);
+      if (value) values.push(value);
+    }
+  }
+
+  while (++index < values.length) {
+    last = ctx.tight ? values[index].charAt(values[index].length - 1) : null;
+
+    // In tight mode, don’t add a space after quoted attributes.
+    if (index !== values.length - 1 && last !== '"' && last !== "'") {
+      values[index] += ' ';
+    }
+  }
+
+  return values.join('')
+}
+
+/**
+ * @param {Context} ctx
+ * @param {string} key
+ * @param {PropertyValue} value
+ * @returns {string}
+ */
+// eslint-disable-next-line complexity
+function serializeAttribute(ctx, key, value) {
+  const info = find(ctx.schema, key);
+  let quote = ctx.quote;
+  /** @type {string} */
+  let result;
+
+  if (info.overloadedBoolean && (value === info.attribute || value === '')) {
+    value = true;
+  } else if (
+    info.boolean ||
+    (info.overloadedBoolean && typeof value !== 'string')
+  ) {
+    value = Boolean(value);
+  }
+
+  if (
+    value === undefined ||
+    value === null ||
+    value === false ||
+    (typeof value === 'number' && Number.isNaN(value))
+  ) {
+    return ''
+  }
+
+  const name = stringifyEntities(
+    info.attribute,
+    Object.assign({}, ctx.entities, {
+      // Always encode without parse errors in non-HTML.
+      subset:
+        constants.name[ctx.schema.space === 'html' ? ctx.valid : 1][ctx.safe]
+    })
+  );
+
+  // No value.
+  // There is currently only one boolean property in SVG: `[download]` on
+  // `<a>`.
+  // This property does not seem to work in browsers (FF, Sa, Ch), so I can’t
+  // test if dropping the value works.
+  // But I assume that it should:
+  //
+  // ```html
+  // <!doctype html>
+  // <svg viewBox="0 0 100 100">
+  //   <a href=https://example.com download>
+  //     <circle cx=50 cy=40 r=35 />
+  //   </a>
+  // </svg>
+  // ```
+  //
+  // See: <https://github.com/wooorm/property-information/blob/main/lib/svg.js>
+  if (value === true) return name
+
+  value =
+    typeof value === 'object' && 'length' in value
+      ? // `spaces` doesn’t accept a second argument, but it’s given here just to
+        // keep the code cleaner.
+        (info.commaSeparated ? stringify : stringify$1)(value, {
+          padLeft: !ctx.tightLists
+        })
+      : String(value);
+
+  if (ctx.collapseEmpty && !value) return name
+
+  // Check unquoted value.
+  if (ctx.unquoted) {
+    result = stringifyEntities(
+      value,
+      Object.assign({}, ctx.entities, {
+        subset: constants.unquoted[ctx.valid][ctx.safe],
+        attribute: true
+      })
+    );
+  }
+
+  // If we don’t want unquoted, or if `value` contains character references when
+  // unquoted…
+  if (result !== value) {
+    // If the alternative is less common than `quote`, switch.
+    if (ctx.smart && ccount(value, quote) > ccount(value, ctx.alternative)) {
+      quote = ctx.alternative;
+    }
+
+    result =
+      quote +
+      stringifyEntities(
+        value,
+        Object.assign({}, ctx.entities, {
+          // Always encode without parse errors in non-HTML.
+          subset: (quote === "'" ? constants.single : constants.double)[
+            ctx.schema.space === 'html' ? ctx.valid : 1
+          ][ctx.safe],
+          attribute: true
+        })
+      ) +
+      quote;
+  }
+
+  // Don’t add a `=` for unquoted empties.
+  return name + (result ? '=' + result : result)
+}
+
+/**
+ * @typedef {import('./types.js').Node} Node
+ * @typedef {import('./types.js').Options} Options
+ * @typedef {import('./types.js').Context} Context
+ * @typedef {import('./types.js').Quote} Quote
+ */
+
+/**
+ * @param {Node|Array.<Node>} node
+ * @param {Options} [options]
+ * @returns {string}
+ */
+function toHtml(node, options = {}) {
+  const quote = options.quote || '"';
+  /** @type {Quote} */
+  const alternative = quote === '"' ? "'" : '"';
+
+  if (quote !== '"' && quote !== "'") {
+    throw new Error('Invalid quote `' + quote + '`, expected `\'` or `"`')
+  }
+
+  /** @type {Context} */
+  const context = {
+    valid: options.allowParseErrors ? 0 : 1,
+    safe: options.allowDangerousCharacters ? 0 : 1,
+    schema: options.space === 'svg' ? svg : html$3,
+    omit: options.omitOptionalTags ? omission : undefined,
+    quote,
+    alternative,
+    smart: options.quoteSmart,
+    unquoted: options.preferUnquoted,
+    tight: options.tightAttributes,
+    upperDoctype: options.upperDoctype,
+    tightDoctype: options.tightDoctype,
+    bogusComments: options.bogusComments,
+    tightLists: options.tightCommaSeparatedLists,
+    tightClose: options.tightSelfClosing,
+    collapseEmpty: options.collapseEmptyAttributes,
+    dangerous: options.allowDangerousHtml,
+    voids: options.voids || htmlVoidElements.concat(),
+    entities: options.entities || {},
+    close: options.closeSelfClosing,
+    closeEmpty: options.closeEmptyElements
+  };
+
+  return one$2(
+    context,
+    // @ts-ignore Assume `node` does not contain a root.
+    Array.isArray(node) ? {type: 'root', children: node} : node,
+    null,
+    null
+  )
+}
+
+/** @type {import('./index.js').Schema} */
+const defaultSchema = {
+  strip: ['script'],
+  clobberPrefix: 'user-content-',
+  clobber: ['name', 'id'],
+  ancestors: {
+    tbody: ['table'],
+    tfoot: ['table'],
+    thead: ['table'],
+    td: ['table'],
+    th: ['table'],
+    tr: ['table']
+  },
+  protocols: {
+    href: ['http', 'https', 'mailto', 'xmpp', 'irc', 'ircs'],
+    cite: ['http', 'https'],
+    src: ['http', 'https'],
+    longDesc: ['http', 'https']
+  },
+  tagNames: [
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'br',
+    'b',
+    'i',
+    'strong',
+    'em',
+    'a',
+    'pre',
+    'code',
+    'img',
+    'tt',
+    'div',
+    'ins',
+    'del',
+    'sup',
+    'sub',
+    'p',
+    'ol',
+    'ul',
+    'table',
+    'thead',
+    'tbody',
+    'tfoot',
+    'blockquote',
+    'dl',
+    'dt',
+    'dd',
+    'kbd',
+    'q',
+    'samp',
+    'var',
+    'hr',
+    'ruby',
+    'rt',
+    'rp',
+    'li',
+    'tr',
+    'td',
+    'th',
+    's',
+    'strike',
+    'summary',
+    'details',
+    'caption',
+    'figure',
+    'figcaption',
+    'abbr',
+    'bdo',
+    'cite',
+    'dfn',
+    'mark',
+    'small',
+    'span',
+    'time',
+    'wbr',
+    'input'
+  ],
+  attributes: {
+    a: ['href'],
+    img: ['src', 'longDesc'],
+    input: [
+      ['type', 'checkbox'],
+      ['disabled', true]
+    ],
+    li: [['className', 'task-list-item']],
+    div: ['itemScope', 'itemType'],
+    blockquote: ['cite'],
+    del: ['cite'],
+    ins: ['cite'],
+    q: ['cite'],
+    '*': [
+      'abbr',
+      'accept',
+      'acceptCharset',
+      'accessKey',
+      'action',
+      'align',
+      'alt',
+      'ariaDescribedBy',
+      'ariaHidden',
+      'ariaLabel',
+      'ariaLabelledBy',
+      'axis',
+      'border',
+      'cellPadding',
+      'cellSpacing',
+      'char',
+      'charOff',
+      'charSet',
+      'checked',
+      'clear',
+      'cols',
+      'colSpan',
+      'color',
+      'compact',
+      'coords',
+      'dateTime',
+      'dir',
+      'disabled',
+      'encType',
+      'htmlFor',
+      'frame',
+      'headers',
+      'height',
+      'hrefLang',
+      'hSpace',
+      'isMap',
+      'id',
+      'label',
+      'lang',
+      'maxLength',
+      'media',
+      'method',
+      'multiple',
+      'name',
+      'noHref',
+      'noShade',
+      'noWrap',
+      'open',
+      'prompt',
+      'readOnly',
+      'rel',
+      'rev',
+      'rows',
+      'rowSpan',
+      'rules',
+      'scope',
+      'selected',
+      'shape',
+      'size',
+      'span',
+      'start',
+      'summary',
+      'tabIndex',
+      'target',
+      'title',
+      'type',
+      'useMap',
+      'vAlign',
+      'value',
+      'vSpace',
+      'width',
+      'itemProp'
+    ]
+  },
+  required: {
+    input: {
+      type: 'checkbox',
+      disabled: true
+    }
+  }
+};
+
+/**
+ * @typedef {import('hast').Parent} Parent
+ * @typedef {import('hast').Root} Root
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {Parent['children'][number]|Root} Node
+ *
+ * @typedef {Properties[string]} PropertyValue Possible property values
+ * @typedef {string|number|boolean} PrimitivePropertyValue Possible primitive HTML attribute values
+ * @typedef {string|[string, ...PrimitivePropertyValue[]]} AttributeValue
+ * @typedef {Object.<string, Array.<PrimitivePropertyValue>>} AttributeMap
+ *
+ * @typedef Schema Sanitization configuration
+ * @property {Object<string, Array<AttributeValue>>} [attributes] Map of tag names to allowed property names. The special '*' key defines property names allowed on all elements
+ * @property {Object<string, Object<string, PropertyValue>>} [required] Map of tag names to required property names and their default property value
+ * @property {Array.<string>} [tagNames] List of allowed tag names
+ * @property {Object<string, Array.<string>>} [protocols] Map of protocols to allow in property values
+ * @property {Object<string, Array.<string>>} [ancestors] Map of tag names to their required ancestor elements
+ * @property {Array.<string>} [clobber] List of allowed property names which can clobber
+ * @property {string} [clobberPrefix] Prefix to use before potentially clobbering property names
+ * @property {Array.<string>} [strip] Names of elements to strip from the tree
+ * @property {boolean} [allowComments] Whether to allow comments
+ * @property {boolean} [allowDoctypes] Whether to allow doctypes
+ *
+ * @typedef {(schema: Schema, value: unknown, node: Node, stack: Array.<string>) => unknown} Handler
+ * @typedef {Object.<string, Handler>} NodeDefinition
+ * @typedef {((schema: Schema, node: Node) => NodeDefinition)} NodeDefinitionGetter
+ * @typedef {Object.<string, NodeDefinition|NodeDefinitionGetter>} NodeSchema
+ */
+
+var own$3 = {}.hasOwnProperty;
+var push = [].push;
+
+/** @type {NodeSchema} */
+var nodeSchema = {
+  root: {children: all$1},
+  doctype: handleDoctype,
+  comment: handleComment,
+  element: {
+    tagName: handleTagName,
+    properties: handleProperties,
+    children: all$1
+  },
+  text: {value: handleValue},
+  '*': {data: allow, position: allow}
+};
+
+/**
+ * Utility to sanitize a tree
+ *
+ * @param {Node} node Hast tree to sanitize
+ * @param {Schema} [schema] Schema defining how to sanitize - defaults to Github style sanitation
+ */
+function sanitize(node, schema) {
+  /** @type {Node} */
+  var ctx = {type: 'root', children: []};
+  /** @type {Node|Array.<Node>} */
+  var replace;
+
+  if (node && typeof node === 'object' && node.type) {
+    replace = one$1(Object.assign({}, defaultSchema, schema || {}), node, []);
+
+    if (replace) {
+      if (Array.isArray(replace)) {
+        if (replace.length === 1) {
+          ctx = replace[0];
+        } else {
+          // @ts-ignore Assume `root` is not a child.
+          ctx.children = replace;
+        }
+      } else {
+        ctx = replace;
+      }
+    }
+  }
+
+  return ctx
+}
+
+/**
+ * Sanitize `node`.
+ *
+ * @param {Schema} schema
+ * @param {Node} node
+ * @param {Array.<string>} stack
+ * @returns {Node|Array.<Node>|null}
+ */
+function one$1(schema, node, stack) {
+  var type = node && node.type;
+  /** @type {Node} */
+  // @ts-ignore rest of props added later.
+  var replacement = {type: node.type};
+  /** @type {boolean} */
+  var replace;
+  /** @type {NodeDefinition|NodeDefinitionGetter} */
+  var definition;
+  /** @type {NodeDefinition} */
+  var allowed;
+  /** @type {unknown} */
+  var result;
+  /** @type {string} */
+  var key;
+
+  if (own$3.call(nodeSchema, type)) {
+    definition = nodeSchema[type];
+
+    if (typeof definition === 'function') {
+      definition = definition(schema, node);
+    }
+
+    if (definition) {
+      replace = true;
+      allowed = Object.assign({}, definition, nodeSchema['*']);
+
+      for (key in allowed) {
+        if (own$3.call(allowed, key)) {
+          result = allowed[key](schema, node[key], node, stack);
+
+          // eslint-disable-next-line max-depth
+          if (result === false) {
+            replace = null;
+            // Set the non-safe value.
+            replacement[key] = node[key];
+          } else if (result !== undefined && result !== null) {
+            replacement[key] = result;
+          }
+        }
+      }
+    }
+  }
+
+  if (replace) {
+    return replacement
+  }
+
+  return replacement.type === 'element' &&
+    !schema.strip.includes(replacement.tagName)
+    ? replacement.children
+    : null
+}
+
+/**
+ * Sanitize `children`.
+ *
+ * @type {Handler}
+ * @param {Array.<Node>} children
+ * @returns {Array.<Node>}
+ */
+function all$1(schema, children, node, stack) {
+  /** @type {Array.<Node>} */
+  var results = [];
+  var index = -1;
+  /** @type {Node|Array.<Node>} */
+  var value;
+
+  if (Array.isArray(children)) {
+    if (node.type === 'element') {
+      stack.push(node.tagName);
+    }
+
+    while (++index < children.length) {
+      value = one$1(schema, children[index], stack);
+
+      if (value) {
+        if ('length' in value) {
+          push.apply(results, value);
+        } else {
+          results.push(value);
+        }
+      }
+    }
+
+    if (node.type === 'element') {
+      stack.pop();
+    }
+  }
+
+  return results
+}
+
+/** @type {NodeDefinitionGetter} */
+function handleDoctype(schema) {
+  return schema.allowDoctypes ? {name: handleDoctypeName} : null
+}
+
+/** @type {NodeDefinitionGetter} */
+function handleComment(schema) {
+  return schema.allowComments ? {value: handleCommentValue} : null
+}
+
+/**
+ * Sanitize `properties`.
+ *
+ * @type {Handler}
+ * @param {Properties} properties
+ * @returns {Properties}
+ */
+function handleProperties(schema, properties, node, stack) {
+  var name = handleTagName(schema, node.tagName, node, stack);
+  /* c8 ignore next */
+  var reqs = schema.required || {};
+  var props = properties || {};
+  var allowed = Object.assign(
+    {},
+    toPropertyValueMap(schema.attributes['*']),
+    toPropertyValueMap(
+      name && own$3.call(schema.attributes, name) ? schema.attributes[name] : []
+    )
+  );
+  /** @type {Properties} */
+  var result = {};
+  /** @type {Array.<PrimitivePropertyValue>} */
+  var definition;
+  /** @type {PropertyValue} */
+  var value;
+  /** @type {string} */
+  var key;
+
+  for (key in props) {
+    if (own$3.call(props, key)) {
+      if (own$3.call(allowed, key)) {
+        definition = allowed[key];
+      } else if (data(key) && own$3.call(allowed, 'data*')) {
+        definition = allowed['data*'];
+      } else {
+        continue
+      }
+
+      value = props[key];
+      value = Array.isArray(value)
+        ? handlePropertyValues(schema, value, key, definition)
+        : handlePropertyValue(schema, value, key, definition);
+
+      if (value !== undefined && value !== null) {
+        result[key] = value;
+      }
+    }
+  }
+
+  if (name && own$3.call(reqs, name)) {
+    for (key in reqs[name]) {
+      if (!own$3.call(result, key)) {
+        result[key] = reqs[name][key];
+      }
+    }
+  }
+
+  return result
+}
+
+/**
+ * Always return a valid HTML5 doctype.
+ *
+ * @type {Handler}
+ * @returns {string}
+ */
+function handleDoctypeName() {
+  return 'html'
+}
+
+/**
+ * Sanitize `tagName`.
+ *
+ * @type {Handler}
+ * @returns {string|false}
+ */
+function handleTagName(schema, tagName, _, stack) {
+  var name = typeof tagName === 'string' ? tagName : '';
+  var index = -1;
+
+  if (!name || name === '*' || !schema.tagNames.includes(name)) {
+    return false
+  }
+
+  // Some nodes can break out of their context if they don’t have a certain
+  // ancestor.
+  if (own$3.call(schema.ancestors, name)) {
+    while (++index < schema.ancestors[name].length) {
+      if (stack.includes(schema.ancestors[name][index])) {
+        return name
+      }
+    }
+
+    return false
+  }
+
+  return name
+}
+
+/**
+ * See <https://html.spec.whatwg.org/multipage/parsing.html#serialising-html-fragments>
+ *
+ * @type {Handler}
+ * @returns {string}
+ */
+function handleCommentValue(_, value) {
+  /** @type {string} */
+  var result = typeof value === 'string' ? value : '';
+  var index = result.indexOf('-->');
+  return index < 0 ? result : result.slice(0, index)
+}
+
+/**
+ * Sanitize `value`.
+ *
+ * @type {Handler}
+ * @returns {string}
+ */
+function handleValue(_, value) {
+  return typeof value === 'string' ? value : ''
+}
+
+/**
+ * Allow `value`.
+ *
+ * @type {Handler}
+ */
+function allow(_, value) {
+  return value
+}
+
+/**
+ * Sanitize a property value which is a list.
+ *
+ * @param {Schema} schema
+ * @param {Array.<unknown>} values
+ * @param {string} prop
+ * @param {Array.<PrimitivePropertyValue>} definition
+ * @returns {Array.<string|number>}
+ */
+function handlePropertyValues(schema, values, prop, definition) {
+  var index = -1;
+  /** @type {Array.<string|number>} */
+  var result = [];
+  /** @type {PropertyValue} */
+  var value;
+
+  while (++index < values.length) {
+    value = handlePropertyValue(schema, values[index], prop, definition);
+
+    if (value !== undefined && value !== null) {
+      // @ts-ignore Assume no booleans were in arrays.
+      result.push(value);
+    }
+  }
+
+  return result
+}
+
+/**
+ * Sanitize a property value.
+ *
+ * @param {Schema} schema
+ * @param {unknown} value
+ * @param {string} prop
+ * @param {Array.<PropertyValue>} definition
+ * @returns {PropertyValue}
+ */
+function handlePropertyValue(schema, value, prop, definition) {
+  if (
+    (typeof value === 'boolean' ||
+      typeof value === 'number' ||
+      typeof value === 'string') &&
+    safeProtocol(schema, value, prop) &&
+    (definition.length === 0 || definition.includes(value))
+  ) {
+    return schema.clobber.includes(prop) ? schema.clobberPrefix + value : value
+  }
+}
+
+/**
+ * Check whether `value` is a safe URL.
+ *
+ * @param {Schema} schema
+ * @param {unknown} value
+ * @param {string} prop
+ * @returns {boolean}
+ */
+function safeProtocol(schema, value, prop) {
+  var url = String(value);
+  var colon = url.indexOf(':');
+  var questionMark = url.indexOf('?');
+  var numberSign = url.indexOf('#');
+  var slash = url.indexOf('/');
+  var protocols = own$3.call(schema.protocols, prop)
+    ? schema.protocols[prop].concat()
+    : [];
+  var index = -1;
+
+  if (
+    protocols.length === 0 ||
+    colon < 0 ||
+    // If the first colon is after a `?`, `#`, or `/`, it’s not a protocol.
+    (slash > -1 && colon > slash) ||
+    (questionMark > -1 && colon > questionMark) ||
+    (numberSign > -1 && colon > numberSign)
+  ) {
+    return true
+  }
+
+  while (++index < protocols.length) {
+    if (
+      colon === protocols[index].length &&
+      url.slice(0, protocols[index].length) === protocols[index]
+    ) {
+      return true
+    }
+  }
+
+  return false
+}
+
+/**
+ * Create a map from a list of props or a list of properties and values.
+ *
+ * @param {Array.<AttributeValue>} values
+ * @returns {AttributeMap}
+ */
+function toPropertyValueMap(values) {
+  /** @type {AttributeMap} */
+  var result = {};
+  var index = -1;
+  /** @type {AttributeValue} */
+  var value;
+
+  while (++index < values.length) {
+    value = values[index];
+
+    if (Array.isArray(value)) {
+      result[value[0]] = value.slice(1);
+    } else {
+      result[value] = [];
+    }
+  }
+
+  return result
+}
+
+/**
+ * Check if `prop` is a data property.
+ *
+ * @param {string} prop
+ * @returns {boolean}
+ */
+function data(prop) {
+  return prop.length > 4 && prop.slice(0, 4).toLowerCase() === 'data'
+}
+
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ * @typedef {import('unist').Literal} Literal
+ * @typedef {Object.<string, unknown>} Props
+ * @typedef {Array.<Node>|string} ChildrenOrValue
+ *
+ * @typedef {(<T extends string, P extends Record<string, unknown>, C extends Node[]>(type: T, props: P, children: C) => {type: T, children: C} & P)} BuildParentWithProps
+ * @typedef {(<T extends string, P extends Record<string, unknown>>(type: T, props: P, value: string) => {type: T, value: string} & P)} BuildLiteralWithProps
+ * @typedef {(<T extends string, P extends Record<string, unknown>>(type: T, props: P) => {type: T} & P)} BuildVoidWithProps
+ * @typedef {(<T extends string, C extends Node[]>(type: T, children: C) => {type: T, children: C})} BuildParent
+ * @typedef {(<T extends string>(type: T, value: string) => {type: T, value: string})} BuildLiteral
+ * @typedef {(<T extends string>(type: T) => {type: T})} BuildVoid
+ */
+
+var u = /**
+ * @type {BuildVoid & BuildVoidWithProps & BuildLiteral & BuildLiteralWithProps & BuildParent & BuildParentWithProps}
+ */ (
+  /**
+   * @param {string} type Type of node
+   * @param {Props|ChildrenOrValue} [props] Additional properties for node (or `children` or `value`)
+   * @param {ChildrenOrValue} [value] `children` or `value` of node
+   * @returns {Node}
+   */
+  function (type, props, value) {
+    /** @type {Node} */
+    var node = {type: String(type)};
+
+    if (
+      (value === undefined || value === null) &&
+      (typeof props === 'string' || Array.isArray(props))
+    ) {
+      value = props;
+    } else {
+      Object.assign(node, props);
+    }
+
+    if (Array.isArray(value)) {
+      node.children = value;
+    } else if (value !== undefined && value !== null) {
+      node.value = String(value);
+    }
+
+    return node
+  }
+);
+
+/**
+ * @typedef {import('mdast').Root|import('mdast').Parent['children'][number]} MdastNode
+ * @typedef {import('./index.js').H} H
+ * @typedef {import('./index.js').Handler} Handler
+ * @typedef {import('./index.js').Content} Content
+ */
+
+const own$2 = {}.hasOwnProperty;
+
+/**
+ * Transform an unknown node.
+ * @type {Handler}
+ * @param {MdastNode} node
+ */
+function unknown(h, node) {
+  const data = node.data || {};
+
+  if (
+    'value' in node &&
+    !(
+      own$2.call(data, 'hName') ||
+      own$2.call(data, 'hProperties') ||
+      own$2.call(data, 'hChildren')
+    )
+  ) {
+    return h.augment(node, u('text', node.value))
+  }
+
+  return h(node, 'div', all(h, node))
+}
+
+/**
+ * @type {Handler}
+ * @param {MdastNode} node
+ */
+function one(h, node, parent) {
+  const type = node && node.type;
+  /** @type {Handler} */
+  let fn;
+
+  // Fail on non-nodes.
+  if (!type) {
+    throw new Error('Expected node, got `' + node + '`')
+  }
+
+  if (own$2.call(h.handlers, type)) {
+    fn = h.handlers[type];
+  } else if (h.passThrough && h.passThrough.includes(type)) {
+    fn = returnNode;
+  } else {
+    fn = h.unknownHandler;
+  }
+
+  return (typeof fn === 'function' ? fn : unknown)(h, node, parent)
+}
+
+/**
+ * @type {Handler}
+ * @param {MdastNode} node
+ */
+function returnNode(h, node) {
+  // @ts-expect-error: Pass through custom node.
+  return 'children' in node ? {...node, children: all(h, node)} : node
+}
+
+/**
+ * @param {H} h
+ * @param {MdastNode} parent
+ */
+function all(h, parent) {
+  /** @type {Array.<Content>} */
+  const values = [];
+
+  if ('children' in parent) {
+    const nodes = parent.children;
+    let index = -1;
+
+    while (++index < nodes.length) {
+      const result = one(h, nodes[index], parent);
+
+      if (result) {
+        if (index && nodes[index - 1].type === 'break') {
+          if (!Array.isArray(result) && result.type === 'text') {
+            result.value = result.value.replace(/^\s+/, '');
+          }
+
+          if (!Array.isArray(result) && result.type === 'element') {
+            const head = result.children[0];
+
+            if (head && head.type === 'text') {
+              head.value = head.value.replace(/^\s+/, '');
+            }
+          }
+        }
+
+        if (Array.isArray(result)) {
+          values.push(...result);
+        } else {
+          values.push(result);
+        }
+      }
+    }
+  }
+
+  return values
+}
+
+/**
+ * @typedef {import('unist').Position} Position
+ * @typedef {import('unist').Point} Point
+ *
+ * @typedef {Partial<Point>} PointLike
+ *
+ * @typedef {Object} PositionLike
+ * @property {PointLike} [start]
+ * @property {PointLike} [end]
+ *
+ * @typedef {Object} NodeLike
+ * @property {PositionLike} [position]
+ */
+
+var pointStart = point('start');
+var pointEnd = point('end');
+
+/**
+ * Get the positional info of `node`.
+ *
+ * @param {'start'|'end'} type
+ */
+function point(type) {
+  return point
+
+  /**
+   * Get the positional info of `node`.
+   *
+   * @param {NodeLike} [node]
+   * @returns {Point}
+   */
+  function point(node) {
+    /** @type {Point} */
+    // @ts-ignore looks like a point
+    var point = (node && node.position && node.position[type]) || {};
+
+    return {
+      line: point.line || null,
+      column: point.column || null,
+      offset: point.offset > -1 ? point.offset : null
+    }
+  }
+}
+
+/**
+ * @typedef {Object} PointLike
+ * @property {number} [line]
+ * @property {number} [column]
+ * @property {number} [offset]
+ *
+ * @typedef {Object} PositionLike
+ * @property {PointLike} [start]
+ * @property {PointLike} [end]
+ *
+ * @typedef {Object} NodeLike
+ * @property {PositionLike} [position]
+ */
+
+/**
+ * Check if `node` is *generated*.
+ *
+ * @param {NodeLike} [node]
+ * @returns {boolean}
+ */
+function generated(node) {
+  return (
+    !node ||
+    !node.position ||
+    !node.position.start ||
+    !node.position.start.line ||
+    !node.position.start.column ||
+    !node.position.end ||
+    !node.position.end.line ||
+    !node.position.end.column
+  )
+}
+
+/**
+ * @param {string} d
+ * @returns {string}
+ */
+function color(d) {
+  return '\u001B[33m' + d + '\u001B[39m'
+}
+
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ * @typedef {import('unist-util-is').Test} Test
+ */
+
+/**
+ * Continue traversing as normal
+ */
+const CONTINUE = true;
+/**
+ * Do not traverse this node’s children
+ */
+const SKIP = 'skip';
+/**
+ * Stop traversing immediately
+ */
+const EXIT = false;
+
+const visitParents =
+  /**
+   * @type {(
+   *   (<T extends Node>(tree: Node, test: T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>|Array.<T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>>, visitor: Visitor<T>, reverse?: boolean) => void) &
+   *   ((tree: Node, test: Test, visitor: Visitor<Node>, reverse?: boolean) => void) &
+   *   ((tree: Node, visitor: Visitor<Node>, reverse?: boolean) => void)
+   * )}
+   */
+  (
+    /**
+     * Visit children of tree which pass a test
+     *
+     * @param {Node} tree Abstract syntax tree to walk
+     * @param {Test} test test Test node
+     * @param {Visitor<Node>} visitor Function to run for each node
+     * @param {boolean} [reverse] Fisit the tree in reverse, defaults to false
+     */
+    function (tree, test, visitor, reverse) {
+      if (typeof test === 'function' && typeof visitor !== 'function') {
+        reverse = visitor;
+        // @ts-ignore no visitor given, so `visitor` is test.
+        visitor = test;
+        test = null;
+      }
+
+      var is = convert(test);
+      var step = reverse ? -1 : 1;
+
+      factory(tree, null, [])();
+
+      /**
+       * @param {Node} node
+       * @param {number?} index
+       * @param {Array.<Parent>} parents
+       */
+      function factory(node, index, parents) {
+        /** @type {Object.<string, unknown>} */
+        var value = typeof node === 'object' && node !== null ? node : {};
+        /** @type {string} */
+        var name;
+
+        if (typeof value.type === 'string') {
+          name =
+            typeof value.tagName === 'string'
+              ? value.tagName
+              : typeof value.name === 'string'
+              ? value.name
+              : undefined;
+
+          Object.defineProperty(visit, 'name', {
+            value:
+              'node (' +
+              color(value.type + (name ? '<' + name + '>' : '')) +
+              ')'
+          });
+        }
+
+        return visit
+
+        function visit() {
+          /** @type {ActionTuple} */
+          var result = [];
+          /** @type {ActionTuple} */
+          var subresult;
+          /** @type {number} */
+          var offset;
+          /** @type {Array.<Parent>} */
+          var grandparents;
+
+          if (!test || is(node, index, parents[parents.length - 1] || null)) {
+            result = toResult(visitor(node, parents));
+
+            if (result[0] === EXIT) {
+              return result
+            }
+          }
+
+          if (node.children && result[0] !== SKIP) {
+            // @ts-ignore looks like a parent.
+            offset = (reverse ? node.children.length : -1) + step;
+            // @ts-ignore looks like a parent.
+            grandparents = parents.concat(node);
+
+            // @ts-ignore looks like a parent.
+            while (offset > -1 && offset < node.children.length) {
+              subresult = factory(node.children[offset], offset, grandparents)();
+
+              if (subresult[0] === EXIT) {
+                return subresult
+              }
+
+              offset =
+                typeof subresult[1] === 'number' ? subresult[1] : offset + step;
+            }
+          }
+
+          return result
+        }
+      }
+    }
+  );
+
+/**
+ * @param {VisitorResult} value
+ * @returns {ActionTuple}
+ */
+function toResult(value) {
+  if (Array.isArray(value)) {
+    return value
+  }
+
+  if (typeof value === 'number') {
+    return [CONTINUE, value]
+  }
+
+  return [value]
+}
+
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ * @typedef {import('unist-util-is').Test} Test
+ * @typedef {import('unist-util-visit-parents').VisitorResult} VisitorResult
+ */
+
+const visit =
+  /**
+   * @type {(
+   *   (<T extends Node>(tree: Node, test: T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>|Array.<T['type']|Partial<T>|import('unist-util-is').TestFunctionPredicate<T>>, visitor: Visitor<T>, reverse?: boolean) => void) &
+   *   ((tree: Node, test: Test, visitor: Visitor<Node>, reverse?: boolean) => void) &
+   *   ((tree: Node, visitor: Visitor<Node>, reverse?: boolean) => void)
+   * )}
+   */
+  (
+    /**
+     * Visit children of tree which pass a test
+     *
+     * @param {Node} tree Abstract syntax tree to walk
+     * @param {Test} test test Test node
+     * @param {Visitor<Node>} visitor Function to run for each node
+     * @param {boolean} [reverse] Fisit the tree in reverse, defaults to false
+     */
+    function (tree, test, visitor, reverse) {
+      if (typeof test === 'function' && typeof visitor !== 'function') {
+        reverse = visitor;
+        visitor = test;
+        test = null;
+      }
+
+      visitParents(tree, test, overload, reverse);
+
+      /**
+       * @param {Node} node
+       * @param {Array.<Parent>} parents
+       */
+      function overload(node, parents) {
+        var parent = parents[parents.length - 1];
+        return visitor(
+          node,
+          parent ? parent.children.indexOf(node) : null,
+          parent
+        )
+      }
+    }
+  );
+
+/**
+ * @typedef {import('mdast').Root|import('mdast').Content} Node
+ * @typedef {import('mdast').Definition} Definition
+ * @typedef {import('unist-util-visit').Visitor<Definition>} DefinitionVisitor
+ */
+
+const own$1 = {}.hasOwnProperty;
+
+/**
+ *
+ * @param {Node} node
+ */
+function definitions(node) {
+  /** @type {Object.<string, Definition>} */
+  const cache = Object.create(null);
+
+  if (!node || !node.type) {
+    throw new Error('mdast-util-definitions expected node')
+  }
+
+  visit(node, 'definition', ondefinition);
+
+  return getDefinition
+
+  /** @type {DefinitionVisitor} */
+  function ondefinition(definition) {
+    const id = clean(definition.identifier);
+    if (id && !own$1.call(cache, id)) {
+      cache[id] = definition;
+    }
+  }
+
+  /**
+   * Get a node from the bound definition-cache.
+   *
+   * @param {string} identifier
+   * @returns {Definition|null}
+   */
+  function getDefinition(identifier) {
+    const id = clean(identifier);
+    return id && own$1.call(cache, id) ? cache[id] : null
+  }
+}
+
+/**
+ * @param {string} [value]
+ * @returns {string}
+ */
+function clean(value) {
+  return String(value || '').toUpperCase()
+}
+
+const characterReferences = {'"': 'quot', '&': 'amp', '<': 'lt', '>': 'gt'};
+
+/**
+ * Encode only the dangerous HTML characters.
+ *
+ * This ensures that certain characters which have special meaning in HTML are
+ * dealt with.
+ * Technically, we can skip `>` and `"` in many cases, but CM includes them.
+ *
+ * @param {string} value
+ * @returns {string}
+ */
+function encode$1(value) {
+  return value.replace(/["&<>]/g, replace)
+
+  /**
+   * @param {string} value
+   * @returns {string}
+   */
+  function replace(value) {
+    // @ts-expect-error Hush, it’s fine.
+    return '&' + characterReferences[value] + ';'
+  }
+}
+
+/**
+ * Make a value safe for injection as a URL.
+ *
+ * This encodes unsafe characters with percent-encoding and skips already
+ * encoded sequences (see `normalizeUri` below).
+ * Further unsafe characters are encoded as character references (see
+ * `micromark-util-encode`).
+ *
+ * Then, a regex of allowed protocols can be given, in which case the URL is
+ * sanitized.
+ * For example, `/^(https?|ircs?|mailto|xmpp)$/i` can be used for `a[href]`,
+ * or `/^https?$/i` for `img[src]`.
+ * If the URL includes an unknown protocol (one not matched by `protocol`, such
+ * as a dangerous example, `javascript:`), the value is ignored.
+ *
+ * @param {string|undefined} url
+ * @param {RegExp} [protocol]
+ * @returns {string}
+ */
+function sanitizeUri(url, protocol) {
+  const value = encode$1(normalizeUri(url || ''));
+
+  if (!protocol) {
+    return value
+  }
+
+  const colon = value.indexOf(':');
+  const questionMark = value.indexOf('?');
+  const numberSign = value.indexOf('#');
+  const slash = value.indexOf('/');
+
+  if (
+    // If there is no protocol, it’s relative.
+    colon < 0 || // If the first colon is after a `?`, `#`, or `/`, it’s not a protocol.
+    (slash > -1 && colon > slash) ||
+    (questionMark > -1 && colon > questionMark) ||
+    (numberSign > -1 && colon > numberSign) || // It is a protocol, it should be allowed.
+    protocol.test(value.slice(0, colon))
+  ) {
+    return value
+  }
+
+  return ''
+}
+/**
+ * Normalize a URL (such as used in definitions).
+ *
+ * Encode unsafe characters with percent-encoding, skipping already encoded
+ * sequences.
+ *
+ * @param {string} value
+ * @returns {string}
+ */
+
+function normalizeUri(value) {
+  /** @type {string[]} */
+  const result = [];
+  let index = -1;
+  let start = 0;
+  let skip = 0;
+
+  while (++index < value.length) {
+    const code = value.charCodeAt(index);
+    /** @type {string} */
+
+    let replace = ''; // A correct percent encoded value.
+
+    if (
+      code === 37 &&
+      asciiAlphanumeric(value.charCodeAt(index + 1)) &&
+      asciiAlphanumeric(value.charCodeAt(index + 2))
+    ) {
+      skip = 2;
+    } // ASCII.
+    else if (code < 128) {
+      if (!/[!#$&-;=?-Z_a-z~]/.test(String.fromCharCode(code))) {
+        replace = String.fromCharCode(code);
+      }
+    } // Astral.
+    else if (code > 55295 && code < 57344) {
+      const next = value.charCodeAt(index + 1); // A correct surrogate pair.
+
+      if (code < 56320 && next > 56319 && next < 57344) {
+        replace = String.fromCharCode(code, next);
+        skip = 1;
+      } // Lone surrogate.
+      else {
+        replace = '\uFFFD';
+      }
+    } // Unicode.
+    else {
+      replace = String.fromCharCode(code);
+    }
+
+    if (replace) {
+      result.push(value.slice(start, index), encodeURIComponent(replace));
+      start = index + skip + 1;
+      replace = '';
+    }
+
+    if (skip) {
+      index += skip;
+      skip = 0;
+    }
+  }
+
+  return result.join('') + value.slice(start)
+}
+
+/**
+ * @typedef {import('./index.js').Content} Content
+ */
+
+/**
+ * Wrap `nodes` with line feeds between each entry.
+ * Optionally adds line feeds at the start and end.
+ *
+ * @param {Array.<Content>} nodes
+ * @param {boolean} [loose=false]
+ * @returns {Array.<Content>}
+ */
+function wrap(nodes, loose) {
+  /** @type {Array.<Content>} */
+  const result = [];
+  let index = -1;
+
+  if (loose) {
+    result.push(u('text', '\n'));
+  }
+
+  while (++index < nodes.length) {
+    if (index) result.push(u('text', '\n'));
+    result.push(nodes[index]);
+  }
+
+  if (loose && nodes.length > 0) {
+    result.push(u('text', '\n'));
+  }
+
+  return result
+}
+
+/**
+ * @typedef {import('mdast').BlockContent} BlockContent
+ * @typedef {import('mdast').FootnoteDefinition} FootnoteDefinition
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('hast').ElementContent} ElementContent
+ * @typedef {import('./index.js').H} H
+ */
+
+/**
+ * @param {H} h
+ */
+function footer(h) {
+  let index = -1;
+  /** @type {ElementContent[]} */
+  const listItems = [];
+
+  while (++index < h.footnoteOrder.length) {
+    const def = h.footnoteById[h.footnoteOrder[index].toUpperCase()];
+
+    if (!def) {
+      continue
+    }
+
+    const content = all(h, def);
+    const id = String(def.identifier);
+    const safeId = sanitizeUri(id.toLowerCase());
+    let referenceIndex = 0;
+    /** @type {ElementContent[]} */
+    const backReferences = [];
+
+    while (++referenceIndex <= h.footnoteCounts[id]) {
+      /** @type {Element} */
+      const backReference = {
+        type: 'element',
+        tagName: 'a',
+        properties: {
+          href:
+            '#' +
+            h.clobberPrefix +
+            'fnref-' +
+            safeId +
+            (referenceIndex > 1 ? '-' + referenceIndex : ''),
+          dataFootnoteBackref: true,
+          className: ['data-footnote-backref'],
+          ariaLabel: h.footnoteBackLabel
+        },
+        children: [{type: 'text', value: '↩'}]
+      };
+
+      if (referenceIndex > 1) {
+        backReference.children.push({
+          type: 'element',
+          tagName: 'sup',
+          children: [{type: 'text', value: String(referenceIndex)}]
+        });
+      }
+
+      if (backReferences.length > 0) {
+        backReferences.push({type: 'text', value: ' '});
+      }
+
+      backReferences.push(backReference);
+    }
+
+    const tail = content[content.length - 1];
+
+    if (tail && tail.type === 'element' && tail.tagName === 'p') {
+      const tailTail = tail.children[tail.children.length - 1];
+      if (tailTail && tailTail.type === 'text') {
+        tailTail.value += ' ';
+      } else {
+        tail.children.push({type: 'text', value: ' '});
+      }
+
+      tail.children.push(...backReferences);
+    } else {
+      content.push(...backReferences);
+    }
+
+    /** @type {Element} */
+    const listItem = {
+      type: 'element',
+      tagName: 'li',
+      properties: {id: h.clobberPrefix + 'fn-' + safeId},
+      children: wrap(content, true)
+    };
+
+    if (def.position) {
+      listItem.position = def.position;
+    }
+
+    listItems.push(listItem);
+  }
+
+  if (listItems.length === 0) {
+    return null
+  }
+
+  return {
+    type: 'element',
+    tagName: 'section',
+    properties: {dataFootnotes: true, className: ['footnotes']},
+    children: [
+      {
+        type: 'element',
+        tagName: 'h2',
+        properties: {id: 'footnote-label', className: ['sr-only']},
+        children: [u('text', h.footnoteLabel)]
+      },
+      {type: 'text', value: '\n'},
+      {
+        type: 'element',
+        tagName: 'ol',
+        properties: {},
+        children: wrap(listItems, true)
+      },
+      {type: 'text', value: '\n'}
+    ]
+  }
+}
+
+/**
+ * @typedef {import('mdast').Blockquote} Blockquote
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Blockquote} node
+ */
+function blockquote(h, node) {
+  return h(node, 'blockquote', wrap(all(h, node), true))
+}
+
+/**
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('hast').Text} Text
+ * @typedef {import('mdast').Break} Break
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Break} node
+ * @returns {Array<Element|Text>}
+ */
+function hardBreak(h, node) {
+  return [h(node, 'br'), u('text', '\n')]
+}
+
+/**
+ * @typedef {import('mdast').Code} Code
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Code} node
+ */
+function code(h, node) {
+  const value = node.value ? node.value + '\n' : '';
+  // To do: next major, use `node.lang` w/o regex, the splitting’s been going
+  // on for years in remark now.
+  const lang = node.lang && node.lang.match(/^[^ \t]+(?=[ \t]|$)/);
+  /** @type {Properties} */
+  const props = {};
+
+  if (lang) {
+    props.className = ['language-' + lang];
+  }
+
+  const code = h(node, 'code', props, [u('text', value)]);
+
+  if (node.meta) {
+    code.data = {meta: node.meta};
+  }
+
+  return h(node.position, 'pre', [code])
+}
+
+/**
+ * @typedef {import('mdast').Delete} Delete
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Delete} node
+ */
+function strikethrough(h, node) {
+  return h(node, 'del', all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').Emphasis} Emphasis
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Emphasis} node
+ */
+function emphasis(h, node) {
+  return h(node, 'em', all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').FootnoteReference} FootnoteReference
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {FootnoteReference} node
+ */
+function footnoteReference(h, node) {
+  const id = String(node.identifier);
+  const safeId = sanitizeUri(id.toLowerCase());
+  const index = h.footnoteOrder.indexOf(id);
+  /** @type {number} */
+  let counter;
+
+  if (index === -1) {
+    h.footnoteOrder.push(id);
+    h.footnoteCounts[id] = 1;
+    counter = h.footnoteOrder.length;
+  } else {
+    h.footnoteCounts[id]++;
+    counter = index + 1;
+  }
+
+  const reuseCounter = h.footnoteCounts[id];
+
+  return h(node, 'sup', [
+    h(
+      node.position,
+      'a',
+      {
+        href: '#' + h.clobberPrefix + 'fn-' + safeId,
+        id:
+          h.clobberPrefix +
+          'fnref-' +
+          safeId +
+          (reuseCounter > 1 ? '-' + reuseCounter : ''),
+        dataFootnoteRef: true,
+        ariaDescribedBy: 'footnote-label'
+      },
+      [u('text', String(counter))]
+    )
+  ])
+}
+
+/**
+ * @typedef {import('mdast').Footnote} Footnote
+ * @typedef {import('../index.js').Handler} Handler
+ *
+ * @todo
+ *   `footnote` (or “inline note”) are a pandoc footnotes feature (`^[a note]`)
+ *   that does not exist in GFM.
+ *   We still have support for it, so that things remain working with
+ *   `micromark-extension-footnote` and `mdast-util-footnote`, but in the future
+ *   we might be able to remove it?
+ */
+
+/**
+ * @type {Handler}
+ * @param {Footnote} node
+ */
+function footnote(h, node) {
+  const footnoteById = h.footnoteById;
+  let no = 1;
+
+  while (no in footnoteById) no++;
+
+  const identifier = String(no);
+
+  footnoteById[identifier] = {
+    type: 'footnoteDefinition',
+    identifier,
+    children: [{type: 'paragraph', children: node.children}],
+    position: node.position
+  };
+
+  return footnoteReference(h, {
+    type: 'footnoteReference',
+    identifier,
+    position: node.position
+  })
+}
+
+/**
+ * @typedef {import('mdast').Heading} Heading
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Heading} node
+ */
+function heading(h, node) {
+  return h(node, 'h' + node.depth, all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').HTML} HTML
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * Return either a `raw` node in dangerous mode, otherwise nothing.
+ *
+ * @type {Handler}
+ * @param {HTML} node
+ */
+function html(h, node) {
+  return h.dangerous ? h.augment(node, u('raw', node.value)) : null
+}
+
+var encodeCache = {};
+
+
+// Create a lookup array where anything but characters in `chars` string
+// and alphanumeric chars is percent-encoded.
+//
+function getEncodeCache(exclude) {
+  var i, ch, cache = encodeCache[exclude];
+  if (cache) { return cache; }
+
+  cache = encodeCache[exclude] = [];
+
+  for (i = 0; i < 128; i++) {
+    ch = String.fromCharCode(i);
+
+    if (/^[0-9a-z]$/i.test(ch)) {
+      // always allow unencoded alphanumeric characters
+      cache.push(ch);
+    } else {
+      cache.push('%' + ('0' + i.toString(16).toUpperCase()).slice(-2));
+    }
+  }
+
+  for (i = 0; i < exclude.length; i++) {
+    cache[exclude.charCodeAt(i)] = exclude[i];
+  }
+
+  return cache;
+}
+
+
+// Encode unsafe characters with percent-encoding, skipping already
+// encoded sequences.
+//
+//  - string       - string to encode
+//  - exclude      - list of characters to ignore (in addition to a-zA-Z0-9)
+//  - keepEscaped  - don't encode '%' in a correct escape sequence (default: true)
+//
+function encode(string, exclude, keepEscaped) {
+  var i, l, code, nextCode, cache,
+      result = '';
+
+  if (typeof exclude !== 'string') {
+    // encode(string, keepEscaped)
+    keepEscaped  = exclude;
+    exclude = encode.defaultChars;
+  }
+
+  if (typeof keepEscaped === 'undefined') {
+    keepEscaped = true;
+  }
+
+  cache = getEncodeCache(exclude);
+
+  for (i = 0, l = string.length; i < l; i++) {
+    code = string.charCodeAt(i);
+
+    if (keepEscaped && code === 0x25 /* % */ && i + 2 < l) {
+      if (/^[0-9a-f]{2}$/i.test(string.slice(i + 1, i + 3))) {
+        result += string.slice(i, i + 3);
+        i += 2;
+        continue;
+      }
+    }
+
+    if (code < 128) {
+      result += cache[code];
+      continue;
+    }
+
+    if (code >= 0xD800 && code <= 0xDFFF) {
+      if (code >= 0xD800 && code <= 0xDBFF && i + 1 < l) {
+        nextCode = string.charCodeAt(i + 1);
+        if (nextCode >= 0xDC00 && nextCode <= 0xDFFF) {
+          result += encodeURIComponent(string[i] + string[i + 1]);
+          i++;
+          continue;
+        }
+      }
+      result += '%EF%BF%BD';
+      continue;
+    }
+
+    result += encodeURIComponent(string[i]);
+  }
+
+  return result;
+}
+
+encode.defaultChars   = ";/?:@&=+$,-_.!~*'()#";
+encode.componentChars = "-_.!~*'()";
+
+
+var encode_1 = encode;
+
+/**
+ * @typedef {import('mdast').LinkReference} LinkReference
+ * @typedef {import('mdast').ImageReference} ImageReference
+ * @typedef {import('./index.js').Handler} Handler
+ * @typedef {import('./index.js').Content} Content
+ */
+
+/**
+ * Return the content of a reference without definition as plain text.
+ *
+ * @type {Handler}
+ * @param {ImageReference|LinkReference} node
+ * @returns {Content|Array.<Content>}
+ */
+function revert(h, node) {
+  const subtype = node.referenceType;
+  let suffix = ']';
+
+  if (subtype === 'collapsed') {
+    suffix += '[]';
+  } else if (subtype === 'full') {
+    suffix += '[' + (node.label || node.identifier) + ']';
+  }
+
+  if (node.type === 'imageReference') {
+    return u('text', '![' + node.alt + suffix)
+  }
+
+  const contents = all(h, node);
+  const head = contents[0];
+
+  if (head && head.type === 'text') {
+    head.value = '[' + head.value;
+  } else {
+    contents.unshift(u('text', '['));
+  }
+
+  const tail = contents[contents.length - 1];
+
+  if (tail && tail.type === 'text') {
+    tail.value += suffix;
+  } else {
+    contents.push(u('text', suffix));
+  }
+
+  return contents
+}
+
+/**
+ * @typedef {import('mdast').ImageReference} ImageReference
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {ImageReference} node
+ */
+function imageReference(h, node) {
+  const def = h.definition(node.identifier);
+
+  if (!def) {
+    return revert(h, node)
+  }
+
+  /** @type {Properties} */
+  const props = {src: encode_1(def.url || ''), alt: node.alt};
+
+  if (def.title !== null && def.title !== undefined) {
+    props.title = def.title;
+  }
+
+  return h(node, 'img', props)
+}
+
+/**
+ * @typedef {import('mdast').Image} Image
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Image} node
+ */
+function image(h, node) {
+  /** @type {Properties} */
+  const props = {src: encode_1(node.url), alt: node.alt};
+
+  if (node.title !== null && node.title !== undefined) {
+    props.title = node.title;
+  }
+
+  return h(node, 'img', props)
+}
+
+/**
+ * @typedef {import('mdast').InlineCode} InlineCode
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {InlineCode} node
+ */
+function inlineCode(h, node) {
+  return h(node, 'code', [u('text', node.value.replace(/\r?\n|\r/g, ' '))])
+}
+
+/**
+ * @typedef {import('mdast').LinkReference} LinkReference
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {LinkReference} node
+ */
+function linkReference(h, node) {
+  const def = h.definition(node.identifier);
+
+  if (!def) {
+    return revert(h, node)
+  }
+
+  /** @type {Properties} */
+  const props = {href: encode_1(def.url || '')};
+
+  if (def.title !== null && def.title !== undefined) {
+    props.title = def.title;
+  }
+
+  return h(node, 'a', props, all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').Link} Link
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Link} node
+ */
+function link(h, node) {
+  /** @type {Properties} */
+  const props = {href: encode_1(node.url)};
+
+  if (node.title !== null && node.title !== undefined) {
+    props.title = node.title;
+  }
+
+  return h(node, 'a', props, all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').ListItem} ListItem
+ * @typedef {import('mdast').List} List
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('../index.js').Handler} Handler
+ * @typedef {import('../index.js').Content} Content
+ */
+
+/**
+ * @type {Handler}
+ * @param {ListItem} node
+ * @param {List} parent
+ */
+function listItem(h, node, parent) {
+  const result = all(h, node);
+  const loose = parent ? listLoose(parent) : listItemLoose(node);
+  /** @type {Properties} */
+  const props = {};
+  /** @type {Array.<Content>} */
+  const wrapped = [];
+
+  if (typeof node.checked === 'boolean') {
+    /** @type {Element} */
+    let paragraph;
+
+    if (
+      result[0] &&
+      result[0].type === 'element' &&
+      result[0].tagName === 'p'
+    ) {
+      paragraph = result[0];
+    } else {
+      paragraph = h(null, 'p', []);
+      result.unshift(paragraph);
+    }
+
+    if (paragraph.children.length > 0) {
+      paragraph.children.unshift(u('text', ' '));
+    }
+
+    paragraph.children.unshift(
+      h(null, 'input', {
+        type: 'checkbox',
+        checked: node.checked,
+        disabled: true
+      })
+    );
+
+    // According to github-markdown-css, this class hides bullet.
+    // See: <https://github.com/sindresorhus/github-markdown-css>.
+    props.className = ['task-list-item'];
+  }
+
+  let index = -1;
+
+  while (++index < result.length) {
+    const child = result[index];
+
+    // Add eols before nodes, except if this is a loose, first paragraph.
+    if (
+      loose ||
+      index !== 0 ||
+      child.type !== 'element' ||
+      child.tagName !== 'p'
+    ) {
+      wrapped.push(u('text', '\n'));
+    }
+
+    if (child.type === 'element' && child.tagName === 'p' && !loose) {
+      wrapped.push(...child.children);
+    } else {
+      wrapped.push(child);
+    }
+  }
+
+  const tail = result[result.length - 1];
+
+  // Add a final eol.
+  if (tail && (loose || !('tagName' in tail) || tail.tagName !== 'p')) {
+    wrapped.push(u('text', '\n'));
+  }
+
+  return h(node, 'li', props, wrapped)
+}
+
+/**
+ * @param {List} node
+ * @return {Boolean}
+ */
+function listLoose(node) {
+  let loose = node.spread;
+  const children = node.children;
+  let index = -1;
+
+  while (!loose && ++index < children.length) {
+    loose = listItemLoose(children[index]);
+  }
+
+  return Boolean(loose)
+}
+
+/**
+ * @param {ListItem} node
+ * @return {Boolean}
+ */
+function listItemLoose(node) {
+  const spread = node.spread;
+
+  return spread === undefined || spread === null
+    ? node.children.length > 1
+    : spread
+}
+
+/**
+ * @typedef {import('mdast').List} List
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {List} node
+ * @returns {Element}
+ */
+function list(h, node) {
+  /** @type {Properties} */
+  const props = {};
+  const name = node.ordered ? 'ol' : 'ul';
+  const items = all(h, node);
+  let index = -1;
+
+  if (typeof node.start === 'number' && node.start !== 1) {
+    props.start = node.start;
+  }
+
+  // Like GitHub, add a class for custom styling.
+  while (++index < items.length) {
+    const item = items[index];
+
+    if (
+      item.type === 'element' &&
+      item.tagName === 'li' &&
+      item.properties &&
+      Array.isArray(item.properties.className) &&
+      item.properties.className.includes('task-list-item')
+    ) {
+      props.className = ['contains-task-list'];
+      break
+    }
+  }
+
+  return h(node, name, props, wrap(items, true))
+}
+
+/**
+ * @typedef {import('mdast').Paragraph} Paragraph
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Paragraph} node
+ */
+function paragraph(h, node) {
+  return h(node, 'p', all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').Root} Root
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Root} node
+ */
+function root(h, node) {
+  // @ts-expect-error `root`s are also fine.
+  return h.augment(node, u('root', wrap(all(h, node))))
+}
+
+/**
+ * @typedef {import('mdast').Strong} Strong
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Strong} node
+ */
+function strong(h, node) {
+  return h(node, 'strong', all(h, node))
+}
+
+/**
+ * @typedef {import('mdast').Table} Table
+ * @typedef {import('mdast').TableCell} TableCell
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('../index.js').Handler} Handler
+ * @typedef {import('../index.js').Content} Content
+ */
+
+/**
+ * @type {Handler}
+ * @param {Table} node
+ */
+function table(h, node) {
+  const rows = node.children;
+  let index = -1;
+  const align = node.align || [];
+  /** @type {Array.<Element>} */
+  const result = [];
+
+  while (++index < rows.length) {
+    const row = rows[index].children;
+    const name = index === 0 ? 'th' : 'td';
+    let pos = node.align ? align.length : row.length;
+    /** @type {Array.<Content>} */
+    const out = [];
+
+    while (pos--) {
+      const cell = row[pos];
+      out[pos] = h(cell, name, {align: align[pos]}, cell ? all(h, cell) : []);
+    }
+
+    result[index] = h(rows[index], 'tr', wrap(out, true));
+  }
+
+  return h(
+    node,
+    'table',
+    wrap(
+      [h(result[0].position, 'thead', wrap([result[0]], true))].concat(
+        result[1]
+          ? h(
+              {
+                start: pointStart(result[1]),
+                end: pointEnd(result[result.length - 1])
+              },
+              'tbody',
+              wrap(result.slice(1), true)
+            )
+          : []
+      ),
+      true
+    )
+  )
+}
+
+/**
+ * @typedef {import('mdast').Text} Text
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {Text} node
+ */
+function text(h, node) {
+  return h.augment(
+    node,
+    u('text', String(node.value).replace(/[ \t]*(\r?\n|\r)[ \t]*/g, '$1'))
+  )
+}
+
+/**
+ * @typedef {import('mdast').ThematicBreak} ThematicBreak
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('../index.js').Handler} Handler
+ */
+
+/**
+ * @type {Handler}
+ * @param {ThematicBreak} [node]
+ * @returns {Element}
+ */
+function thematicBreak(h, node) {
+  return h(node, 'hr')
+}
+
+const handlers = {
+  blockquote,
+  break: hardBreak,
+  code,
+  delete: strikethrough,
+  emphasis,
+  footnoteReference,
+  footnote,
+  heading,
+  html,
+  imageReference,
+  image,
+  inlineCode,
+  linkReference,
+  link,
+  listItem,
+  list,
+  paragraph,
+  root,
+  strong,
+  table,
+  text,
+  thematicBreak,
+  toml: ignore,
+  yaml: ignore,
+  definition: ignore,
+  footnoteDefinition: ignore
+};
+
+// Return nothing for nodes that are ignored.
+function ignore() {
+  return null
+}
+
+/**
+ * @typedef {import('mdast').Root|import('mdast').Parent['children'][number]} MdastNode
+ * @typedef {import('hast').Root|import('hast').Parent['children'][number]} HastNode
+ * @typedef {import('mdast').Parent} Parent
+ * @typedef {import('mdast').Definition} Definition
+ * @typedef {import('mdast').FootnoteDefinition} FootnoteDefinition
+ * @typedef {import('hast').Properties} Properties
+ * @typedef {import('hast').Text} Text
+ * @typedef {import('hast').Comment} Comment
+ * @typedef {import('hast').Element} Element
+ * @typedef {import('hast').Root} Root
+ * @typedef {import('hast').ElementContent} Content
+ * @typedef {import('unist-util-position').PositionLike} PositionLike
+ *
+ * @typedef EmbeddedHastFields
+ * @property {string} [hName] Defines the tag name of an element
+ * @property {Properties} [hProperties] Defines the properties of an element
+ * @property {Array.<Content>} [hChildren] Defines the (hast) children of an element
+ *
+ * @typedef {Object.<string, unknown> & EmbeddedHastFields} Data unist data with embedded hast fields
+ *
+ * @typedef {MdastNode & {data?: Data}} NodeWithData unist node with embedded hast data
+ *
+ * @callback Handler
+ * @param {H} h Handle context
+ * @param {any} node mdast node to handle
+ * @param {Parent|null} parent Parent of `node`
+ * @returns {Content|Array.<Content>|null|undefined} hast node
+ *
+ * @callback HFunctionProps
+ * @param {MdastNode|PositionLike|null|undefined} node mdast node or unist position
+ * @param {string} tagName HTML tag name
+ * @param {Properties} props Properties
+ * @param {Array.<Content>?} [children] hast content
+ * @returns {Element}
+ *
+ * @callback HFunctionNoProps
+ * @param {MdastNode|PositionLike|null|undefined} node mdast node or unist position
+ * @param {string} tagName HTML tag name
+ * @param {Array.<Content>?} [children] hast content
+ * @returns {Element}
+ *
+ * @typedef HFields
+ * @property {boolean} dangerous Whether HTML is allowed
+ * @property {string} clobberPrefix Prefix to use to prevent DOM clobbering
+ * @property {string} footnoteLabel Label to use to introduce the footnote section
+ * @property {string} footnoteBackLabel Label to use to go back to a footnote call from the footnote section
+ * @property {(identifier: string) => Definition|null} definition Definition cache
+ * @property {Object.<string, FootnoteDefinition>} footnoteById Footnote cache
+ * @property {Array.<string>} footnoteOrder Order in which footnotes occur
+ * @property {Record.<string, number>} footnoteCounts Counts the same footnote was used
+ * @property {Handlers} handlers Applied handlers
+ * @property {Handler} unknownHandler Handler for any none not in `passThrough` or otherwise handled
+ * @property {(left: NodeWithData|PositionLike|null|undefined, right: Content) => Content} augment Like `h` but lower-level and usable on non-elements.
+ * @property {Array.<string>} passThrough List of node types to pass through untouched (except for their children).
+ *
+ * @typedef Options
+ * @property {boolean} [allowDangerousHtml=false]
+ *   Whether to allow `html` nodes and inject them as `raw` HTML
+ * @property {string} [clobberPrefix='user-content-']
+ *   Prefix to use before the `id` attribute to prevent it from *clobbering*.
+ *   attributes.
+ *   DOM clobbering is this:
+ *
+ *   ```html
+ *   <p id=x></p>
+ *   <script>alert(x)</script>
+ *   ```
+ *
+ *   Elements by their ID are made available in browsers on the `window` object.
+ *   Using a prefix prevents this from being a problem.
+ * @property {string} [footnoteLabel='Footnotes']
+ *   Label to use for the footnotes section.
+ *   Affects screen reader users.
+ *   Change it if you’re authoring in a different language.
+ * @property {string} [footnoteBackLabel='Back to content']
+ *   Label to use from backreferences back to their footnote call.
+ *   Affects screen reader users.
+ *   Change it if you’re authoring in a different language.
+ * @property {Handlers} [handlers]
+ *   Object mapping mdast nodes to functions handling them
+ * @property {Array.<string>} [passThrough]
+ *   List of custom mdast node types to pass through (keep) in hast
+ * @property {Handler} [unknownHandler]
+ *   Handler for all unknown nodes.
+ *
+ * @typedef {Record.<string, Handler>} Handlers
+ *   Map of node types to handlers
+ * @typedef {HFunctionProps & HFunctionNoProps & HFields} H
+ *   Handle context
+ */
+
+const own = {}.hasOwnProperty;
+
+/**
+ * Factory to transform.
+ * @param {MdastNode} tree mdast node
+ * @param {Options} [options] Configuration
+ * @returns {H} `h` function
+ */
+function factory(tree, options) {
+  const settings = options || {};
+  const dangerous = settings.allowDangerousHtml || false;
+  /** @type {Object.<string, FootnoteDefinition>} */
+  const footnoteById = {};
+
+  h.dangerous = dangerous;
+  h.clobberPrefix =
+    settings.clobberPrefix === undefined || settings.clobberPrefix === null
+      ? 'user-content-'
+      : settings.clobberPrefix;
+  h.footnoteLabel = settings.footnoteLabel || 'Footnotes';
+  h.footnoteBackLabel = settings.footnoteBackLabel || 'Back to content';
+  h.definition = definitions(tree);
+  h.footnoteById = footnoteById;
+  /** @type {Array.<string>} */
+  h.footnoteOrder = [];
+  /** @type {Record.<string, number>} */
+  h.footnoteCounts = {};
+  h.augment = augment;
+  h.handlers = {...handlers, ...settings.handlers};
+  h.unknownHandler = settings.unknownHandler;
+  h.passThrough = settings.passThrough;
+
+  visit$1(tree, 'footnoteDefinition', (definition) => {
+    const id = String(definition.identifier).toUpperCase();
+
+    // Mimick CM behavior of link definitions.
+    // See: <https://github.com/syntax-tree/mdast-util-definitions/blob/8290999/index.js#L26>.
+    if (!own.call(footnoteById, id)) {
+      footnoteById[id] = definition;
+    }
+  });
+
+  // @ts-expect-error Hush, it’s fine!
+  return h
+
+  /**
+   * Finalise the created `right`, a hast node, from `left`, an mdast node.
+   * @param {(NodeWithData|PositionLike)?} left
+   * @param {Content} right
+   * @returns {Content}
+   */
+  function augment(left, right) {
+    // Handle `data.hName`, `data.hProperties, `data.hChildren`.
+    if (left && 'data' in left && left.data) {
+      /** @type {Data} */
+      const data = left.data;
+
+      if (data.hName) {
+        if (right.type !== 'element') {
+          right = {
+            type: 'element',
+            tagName: '',
+            properties: {},
+            children: []
+          };
+        }
+
+        right.tagName = data.hName;
+      }
+
+      if (right.type === 'element' && data.hProperties) {
+        right.properties = {...right.properties, ...data.hProperties};
+      }
+
+      if ('children' in right && right.children && data.hChildren) {
+        right.children = data.hChildren;
+      }
+    }
+
+    if (left) {
+      const ctx = 'type' in left ? left : {position: left};
+
+      if (!generated(ctx)) {
+        right.position = {start: pointStart(ctx), end: pointEnd(ctx)};
+      }
+    }
+
+    return right
+  }
+
+  /**
+   * Create an element for `node`.
+   *
+   * @type {HFunctionProps}
+   */
+  function h(node, tagName, props, children) {
+    if (Array.isArray(props)) {
+      children = props;
+      props = {};
+    }
+
+    // @ts-expect-error augmenting an element yields an element.
+    return augment(node, {
+      type: 'element',
+      tagName,
+      properties: props || {},
+      children: children || []
+    })
+  }
+}
+
+/**
+ * Transform `tree` (an mdast node) to a hast node.
+ *
+ * @param {MdastNode} tree mdast node
+ * @param {Options} [options] Configuration
+ * @returns {HastNode|null|undefined} hast node
+ */
+function toHast(tree, options) {
+  const h = factory(tree, options);
+  const node = one(h, tree, null);
+  const foot = footer(h);
+
+  if (foot) {
+    // @ts-expect-error If there’s a footer, there were definitions, meaning block
+    // content.
+    // So assume `node` is a parent node.
+    node.children.push(u('text', '\n'), foot);
+  }
+
+  return Array.isArray(node) ? {type: 'root', children: node} : node
+}
+
+/**
+ * @typedef {import('mdast').Root} Root
+ * @typedef {import('hast-util-sanitize').Schema} Schema
+ * @typedef {import('mdast-util-to-hast').Handlers} Handlers
+ *
+ * @typedef Options
+ *   Configuration.
+ * @property {boolean|Schema|null} [sanitize]
+ *   How to sanitize the output.
+ * @property {Handlers} [handlers={}]
+ *   Object mapping mdast nodes to functions handling them.
+ */
+
+/**
+ * Plugin to serialize markdown as HTML.
+ *
+ * @type {import('unified').Plugin<[Options?]|void[], Root, string>}
+ */
+function remarkHtml(settings = {}) {
+  const options = {...settings};
+  /** @type {boolean|undefined} */
+  let clean;
+
+  if (typeof options.sanitize === 'boolean') {
+    clean = options.sanitize;
+    options.sanitize = undefined;
+  }
+
+  if (typeof clean !== 'boolean') {
+    clean = true;
+  }
+
+  Object.assign(this, {Compiler: compiler});
+
+  /**
+   * @type {import('unified').CompilerFunction<Root, string>}
+   */
+  function compiler(node, file) {
+    const hast = toHast(node, {
+      allowDangerousHtml: !clean,
+      handlers: options.handlers
+    });
+    // @ts-expect-error: assume root.
+    const cleanHast = clean ? sanitize(hast, options.sanitize) : hast;
+    const result = toHtml(
+      // @ts-expect-error: assume root.
+      cleanHast,
+      Object.assign({}, options, {allowDangerousHtml: !clean})
+    );
+
+    if (file.extname) {
+      file.extname = '.html';
+    }
+
+    // Add an eof eol.
+    return node &&
+      node.type &&
+      node.type === 'root' &&
+      result &&
+      /[^\r\n]/.test(result.charAt(result.length - 1))
+      ? result + '\n'
+      : result
+  }
+}
+
+// loader: source -> js
+
+function index(source) {
+    // webpack注入的上下文
+    // console.log("---------------", source);
+    var callback = this.async();
+
+    remark()
+        .use(remarkHtml)
+        .process(source)
+        .then((file) => {
+            console.log('------------------',file);
+            // console.error(reporter(file));
+            // console.log(String(file));
+            callback(null, `export default \`${String(file)}\``);
+        });
+}
+
+module.exports = index;
