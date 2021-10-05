@@ -1,4 +1,5 @@
-import md2html from "../index.js";
+import { md2html, alias } from "../dist/bundle.js";
+import path from "path";
 
 export default {
     input: './index.js',
@@ -7,5 +8,10 @@ export default {
         format: "esm"
     },
 
-    plugins: [md2html()]
+    plugins: [
+        md2html(),
+        alias({ 
+            "@/": path.resolve(__dirname, "./src")
+        })
+    ],
 };

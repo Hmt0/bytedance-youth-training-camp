@@ -357,7 +357,7 @@ function stringifyPosition(value) {
  * @returns {string}
  */
 function point$1(point) {
-  return index$1(point && point.line) + ':' + index$1(point && point.column)
+  return index(point && point.line) + ':' + index(point && point.column)
 }
 
 /**
@@ -372,7 +372,7 @@ function position(pos) {
  * @param {number} value
  * @returns {number}
  */
-function index$1(value) {
+function index(value) {
   return value && typeof value === 'number' ? value : 1
 }
 
@@ -19306,7 +19306,7 @@ function remarkHtml(settings = {}) {
   }
 }
 
-function index() {
+function md2html() {
     return {
         load(id) {
             // 自己加载代码
@@ -19318,17 +19318,33 @@ function index() {
                 console.log("md2html");
                 const source = fs.readFileSync(id, "utf-8");
 
-                remark()
-                    .use(remarkHtml)
-                    .process(source)
-                    .then((file) => {
-                    console.log(String(file));
-                });
+                return new Promise((resolve, reject) => {
+                    remark()
+                        .use(remarkHtml)
+                        .process(source)
+                        .then((file) => {
+                            resolve(`export default \`${String(file.value)}\``);
+                        });
+                })
+                
             }
         }
-        
-        
     }
 }
 
-export { index as default };
+function alias(options) {
+    return {
+        resolveId(id) {
+            // 自行解析id
+            if(id.startsWith("@/")) {
+                console.log("------------0000000000", id.slice(2));
+                const prefix = id.slice(2);
+                const r = path.resolve(options["@/"], prefix);
+                console.log(r);
+                return r;
+            }
+        },
+    }
+}
+
+export { alias, md2html };
