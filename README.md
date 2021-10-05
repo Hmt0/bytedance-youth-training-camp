@@ -31,7 +31,7 @@
 
 #### 2.learn-webpack
 
-01：了解webpack配置，使用webapack进行打包
+01：了解webpack基本配置，使用webapack进行打包
 
 02：style-loader，css-loader
 
@@ -42,6 +42,18 @@
 05：实现一个读取md文件的webpack loader
 
 06：实现一个生成.html .md文件的webpack plugin
+
+#### 3.learn-rollup
+
+01：了解rollup基本配置
+
+02：指定多个打包出口，配置插件，使rollup可以解析json文件
+
+03：配置插件，使rollup可以解析node依赖的库
+
+04：将不希望打包进去的依赖用external标记为外部库
+
+05：实现一个可以读取.md文件的rollup loader
 
 Day03
 
