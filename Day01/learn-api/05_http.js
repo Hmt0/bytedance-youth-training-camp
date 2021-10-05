@@ -3,7 +3,7 @@ const fs = require('fs')
 
 http.createServer((request, response) => {
     // console.log('这里有一个请求')
-    // console.log(getPrototypeChain(request))
+    console.log(getPrototypeChain(request))
     // response.end('Hi Node!')
     const {url, method, headers} = request;
     console.log('url:', url);

@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=400"> -->
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=980, initial-scale=1.0"> -->
     <!-- <meta name="viewport" content="width=980 initial-scale=1.0"> -->
     <!--移动端特有设置，解决移动端屏幕过小，放不下正常网页的问题-->
     <!--当不设置viewport时，视口大小默认为 980-->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
     <script>
-        console.log(window.devicePixelRatio) // 像素比
+        console.log("像素比", window.devicePixelRatio) // 像素比
     </script>
     <script>
         // 问题：P原来1CSS px = 1device px，现在1CSS px = 2device px
         // 默认width=device-width时导致文档内容被放大，出现滚动条
         // 因此需要缩放
         // 手淘移动端适配解决方案
-        (function () {
-            // 1.创建meta标签
-            var metaEl = document.createElement('meta');
-            // 2.获取像素比
-            var scale = devicePixelRatio;
-            // 3.设置meta标签
-            metaEl.setAttribute('name', 'viewport');
-            // 4.动态设置viewport缩小比例
-            metaEl.setAttribute('content', 'initial-scale=' + (1/scale) + 
-            ', maximum-scale=' + (1/scale) + ', minimum-scale=' + (1/scale) + 
-            ', user-scalable=no');
-            document.documentElement.firstElementChild.appendChild(metaEl);
-        })();
+        // (function () {
+        //     // 1.创建meta标签
+        //     var metaEl = document.createElement('meta');
+        //     // 2.获取像素比
+        //     var scale = devicePixelRatio;
+        //     // 3.设置meta标签
+        //     metaEl.setAttribute('name', 'viewport');
+        //     // 4.动态设置viewport缩小比例
+        //     metaEl.setAttribute('content', 'initial-scale=' + (1/scale) + 
+        //     ', maximum-scale=' + (1/scale) + ', minimum-scale=' + (1/scale) + 
+        //     ', user-scalable=no');
+        //     document.documentElement.firstElementChild.appendChild(metaEl);
+        // })();
         
         
     </script>

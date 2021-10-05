@@ -21,3 +21,12 @@ window.foo = foo
 4.自动清理dist
 5.自动生成html
 6.user.js可以懒加载
+
+---------webpackloader---------------
+remark
+webpack不支持esm，支持commonjs,引入方式是require，
+remark库引入方式是import
+可以先用rollup打包 import -> require，再使用bundle.js
+/06 npm run build(rollup -c) -> bundle.js
+./example npm run build(webpack) -> ./dist/bundle.js
+坑：rollup会把this编译为undefined
