@@ -1,23 +1,33 @@
-// loader: source -> js
-// md -> html string
+// 生成.md .html
 
-// const { remark } = require("remark");
-// const remarkHtml = require("remark-html");
-import { remark } from "remark";
-import remarkHtml from "remark-html";
+// plugin核心：在对应的时机做对应的事
+module.exports = class HtmlPlugin{
+    constructor() {
 
-export default function(source) {
-    // webpack注入的上下文
-    // console.log("---------------", source);
-    var callback = this.async();
+    }
+    // webpack init plugin
+    apply(complier) {
+        // complier webpack 所有的信息
+        console.log("html - plugin");
+        // hooks：事件
+        complier.hooks.emit.tapAsync(
+            "HtmlPlugin",
+            function(compilation, callback) {
+            // 编译的时候会生成对象
+            console.log("emit");
+            
+            // 基于数据生成对应文件
+            console.log(compilation.assets);
+            compilation.assets["work.md"] = {
+                source: function() {
+                    return "## work";
+                },
+                size: function() {
+                    return 11;
+                },
+            };
 
-    remark()
-        .use(remarkHtml)
-        .process(source)
-        .then((file) => {
-            console.log('------------------',file);
-            // console.error(reporter(file));
-            // console.log(String(file));
-            callback(null, `export default \`${String(file)}\``);
-        });
+            callback();
+        })
+    }
 }

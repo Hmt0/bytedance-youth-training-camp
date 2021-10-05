@@ -20,3 +20,6 @@ npm install @rollup/plugin-node-resolve --dev
 3.支持解析 json
 4.生成esm和cjs两种
 5.esm代码压缩
+
+rollup loader 别名插件
+import test from "@/test.js" @解析为src

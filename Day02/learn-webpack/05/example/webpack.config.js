@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlPlugin = require('../index.js');
+
 
 module.exports = {
     mode: "development",
@@ -8,5 +8,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
-    plugins: [new HtmlPlugin()]
+    module: {
+        rules: [
+            {
+                test: /.md$/i,
+                loader: path.resolve(__dirname, "../bundle.js")
+            }
+        ]
+    }
 }

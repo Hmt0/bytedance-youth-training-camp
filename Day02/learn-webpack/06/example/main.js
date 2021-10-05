@@ -1,5 +1,5 @@
-import doc from "./doc.md";
+import { foo } from './foo'
 
-// 加载了非js文件
-console.log(doc)
 console.log("main")
+
+console.log(foo())

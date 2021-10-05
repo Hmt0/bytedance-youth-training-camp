@@ -1,22 +1,13 @@
 {
-  "name": "06",
+  "name": "07",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "directories": {
     "example": "example"
   },
-  "dependencies": {
-    "@rollup/plugin-commonjs": "^21.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.5",
-    "remark": "^14.0.1",
-    "remark-html": "^15.0.0",
-    "rollup": "^2.58.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
