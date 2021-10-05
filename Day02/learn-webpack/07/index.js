@@ -1,4 +1,6 @@
 // 生成.md .html
+
+// plugin核心：在对应的时机做对应的事
 module.exports = class HtmlPlugin{
     constructor() {
 
