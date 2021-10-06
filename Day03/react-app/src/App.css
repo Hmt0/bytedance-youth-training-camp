@@ -54,9 +54,9 @@
 
 .home-card-logo-icon {
   position: absolute;
-  top: -7px;
-  left: 353px;
-  display: none;
+  top: -22px;
+  left: 337px;
+  /* display: none; */
   width: 64px;
   height: 64px;
 }
