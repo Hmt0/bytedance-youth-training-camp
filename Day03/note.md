@@ -40,8 +40,12 @@ absolute top left
 
 #sidebar>*选择器
 
+经验：mousedown绑定在element上，mouseup和mousemove绑定在document上
+
 可不可以从把拖拽结果自动生成代码
 
 column设置宽度
 
 css normalize
+
+document.ElementFromPoint()

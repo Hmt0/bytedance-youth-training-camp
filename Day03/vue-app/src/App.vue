@@ -1,21 +1,18 @@
 <template>
   <div id="container">
     <div id="sidebar">
-      <span @mousedown="dragRow">Row</span>
-      <span @mousedown="dragCol">Col</span>
-      <span @mousedown="dragBtn">Button</span>
+      <span class="dragrow" @mousedown="dragRow">Row</span>
+      <span class="dragcol" @mousedown="dragCol">Col</span>
+      <span class="dragbtn" @mousedown="dragBtn">Button</span>
     </div>
-    <div id="editPanel">
-      <div class="row" v-for="row of rows" v-bind:key="row">row
-        <div class="col" v-for="col of row.cols" v-bind:key="col">col
-          <button>123</button>
-        </div>
-        <div class="col">col
-          <button>123</button>
+    <div id="editPanel" data-accept-type="row">
+      <div data-accept-type="col" v-bind:data-row="i" class="row" v-for="(row,i) of rows" v-bind:key=i>row
+        <div data-accept-type="btn" v-bind:data-col="j" class="col" v-for="(col,j) of row.cols" v-bind:key=j>
+          <button v-for = "(ele, k) of col.children" v-bind:key=k>{{ele.content}}</button>
         </div>
       </div>
     </div>
-    <div id="dragable" :style="{left: drag.x + 'px', top: drag.y + 'px'}" v-if="drag.isDragging">dragable</div>
+    <div id="dragable" :style="{left:drag.x  + 'px', top: drag.y + 'px'}" v-if="drag.isDragging">dragable</div>
   </div>
 </template>
 
@@ -28,45 +25,67 @@ export default {
       y0: 0,
       dx: 0,
       dy: 0,
-      x: 0,
-      y: 0,
+      x: 100,
+      y: 100,
       type: 'none',
       isDragging: false
     },
-    rows: {
-      type: 'row',
-      height: 300,
-      cols: [
-        {
-          type: 'col',
-          width: 300,
-          children: [
-            {
-              type: 'btn',
-              content: '按钮'
-            }
-          ]
-        }
-      ]
-    }
+    rows: [
+      // {},
+      // {},
+      // {},
+      // {
+      //   type: 'row',
+      //   height: 300,
+      //   cols: [
+      //     {
+      //       type: 'col',
+      //       width: 300,
+      //       children: [
+      //         {
+      //           type: 'btn',
+      //           content: '按钮'
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // }
+    ]
   }),
   components: {
 
   },
   methods: {
     dragStart (type) {
+      // const element = document.getElementsByClassName('drag' + type)
       this.drag.type = type
       this.drag.isDragging = true
+
       let move = e => {
-        this.drag.x = e.clientX
-        this.drag.y = e.clientY
-        let [dx, dy] = [e.clientX - this.drag.x0, e.clientY - this.drag.y0]
-        console.log(dx, dy)
+        this.drag.x = e.clientX - this.drag.x0 + 10
+        this.drag.y = e.clientY - this.drag.y0 + 10
+        // 防止elementFromPoint得到的是dragable矩形
       }
-      let up = () => {
+      let up = (e) => {
         document.removeEventListener('mousemove', move)
         document.removeEventListener('mouseup', up)
         this.drag.isDragging = false
+        let areaElement = document.elementFromPoint(e.clientX, e.clientY)
+        let current = areaElement
+        while (current && current.dataset['acceptType'] !== type) {
+          console.log('current', current)
+          current = current.parent
+        }
+        if (type === 'row') {
+          this.rows.push({cols: []})
+        }
+        if (type === 'col') {
+          this.rows[current.dataset['row']].cols.push({children: []})
+        }
+        if (type === 'btn') {
+          this.rows[current.parentNode.dataset['row']].cols[current.dataset['col']].children.push({content: 'btn'})
+        }
+        console.log(current)
       }
       document.addEventListener('mousemove', move)
       document.addEventListener('mouseup', up)
