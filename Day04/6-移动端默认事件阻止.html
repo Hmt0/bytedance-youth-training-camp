@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
         #box {
             width: 30vw;
@@ -14,30 +9,10 @@
             color: #fff
         }
     </style>
-    <script>
-        document.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-        }, {
-            passive: false
-            // 允许全局元素阻止默认行为
-        })
-        /**
-         * -阻止 touchstart 默认行为
-         * 1.滚动条滚动
-         * 2.页面缩放
-         * 3.超链接
-         * 4.所有鼠标事件，在移动端的执行
-         * 5.表单相关控件获得焦点
-         * 6.长按菜单
-         * 
-         * -阻止 touchmove 默认事件
-         * 1.滚动条滚动
-         * 2.页面缩放
-         */
-    </script>
 </head>
 <body>
-    <input />
+    <input type="text"/>
+    <a href="http://www.baidu.com">百度</a>
     <div id="box"></div>
     <ul>
         <li>占位</li>
@@ -78,5 +53,29 @@
         <li>占位</li>
         <li>占位</li>
     </ul>
+    <script>
+        document.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+        }, {
+            passive: false
+            // 允许全局元素阻止默认行为
+        })
+        /**
+         * -阻止 touchstart 默认行为
+         * 1.滚动条滚动
+         * 2.页面缩放
+         * 3.超链接
+         * 4.所有鼠标事件，在移动端的执行
+         * 5.表单相关控件获得焦点
+         * 6.长按菜单
+         * 
+         * -阻止 touchmove 默认事件
+         * 1.滚动条滚动
+         * 2.页面缩放
+         * 
+         * -阻止touchend 默认事件
+         * 不常用
+         */
+    </script>
 </body>
 </html>

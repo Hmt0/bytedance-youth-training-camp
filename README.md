@@ -55,7 +55,33 @@
 
 05：实现一个可以读取.md文件的rollup loader
 
-Day03
+#### 4.learn-vite
+
+01：在html中直接引入ems
+
+02： 在vite中使用rollup插件
+
+mini-vite：实现vite打包原理
+
+#### 5.learn-test
+
+01：jest测试函数输出结果
+
+02：cypress进行e2e测试
+
+03：配置husky，在git commit时检查代码
+
+04：配置eslint
+
+## Day03
+
+drag-demo：JavaScript实现组件拖拽
+
+react-app：仿Ant Design官网UI
+
+umi-app：熟悉umi框架，自定义主题颜色
+
+vue-app：实现low code组件拖拽功能
 
 Day04
 
